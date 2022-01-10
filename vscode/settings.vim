@@ -13,6 +13,17 @@ nnoremap <C-w>gd <Cmd>call VSCodeNotify('editor.action.revealDefinitionAside')<C
 " Toggle Sidebar
 nnoremap <leader>e <Cmd>call VSCodeNotify('workbench.action.toggleSidebarVisibility')<CR>
 
+" Fold All
+nnoremap za <Cmd>call VSCodeNotify('editor.foldAll')<CR>
+
+" Close Fold
+nnoremap zc <Cmd>call VSCodeNotify('editor.fold')<CR>
+nnoremap zC <Cmd>call VSCodeNotify('editor.foldRecursively')<CR>
+
+" Open Fold
+nnoremap zo <Cmd>call VSCodeNotify('editor.unfold')<CR>
+nnoremap zO <Cmd>call VSCodeNotify('editor.unfoldRecursively')<CR>
+
 " Load command settings
 source $HOME/.config/nvim/vscode/vscode-scrolling.vim
 source $HOME/.config/nvim/vscode/vscode-file-commands.vim
