@@ -29,3 +29,4 @@ augroup RestoreCursorShapeOnExit
    autocmd!
    autocmd VimLeave * set guicursor=a:ver25--iCursor-blinkwait300-blinkon200-blinkoff150
 augroup END
+
