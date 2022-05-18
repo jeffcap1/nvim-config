@@ -14,8 +14,9 @@ else
     source $HOME/.config/nvim/themes/airline.vim
     " source $HOME/.config/nvim/themes/oceanic-next.vim
     " source $HOME/.config/nvim/themes/onehalf-dark.vim
- 
+
     " Plugin Configuration
+    source $HOME/.config/nvim/plug-config/nerdtree.vim
     source $HOME/.config/nvim/plug-config/rainbow_parenthesis.vim
     source $HOME/.config/nvim/plug-config/sneak.vim
 endif
