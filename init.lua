@@ -15,4 +15,6 @@ vim.opt.rtp:prepend(lazypath)
 -- include different lua config files
 require("user.options")
 require("user.keymaps")
+require("user.functions")
 require("lazy").setup("user.plugins")
+
