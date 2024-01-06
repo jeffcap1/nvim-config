@@ -13,7 +13,7 @@ keymap("v", ">", ">gv")
 
 -- visually move lines
 keymap("v", "J", ":m '>+1<CR>gv=gv")
-keymap("v", "K", ":m '>-2<CR>gv=gv")
+keymap("v", "K", ":m '<-2<CR>gv=gv")
 
 -- fixes pasting so it keeps the current register
 keymap("x", "p", '"_dP')
