@@ -47,7 +47,8 @@ vim.opt.smartcase = true  -- smart case
 -- show invisible characters
 -- vim.opt.listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣"
 -- vim.opt.listchars = "tab:>·,trail:~,extends:>,precedes:<,space:·"
-vim.opt.listchars = "tab:⇥¬¬,trail:·,extends:>,precedes:<,space:·"
+-- vim.opt.listchars = "tab:⇥¬¬,trail:·,extends:>,precedes:<,space:·"
+vim.opt.listchars = "trail:·,extends:>,precedes:<,space:·"
 vim.opt.list = true
 
 
