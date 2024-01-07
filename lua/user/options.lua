@@ -44,6 +44,13 @@ vim.opt.conceallevel = 0 -- so that `` is visible in markdown files
 vim.opt.ignorecase = true -- ignore case in search patterns
 vim.opt.smartcase = true  -- smart case
 
+-- show invisible characters
+-- vim.opt.listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣"
+-- vim.opt.listchars = "tab:>·,trail:~,extends:>,precedes:<,space:·"
+vim.opt.listchars = "tab:⇥¬¬,trail:·,extends:>,precedes:<,space:·"
+vim.opt.list = true
+
+
 -- general settings
 vim.opt.termguicolors = true -- set term gui colors (most terminals support this)
 vim.opt.cursorline = true    -- highlight the current line
