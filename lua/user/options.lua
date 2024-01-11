@@ -48,7 +48,7 @@ vim.opt.smartcase = true -- smart case
 -- vim.opt.listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣"
 -- vim.opt.listchars = "tab:>·,trail:~,extends:>,precedes:<,space:·"
 -- vim.opt.listchars = "tab:⇥¬¬,trail:·,extends:>,precedes:<,space:·"
-vim.opt.listchars = "tab:>·,trail:·,extends:>,precedes:<,space:·"
+vim.opt.listchars = "tab:>·,trail:·,extends:>,precedes:<"
 vim.opt.list = true
 
 -- general settings
@@ -61,4 +61,4 @@ vim.opt.wrap = false -- display lines as one long line
 vim.opt.updatetime = 50 -- faster updates
 vim.opt.colorcolumn = { "80", "120", "160" }
 vim.opt.ruler = true
-vim.opt.title = false
+vim.opt.title = true
