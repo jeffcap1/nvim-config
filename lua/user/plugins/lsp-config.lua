@@ -24,7 +24,7 @@ return {
       local lspconfig = require("lspconfig")
 
       -- setup language server
-      local servers = { "intelephense", "jsonls", "html", "tsserver" }
+      local servers = { "intelephense", "jsonls", "html", "tsserver", "pyright" }
       for _, lsp in ipairs(servers) do
         lspconfig[lsp].setup({
           capabilities = capabilities,
