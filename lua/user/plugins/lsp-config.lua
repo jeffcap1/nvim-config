@@ -50,22 +50,41 @@ return {
         callback = function(ev)
           -- Buffer local mappings.
           -- See `:help vim.lsp.*` for documentation on any of the below functions
-          local opts = { buffer = ev.buf }
-          vim.keymap.set("n", "gh", vim.lsp.buf.hover, opts)
-          vim.keymap.set("n", "gH", vim.lsp.buf.signature_help, opts)
-          vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-          vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-          vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-          vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-          vim.keymap.set({ "n", "v" }, "ga", vim.lsp.buf.code_action, opts)
-          vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts)
-          vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+          vim.keymap.set("n", "<leader>lh", vim.lsp.buf.hover, { desc = "LSP hover help", buffer = ev.buf })
+          vim.keymap.set(
+            "n",
+            "<leader>ls",
+            vim.lsp.buf.signature_help,
+            { desc = "LSP function signature", buffer = ev.buf }
+          )
+          vim.keymap.set("n", "<leader>ld", vim.lsp.buf.definition, { desc = "LSP definition", buffer = ev.buf })
+          vim.keymap.set("n", "<leader>lD", vim.lsp.buf.declaration, { desc = "LSP declaration", buffer = ev.buf })
+          vim.keymap.set(
+            "n",
+            "<leader>li",
+            vim.lsp.buf.implementation,
+            { desc = "LSP implementation", buffer = ev.buf }
+          )
+          vim.keymap.set("n", "<leader>lr", vim.lsp.buf.references, { desc = "LSP references", buffer = ev.buf })
+          vim.keymap.set(
+            { "n", "v" },
+            "<leader>la",
+            vim.lsp.buf.code_action,
+            { desc = "LSP code actions", buffer = ev.buf }
+          )
+          vim.keymap.set(
+            "n",
+            "<leader>ltd",
+            vim.lsp.buf.type_definition,
+            { desc = "LSP type definition", buffer = ev.buf }
+          )
+          vim.keymap.set("n", "f2", vim.lsp.buf.rename, { desc = "LSP rename", buffer = ev.buf })
 
           -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-          vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
-          vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
-          vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)
-          vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist)
+          vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Goto previous diagnostic"})
+          vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Goto next diagnostic"})
+          vim.keymap.set("n", "<leader>le", vim.diagnostic.open_float, { desc = "Diagnostic line help" })
+          vim.keymap.set("n", "<leader>lq", vim.diagnostic.setloclist, { desc = "Diagnostic list locations" })
         end,
       })
     end,

@@ -5,6 +5,7 @@ return {
     null_ls.setup({
       on_attach = function(client, bufnr)
         if client.supports_method("textDocument/formatting") then
+          local augroup = vim.api.nvim_create_augroup("auto_format", {})
           vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
           vim.api.nvim_create_autocmd("BufWritePre", {
             group = augroup,
@@ -28,8 +29,8 @@ return {
         null_ls.builtins.formatting.stylua,
       },
     })
-    vim.keymap.set("n", "<leader>ff", function()
+    vim.keymap.set("n", "<leader>lf", function()
       vim.lsp.buf.format({ async = true })
-    end, {})
+    end, { desc = "LSP format" })
   end,
 }
