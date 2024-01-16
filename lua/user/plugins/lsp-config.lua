@@ -1,133 +1,111 @@
-local lsp_servers = {
-  "bashls",
-  "cssls",
-  "graphql",
-  "html",
-  "jsonls",
-  "lua_ls",
-  "marksman",
-  "pyright",
-  "sqlls",
-  "tsserver",
-  "yamlls",
-}
-
-local lua_formatting = {
-  format = {
-    enable = true,
-    defaultConfig = {
-      indent_style = "space",
-      indent_size = "2",
+local M = {
+  "neovim/nvim-lspconfig",
+  event = { "BufReadPre", "BufNewFile" },
+  dependencies = {
+    {
+      "folke/neodev.nvim",
     },
   },
 }
 
-return {
-  {
-    "williamboman/mason.nvim",
-    lazy = false,
-    config = function()
-      require("mason").setup({
-        ui = {
-          border = "rounded",
-        },
-      })
+local function xtnd(opt1, opt2)
+  return vim.tbl_extend("force", opt1, opt2)
+end
+
+M.on_attach = function(client, bufnr)
+  if client.supports_method("textDocument/inlayHint") then
+    vim.lsp.inlay_hint.enable(bufnr, true)
+  end
+end
+
+function M.config()
+  local lspconfig = require("lspconfig")
+  local icons = require("user.icons")
+  local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+  local default_diagnostic_config = {
+    signs = {
+      active = true,
+      values = {
+        { name = "DiagnosticSignError", text = icons.diagnostics.Error },
+        { name = "DiagnosticSignWarn",  text = icons.diagnostics.Warning },
+        { name = "DiagnosticSignHint",  text = icons.diagnostics.Hint },
+        { name = "DiagnosticSignInfo",  text = icons.diagnostics.Information },
+      },
+    },
+    virtual_text = true,
+    update_in_insert = false,
+    underline = true,
+    severity_sort = true,
+    float = {
+      focusable = true,
+      style = "minimal",
+      border = "rounded",
+      source = "always",
+      header = "",
+      prefix = "",
+    },
+  }
+
+  vim.diagnostic.config(default_diagnostic_config)
+
+  for _, sign in ipairs(vim.tbl_get(vim.diagnostic.config(), "signs", "values") or {}) do
+    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
+  end
+
+  -- rounded borders for LSP
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
+  require("lspconfig.ui.windows").default_options.border = "rounded"
+
+  -- setup language server
+  for _, lsp_server in pairs(USERS_LSP_SERVERS) do
+    local opts = {
+      on_attach = M.on_attach,
+      capabilities = capabilities,
+    }
+
+    local require_ok, settings = pcall(require, "user.lsp_settings." .. lsp_server)
+    if require_ok then
+      opts = vim.tbl_deep_extend("force", settings, opts)
+    end
+
+    if lsp_server == "lua_ls" then
+      require("neodev").setup({})
+    end
+
+    lspconfig[lsp_server].setup(opts)
+  end
+
+  -- lsp keybindings
+  vim.api.nvim_create_autocmd("LspAttach", {
+    desc = "LSP actions",
+    group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+    callback = function(ev)
+      local keymap = vim.keymap.set
+      local lspbuf = vim.lsp.buf
+      local opts = { noremap = true, silent = true, buffer = ev.buf }
+
+      -- Buffer local mappings.
+      -- See `:help vim.lsp.*` for documentation on any of the below functions
+      -- See `:help vim.diagnostic.*` for documentation on any of the below functions
+      keymap("n", "gh", lspbuf.hover, xtnd(opts, { desc = "LSP hover help" }))
+      keymap("n", "gs", lspbuf.signature_help, xtnd(opts, { desc = "LSP function signature" }))
+      keymap("n", "gd", lspbuf.definition, xtnd(opts, { desc = "LSP definition" }))
+      keymap("n", "gD", lspbuf.declaration, xtnd(opts, { desc = "LSP declaration" }))
+      keymap("n", "gi", lspbuf.implementation, xtnd(opts, { desc = "LSP implementation" }))
+      keymap("n", "gr", lspbuf.references, xtnd(opts, { desc = "LSP references" }))
+      keymap("n", "gl", vim.diagnostic.open_float, xtnd(opts, { desc = "Diagnostic line help" }))
+
+      keymap({ "n", "v" }, "<leader>la", lspbuf.code_action, xtnd(opts, { desc = "LSP code actions" }))
+      keymap("n", "<leader>lj", vim.diagnostic.goto_next, xtnd(opts, { desc = "Goto next diagnostic" }))
+      keymap("n", "<leader>lk", vim.diagnostic.goto_prev, xtnd(opts, { desc = "Goto previous diagnostic" }))
+      keymap("n", "<leader>ll", vim.lsp.codelens.run, xtnd(opts, { desc = "CodeLens ACtion" }))
+      keymap("n", "<leader>lq", vim.diagnostic.setloclist, xtnd(opts, { desc = "Diagnostic list locations" }))
+      keymap("n", "<leader>lr", lspbuf.rename, xtnd(opts, { desc = "LSP rename" }))
+      keymap("n", "<leader>ltd", lspbuf.type_definition, xtnd(opts, { desc = "LSP type definition" }))
     end,
-  },
-  {
-    "williamboman/mason-lspconfig.nvim",
-    lazy = false,
-    config = function()
-      require("mason-lspconfig").setup({
-        ensure_installed = lsp_servers,
-      })
-    end,
-  },
-  {
-    "neovim/nvim-lspconfig",
-    lazy = false,
-    config = function()
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+  })
+end
 
-      local lspconfig = require("lspconfig")
-
-      -- setup language server
-      local servers = lsp_servers
-      for _, lsp in ipairs(servers) do
-        local M = {}
-        M.capabilities = capabilities
-
-        if lsp == "lua_ls" then
-          M.Lua = lua_formatting
-        end
-
-        if lsp == "jsonls" then
-          M.settings = {
-            json = {
-              schemas = require("schemastore").json.schemas(),
-              validate = { enable = true },
-            },
-          }
-        end
-
-        if lsp == "yamlls" then
-          M.settings = {
-            yaml = {
-              schemaStore = {
-                enable = false,
-                url = "",
-              },
-              schemas = require("schemastore").yaml.schemas(),
-            },
-          }
-        end
-
-        lspconfig[lsp].setup(M)
-      end
-
-      -- lsp keybindings
-      vim.api.nvim_create_autocmd("LspAttach", {
-        group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-        callback = function(ev)
-          -- Buffer local mappings.
-          -- See `:help vim.lsp.*` for documentation on any of the below functions
-          vim.keymap.set("n", "<leader>lh", vim.lsp.buf.hover, { desc = "LSP hover help", buffer = ev.buf })
-          vim.keymap.set(
-            "n",
-            "<leader>ls",
-            vim.lsp.buf.signature_help,
-            { desc = "LSP function signature", buffer = ev.buf }
-          )
-          vim.keymap.set("n", "<leader>ld", vim.lsp.buf.definition, { desc = "LSP definition", buffer = ev.buf })
-          vim.keymap.set("n", "<leader>lD", vim.lsp.buf.declaration, { desc = "LSP declaration", buffer = ev.buf })
-          vim.keymap.set(
-            "n",
-            "<leader>li",
-            vim.lsp.buf.implementation,
-            { desc = "LSP implementation", buffer = ev.buf }
-          )
-          vim.keymap.set("n", "<leader>lr", vim.lsp.buf.references, { desc = "LSP references", buffer = ev.buf })
-          vim.keymap.set(
-            { "n", "v" },
-            "<leader>la",
-            vim.lsp.buf.code_action,
-            { desc = "LSP code actions", buffer = ev.buf }
-          )
-          vim.keymap.set(
-            "n",
-            "<leader>ltd",
-            vim.lsp.buf.type_definition,
-            { desc = "LSP type definition", buffer = ev.buf }
-          )
-          vim.keymap.set("n", "f2", vim.lsp.buf.rename, { desc = "LSP rename", buffer = ev.buf })
-
-          -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-          vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Goto previous diagnostic" })
-          vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Goto next diagnostic" })
-          vim.keymap.set("n", "<leader>le", vim.diagnostic.open_float, { desc = "Diagnostic line help" })
-          vim.keymap.set("n", "<leader>lq", vim.diagnostic.setloclist, { desc = "Diagnostic list locations" })
-        end,
-      })
-    end,
-  },
-}
+return M
