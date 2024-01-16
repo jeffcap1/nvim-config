@@ -45,10 +45,6 @@ vim.cmd([[:amenu 10.110 mousemenu.References <cmd>lua vim.lsp.buf.references()<C
 keymap("n", "<RightMouse>", "<cmd>:popup mousemenu<CR>")
 keymap("n", "<Tab>", "<cmd>:popup mousemenu<CR>")
 
--- hop to beginning or end of a line
-keymap({ "n", "o", "x" }, "<s-h>", "^")
-keymap({ "n", "o", "x" }, "<s-l>", "g_")
-
 -- working with multi-line
 keymap({ "n", "x" }, "j", "gj")
 keymap({ "n", "x" }, "k", "gk")

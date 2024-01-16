@@ -1,9 +1,37 @@
+local lsp_servers = {
+  "bashls",
+  "cssls",
+  "graphql",
+  "html",
+  "jsonls",
+  "lua_ls",
+  "marksman",
+  "pyright",
+  "sqlls",
+  "tsserver",
+  "yamlls",
+}
+
+local lua_formatting = {
+  format = {
+    enable = true,
+    defaultConfig = {
+      indent_style = "space",
+      indent_size = "2",
+    },
+  },
+}
+
 return {
   {
     "williamboman/mason.nvim",
     lazy = false,
     config = function()
-      require("mason").setup()
+      require("mason").setup({
+        ui = {
+          border = "rounded",
+        },
+      })
     end,
   },
   {
@@ -11,7 +39,7 @@ return {
     lazy = false,
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "tsserver" },
+        ensure_installed = lsp_servers,
       })
     end,
   },
@@ -24,25 +52,38 @@ return {
       local lspconfig = require("lspconfig")
 
       -- setup language server
-      local servers = { "intelephense", "jsonls", "html", "tsserver", "pyright" }
+      local servers = lsp_servers
       for _, lsp in ipairs(servers) do
-        lspconfig[lsp].setup({
-          capabilities = capabilities,
-        })
-      end
+        local M = {}
+        M.capabilities = capabilities
 
-      lspconfig.lua_ls.setup({
-        capabilities = capabilities,
-        Lua = {
-          format = {
-            enable = true,
-            defaultConfig = {
-              indent_style = "space",
-              indent_size = "2",
+        if lsp == "lua_ls" then
+          M.Lua = lua_formatting
+        end
+
+        if lsp == "jsonls" then
+          M.settings = {
+            json = {
+              schemas = require("schemastore").json.schemas(),
+              validate = { enable = true },
             },
-          },
-        },
-      })
+          }
+        end
+
+        if lsp == "yamlls" then
+          M.settings = {
+            yaml = {
+              schemaStore = {
+                enable = false,
+                url = "",
+              },
+              schemas = require("schemastore").yaml.schemas(),
+            },
+          }
+        end
+
+        lspconfig[lsp].setup(M)
+      end
 
       -- lsp keybindings
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -81,8 +122,8 @@ return {
           vim.keymap.set("n", "f2", vim.lsp.buf.rename, { desc = "LSP rename", buffer = ev.buf })
 
           -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-          vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Goto previous diagnostic"})
-          vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Goto next diagnostic"})
+          vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Goto previous diagnostic" })
+          vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Goto next diagnostic" })
           vim.keymap.set("n", "<leader>le", vim.diagnostic.open_float, { desc = "Diagnostic line help" })
           vim.keymap.set("n", "<leader>lq", vim.diagnostic.setloclist, { desc = "Diagnostic list locations" })
         end,
