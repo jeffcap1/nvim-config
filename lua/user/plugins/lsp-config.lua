@@ -18,6 +18,11 @@ M.on_attach = function(client, bufnr)
   end
 end
 
+M.toggle_inlay_hints = function()
+  local bufnr = vim.api.nvim_get_current_buf()
+  vim.lsp.inlay_hint.enable(bufnr, not vim.lsp.inlay_hint.is_enabled(bufnr))
+end
+
 function M.config()
   local lspconfig = require("lspconfig")
   local icons = require("user.icons")
@@ -104,6 +109,12 @@ function M.config()
       keymap("n", "<leader>lq", vim.diagnostic.setloclist, xtnd(opts, { desc = "Diagnostic list locations" }))
       keymap("n", "<leader>lr", lspbuf.rename, xtnd(opts, { desc = "LSP rename" }))
       keymap("n", "<leader>ltd", lspbuf.type_definition, xtnd(opts, { desc = "LSP type definition" }))
+      keymap(
+        "n",
+        "<leader>lh",
+        "<cmd>lua require('user.plugins.lsp-config').toggle_inlay_hints()<cr>",
+        xtnd(opts, { desc = "Hints" })
+      )
     end,
   })
 end
