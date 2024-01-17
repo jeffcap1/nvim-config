@@ -1,10 +1,20 @@
-return {
+local M = {
   "nvim-lualine/lualine.nvim",
-  config = function()
-    require("lualine").setup({
-      options = {
-        theme = "dracula",
-      },
-    })
-  end,
+  dependencies = {
+    "AndreM222/copilot-lualine",
+  },
 }
+
+function M.config()
+  require("lualine").setup({
+    options = {
+      theme = "dracula",
+      -- theme = "catppuccin",
+    },
+    sections = {
+      lualine_y = { "copilot", "progress" },
+    },
+  })
+end
+
+return M
