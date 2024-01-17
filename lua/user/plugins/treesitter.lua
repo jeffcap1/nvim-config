@@ -28,10 +28,9 @@ return {
       auto_install = true,
       -- disable synchronously installation
       sync_install = false,
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false,
-      },
+      modules = {},
+      ignore_install = {},
+      highlight = { enable = true },
       indent = { enable = true },
     })
   end,

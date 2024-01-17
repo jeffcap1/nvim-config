@@ -59,6 +59,11 @@ vim.o.foldenable = true
 -- vim.opt.listchars = "tab:⇥¬¬,trail:·,extends:>,precedes:<,space:·"
 vim.opt.listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<"
 vim.opt.list = true
+vim.opt.fillchars = vim.opt.fillchars + "eob: "
+vim.opt.fillchars:append({
+  stl = " ",
+})
+vim.opt.shortmess:append("c")
 
 -- general settings
 vim.opt.termguicolors = true -- set term gui colors (most terminals support this)
