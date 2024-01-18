@@ -1,4 +1,5 @@
 -- https://luals.github.io/wiki/settings/
+print("hello there!")
 return {
   settings = {
     Lua = {
@@ -14,6 +15,9 @@ return {
       },
       runtime = {
         version = "LuaJIT",
+        special = {
+          spec = "require",
+        },
       },
       workspace = {
         checkThirdParty = false,
@@ -26,9 +30,9 @@ return {
         enable = true,
         arrayIndex = "Disable", -- "Enable" | "Auto" | "Disable"
         await = true,
-        paramName = "All", -- "All" | "Literal" | "Disable"
+        paramName = "All",      -- "All" | "Literal" | "Disable"
         paramType = true,
-        semicolon = "All", -- "All" | "SameLine" | "Disable"
+        semicolon = "All",      -- "All" | "SameLine" | "Disable"
         setType = false,
       },
       telemetry = {

@@ -1,4 +1,4 @@
-return {
+local M = {
   "folke/which-key.nvim",
   event = "VeryLazy",
   init = function()
@@ -7,3 +7,8 @@ return {
   end,
   opts = {},
 }
+
+-- function M.config()
+-- end
+
+return M
