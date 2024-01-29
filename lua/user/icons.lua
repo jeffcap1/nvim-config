@@ -68,6 +68,7 @@ return {
     BoldLineLeft = "▎",
     BoldLineMiddle = "┃",
     BoldLineDashedMiddle = "┋",
+    ThinLineDashedMiddle = "┊",
     BookMark = "",
     BoxChecked = " ",
     Bug = " ",

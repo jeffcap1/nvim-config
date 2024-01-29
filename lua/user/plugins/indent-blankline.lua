@@ -1,5 +1,6 @@
 local M = {
   "lukas-reineke/indent-blankline.nvim",
+  event = "VeryLazy",
   main = "ibl",
 }
 
@@ -28,10 +29,14 @@ function M.config()
   end)
 
   vim.g.rainbow_delimiters = { highlight = highlight }
+
+  local icons = require("user.icons")
   require("ibl").setup({
     scope = { highlight = highlight },
     indent = {
-      char = "┊",
+      char = icons.ui.ThinLineDashedMiddle,
+      tab_char = { "a", "b", "c" },
+      highlight = { "Function", "Label" },
     },
   })
 

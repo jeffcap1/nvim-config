@@ -18,8 +18,18 @@ function M.config()
       },
     },
   })
-  vim.keymap.set("n", "<A-[>", ":Neotree filesystem reveal left<CR>", { desc = "Neotree Open Filesystem" })
-  vim.keymap.set("n", "<leader>bf", ":Neotree buffers reveal float<CR>", { desc = "Neotree Open Buffers" })
+  vim.keymap.set(
+    "n",
+    "<A-[>",
+    ":Neotree filesystem reveal left<CR>",
+    { silent = true, noremap = true, desc = "Neotree Open Filesystem" }
+  )
+  vim.keymap.set(
+    "n",
+    "<leader>bf",
+    ":Neotree buffers reveal float<CR>",
+    { silent = true, noremap = true, desc = "Neotree Open Buffers" }
+  )
 end
 
 return M

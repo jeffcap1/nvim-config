@@ -1,14 +1,13 @@
 -- https://luals.github.io/wiki/settings/
-print("hello there!")
 return {
   settings = {
     Lua = {
       format = {
-        enable = true,
-        defaultConfig = {
-          indent_style = "space",
-          indent_size = "2",
-        },
+        enable = false,
+        -- defaultConfig = {
+        --   indent_style = "space",
+        --   indent_size = "2",
+        -- },
       },
       diagnostics = {
         globals = { "vim", "spec" },
@@ -30,9 +29,9 @@ return {
         enable = true,
         arrayIndex = "Disable", -- "Enable" | "Auto" | "Disable"
         await = true,
-        paramName = "All",      -- "All" | "Literal" | "Disable"
+        paramName = "All", -- "All" | "Literal" | "Disable"
         paramType = true,
-        semicolon = "All",      -- "All" | "SameLine" | "Disable"
+        semicolon = "All", -- "All" | "SameLine" | "Disable"
         setType = false,
       },
       telemetry = {
