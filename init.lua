@@ -28,6 +28,7 @@ spec("user.plugins.toggleterm")
 spec("user.plugins.project")
 
 -- quality of life
+spec("user.plugins.bqf")
 spec("user.plugins.comment")
 spec("user.plugins.nvim-surround")
 spec("user.plugins.indent-blankline")
@@ -46,5 +47,10 @@ spec("user.plugins.extras.oil")
 -- spec("user.plugins.extras.illuminate")
 spec("user.plugins.extras.eyeliner")
 spec("user.plugins.extras.gitlinker")
+spec("user.plugins.extras.tabby")
+spec("user.plugins.extras.lab")
+spec("user.plugins.extras.colorizer")
+spec("user.plugins.extras.modicator")
+spec("user.plugins.extras.navbuddy")
 
 require("user.lazy")
