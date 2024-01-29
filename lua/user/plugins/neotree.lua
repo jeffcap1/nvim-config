@@ -9,6 +9,16 @@ local M = {
 }
 function M.config()
   require("neo-tree").setup({
+    event_handlers = {
+      {
+        event = "neo_tree_buffer_enter",
+        handler = function()
+          vim.cmd([[
+          setlocal relativenumber
+        ]])
+        end,
+      },
+    },
     window = {
       mappings = {
         ["<space>"] = {
@@ -20,16 +30,11 @@ function M.config()
   })
   vim.keymap.set(
     "n",
-    "<A-[>",
-    ":Neotree filesystem reveal left<CR>",
+    "<m-[>",
+    ":Neotree filesystem reveal left<cr>",
     { silent = true, noremap = true, desc = "Neotree Open Filesystem" }
   )
-  vim.keymap.set(
-    "n",
-    "<leader>bf",
-    ":Neotree buffers reveal float<CR>",
-    { silent = true, noremap = true, desc = "Neotree Open Buffers" }
-  )
+  vim.keymap.set("n", "<leader>bf", ":Neotree buffers reveal float<cr>", { desc = "Neotree Open Buffers" })
 end
 
 return M
