@@ -25,6 +25,7 @@ spec("user.plugins.harpoon")
 spec("user.plugins.lualine")
 spec("user.plugins.neotree")
 spec("user.plugins.toggleterm")
+spec("user.plugins.project")
 
 -- quality of life
 spec("user.plugins.comment")
