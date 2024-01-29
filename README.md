@@ -1,11 +1,9 @@
 # NVIM setup
 
-These are the settings and keybindings for nvim. Also contains the Plugins and configurations I use.
+This contains all of my setup (plugins, settings, keybindings, etc.) for neovim. This takes heavy inspiration from other neovim configurations (listed below) as well as my own research.
 
-## VSCode extension
+## References
 
-### [VSCode Neovim](https://marketplace.visualstudio.com/items?itemName=asvetliakov.vscode-neovim)
-
-This is the extension used to allow Neo Vim functional within VSCode. All of the configurations are
-set for use with this extension.
-
+- [typecraft_dev](https://www.youtube.com/watch?v=zHTeCSVAFNY&list=PLsz00TDipIffreIaUNk64KxTIkQaGguqn)
+- [chris@machine](https://www.youtube.com/watch?v=KGJV0n70Mxs)
+- [ThePrimeagen](https://www.youtube.com/@ThePrimeagen/videos)
