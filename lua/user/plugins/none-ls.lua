@@ -29,7 +29,6 @@ function M.config()
     end,
     sources = {
       -- linters
-      diagnostics.eslint_d,
       diagnostics.phpcs,
       diagnostics.ruff,
 

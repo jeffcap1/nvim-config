@@ -9,5 +9,6 @@ USERS_LSP_SERVERS = {
   "pyright",
   "sqlls",
   "tsserver",
+  "eslint",
   "yamlls",
 }
