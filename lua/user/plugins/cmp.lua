@@ -1,29 +1,23 @@
 local M = {
   "hrsh7th/nvim-cmp",
-  event = "InsertEnter",
   dependencies = {
     {
       "hrsh7th/cmp-nvim-lsp",
-      event = "InsertEnter",
       dependencies = {
         "onsails/lspkind.nvim",
       },
     },
     {
       "hrsh7th/cmp-buffer",
-      event = "InsertEnter",
     },
     {
       "hrsh7th/cmp-path",
-      event = "InsertEnter",
     },
     {
       "hrsh7th/cmp-cmdline",
-      event = "InsertEnter",
     },
     {
       "L3MON4D3/LuaSnip",
-      event = "InsertEnter",
       dependencies = {
         "saadparwaiz1/cmp_luasnip",
         "rafamadriz/friendly-snippets",
@@ -165,13 +159,10 @@ function M.config()
     },
     window = {
       completion = cmp.config.window.bordered({
-        -- winhighlight = "Normal:Pmenu,CursorLine:PmenuSel,FloatBorder:FloatBorder,Search:None",
         scrollbar = false,
         scrolloff = 8,
       }),
-      documentation = cmp.config.window.bordered({
-        -- winhighlight = "Normal:Pmenu,FloatBorder:FloatBorder,Search:None",
-      }),
+      documentation = cmp.config.window.bordered(),
     },
     experimental = {
       ghost_text = false,
@@ -180,12 +171,9 @@ function M.config()
       { name = "copilot" },
       { name = "nvim_lsp" },
       { name = "luasnip" },
-      -- { name = "cmp_tabnine" },
       { name = "nvim_lua" },
-
       { name = "buffer" },
       { name = "path" },
-      -- { name = "emoji" },
     },
   })
 end
