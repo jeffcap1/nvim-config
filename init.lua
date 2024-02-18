@@ -52,5 +52,6 @@ spec("user.plugins.extras.lab")
 spec("user.plugins.extras.colorizer")
 spec("user.plugins.extras.modicator")
 spec("user.plugins.extras.navbuddy")
+spec("user.plugins.extras.todo-comment")
 
 require("user.lazy")
