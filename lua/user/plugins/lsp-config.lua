@@ -8,10 +8,6 @@ local M = {
   },
 }
 
-local function xtnd(opt1, opt2)
-  return vim.tbl_extend("force", opt1, opt2)
-end
-
 M.toggle_inlay_hints = function()
   if vim.lsp.inlay_hint then
     local bufnr = vim.api.nvim_get_current_buf()
@@ -91,7 +87,11 @@ function M.config()
     callback = function(ev)
       local keymap = vim.keymap.set
       local lspbuf = vim.lsp.buf
-      local opts = { noremap = true, silent = true, buffer = ev.buf }
+
+      local function _opts(opt)
+        local buffopt = { buffer = ev.buf }
+        return XTND(buffopt, opt)
+      end
 
       local client = vim.lsp.get_client_by_id(ev.data.client_id)
       -- if client.supports_method("textDocument/inlayHint") then
@@ -102,26 +102,26 @@ function M.config()
       -- Buffer local mappings.
       -- See `:help vim.lsp.*` for documentation on any of the below functions
       -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-      keymap("n", "gh", lspbuf.hover, xtnd(opts, { desc = "LSP hover help" }))
-      keymap("n", "gs", lspbuf.signature_help, xtnd(opts, { desc = "LSP function signature" }))
-      keymap("n", "gd", lspbuf.definition, xtnd(opts, { desc = "LSP definition" }))
-      keymap("n", "gD", lspbuf.declaration, xtnd(opts, { desc = "LSP declaration" }))
-      keymap("n", "gI", lspbuf.implementation, xtnd(opts, { desc = "LSP implementation" }))
-      keymap("n", "gr", lspbuf.references, xtnd(opts, { desc = "LSP references" }))
-      keymap("n", "gl", vim.diagnostic.open_float, xtnd(opts, { desc = "Diagnostic line help" }))
+      keymap("n", "gh", lspbuf.hover, _opts({ desc = "LSP hover help" }))
+      keymap("n", "gs", lspbuf.signature_help, _opts({ desc = "LSP function signature" }))
+      keymap("n", "gd", lspbuf.definition, _opts({ desc = "LSP definition" }))
+      keymap("n", "gD", lspbuf.declaration, _opts({ desc = "LSP declaration" }))
+      keymap("n", "gI", lspbuf.implementation, _opts({ desc = "LSP implementation" }))
+      keymap("n", "gr", lspbuf.references, _opts({ desc = "LSP references" }))
+      keymap("n", "gl", vim.diagnostic.open_float, _opts({ desc = "Diagnostic line help" }))
 
-      keymap({ "n", "v" }, "<leader>la", lspbuf.code_action, xtnd(opts, { desc = "LSP code actions" }))
-      keymap("n", "<leader>lj", vim.diagnostic.goto_next, xtnd(opts, { desc = "Goto next diagnostic" }))
-      keymap("n", "<leader>lk", vim.diagnostic.goto_prev, xtnd(opts, { desc = "Goto previous diagnostic" }))
-      keymap("n", "<leader>ll", vim.lsp.codelens.run, xtnd(opts, { desc = "CodeLens Action" }))
-      keymap("n", "<leader>lq", vim.diagnostic.setloclist, xtnd(opts, { desc = "Diagnostic list locations" }))
-      keymap("n", "<leader>lr", lspbuf.rename, xtnd(opts, { desc = "LSP rename" }))
-      keymap("n", "<leader>ltd", lspbuf.type_definition, xtnd(opts, { desc = "LSP type definition" }))
+      keymap({ "n", "v" }, "<leader>la", lspbuf.code_action, _opts({ desc = "LSP code actions" }))
+      keymap("n", "<leader>lj", vim.diagnostic.goto_next, _opts({ desc = "Goto next diagnostic" }))
+      keymap("n", "<leader>lk", vim.diagnostic.goto_prev, _opts({ desc = "Goto previous diagnostic" }))
+      keymap("n", "<leader>ll", vim.lsp.codelens.run, _opts({ desc = "CodeLens Action" }))
+      keymap("n", "<leader>lq", vim.diagnostic.setloclist, _opts({ desc = "Diagnostic list locations" }))
+      keymap("n", "<leader>lr", lspbuf.rename, _opts({ desc = "LSP rename" }))
+      keymap("n", "<leader>ltd", lspbuf.type_definition, _opts({ desc = "LSP type definition" }))
       keymap(
         "n",
         "<leader>lh",
         "<cmd>lua require('user.plugins.lsp-config').toggle_inlay_hints()<cr>",
-        xtnd(opts, { desc = "Hints" })
+        _opts({ desc = "Hints" })
       )
     end,
   })

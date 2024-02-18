@@ -6,7 +6,6 @@ keymap("n", "<m-j>", "<C-w>j", XTND({ desc = "Move to window down" }))
 keymap("n", "<m-k>", "<C-w>k", XTND({ desc = "Move to window up" }))
 keymap("n", "<m-l>", "<C-w>l", XTND({ desc = "Move to window right" }))
 keymap("n", "<m-tab>", "<c-6>")
--- keymap("n", "<leader>=", "<c-w>=", XTND({ desc = "Equal sized splits" }))
 
 -- Stay in indent mode
 keymap("v", "<", "<gv", XTND({ desc = "Indent left" }))

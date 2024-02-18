@@ -9,33 +9,28 @@ local M = {
   },
 }
 
-local function xtnd(opt1, opt2)
-  return vim.tbl_extend("force", opt1, opt2)
-end
-
 function M.config()
   local builtin = require("telescope.builtin")
   local keymap = vim.keymap.set
-  local opts = { noremap = true, silent = true }
 
-  keymap("n", "<C-p>", builtin.git_files, xtnd(opts, { desc = "Git Files" }))
-  keymap("n", "<leader>bb", builtin.buffers, xtnd(opts, { desc = "Buffers" }))
-  keymap("n", "<leader>fb", builtin.current_buffer_fuzzy_find, xtnd(opts, { desc = "Telescope Find Buffer" }))
-  keymap("n", "<leader>ff", builtin.find_files, xtnd(opts, { desc = "Find Files" }))
-  keymap("n", "<leader>ft", builtin.live_grep, xtnd(opts, { desc = "Find Text" }))
-  keymap("n", "<leader>fs", builtin.grep_string, xtnd(opts, { desc = "Find String" }))
-  keymap("n", "<leader>fh", builtin.help_tags, xtnd(opts, { desc = "Help" }))
+  keymap("n", "<C-p>", builtin.git_files, XTND({ desc = "Git Files" }))
+  keymap("n", "<leader>bb", builtin.buffers, XTND({ desc = "Buffers" }))
+  keymap("n", "<leader>fb", builtin.current_buffer_fuzzy_find, XTND({ desc = "Telescope Find Buffer" }))
+  keymap("n", "<leader>ff", builtin.find_files, XTND({ desc = "Find Files" }))
+  keymap("n", "<leader>ft", builtin.live_grep, XTND({ desc = "Find Text" }))
+  keymap("n", "<leader>fs", builtin.grep_string, XTND({ desc = "Find String" }))
+  keymap("n", "<leader>fh", builtin.help_tags, XTND({ desc = "Help" }))
   keymap(
     "n",
     "<leader>fi",
     "<cmd>lua require('telescope').extensions.media_files.media_files()<cr>",
-    xtnd(opts, { desc = "Media" })
+    XTND({ desc = "Media" })
   )
-  keymap("n", "<leader>fl", builtin.resume, xtnd(opts, { desc = "Resume" }))
-  keymap("n", "<leader>fM", builtin.man_pages, xtnd(opts, { desc = "Man Pages" }))
-  keymap("n", "<leader>fr", builtin.oldfiles, xtnd(opts, { desc = "Recent" }))
-  keymap("n", "<leader>fR", builtin.registers, xtnd(opts, { desc = "Registers" }))
-  keymap("n", "<leader>fe", builtin.quickfix, xtnd(opts, { desc = "Telescope Quick Fix" }))
+  keymap("n", "<leader>fl", builtin.resume, XTND({ desc = "Resume" }))
+  keymap("n", "<leader>fM", builtin.man_pages, XTND({ desc = "Man Pages" }))
+  keymap("n", "<leader>fr", builtin.oldfiles, XTND({ desc = "Recent" }))
+  keymap("n", "<leader>fR", builtin.registers, XTND({ desc = "Registers" }))
+  keymap("n", "<leader>fe", builtin.quickfix, XTND({ desc = "Telescope Quick Fix" }))
 
   local icons = require("user.icons")
   local actions = require("telescope.actions")
