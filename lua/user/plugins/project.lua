@@ -17,10 +17,9 @@ function M.config()
     scope_chdir = "global",
   })
 
-  local opts = { noremap = true, silent = true }
   local keymap = vim.api.nvim_set_keymap
 
-  keymap("n", "<c-m-p>", ":lua require('telescope').extensions.projects.projects()<CR>", opts)
+  keymap("n", "<leader>pp", "<cmd>Telescope projects<cr>", XTND({ desc = "Project List" }))
 end
 
 return M

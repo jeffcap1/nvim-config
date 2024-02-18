@@ -4,30 +4,29 @@ local M = {
   cmd = "Gitsigns",
 }
 M.config = function()
-  local icons = require("user.icons")
+  local icons = require "user.icons"
 
-  local wk = require("which-key")
+  local wk = require "which-key"
   wk.register({
-    ["<leader>gj"] = { "<cmd>lua require 'gitsigns'.next_hunk({navigation_message = false})<cr>", "Next Hunk" },
-    ["<leader>gk"] = { "<cmd>lua require 'gitsigns'.prev_hunk({navigation_message = false})<cr>", "Prev Hunk" },
-    ["<leader>gp"] = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
-    ["<leader>gP"] = { "<cmd>lua require 'gitsigns'.preview_hunk_inline()<cr>", "Preview Hunk Inline" },
-    ["<leader>gr"] = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
-    ["<leader>gl"] = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
-    ["<leader>gL"] = { "<cmd>lua require 'gitsigns'.toggle_current_line_blame()<cr>", "Blame Inline" },
-    ["<leader>gR"] = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
-    ["<leader>gs"] = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
-    ["<leader>gu"] = {
-      "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
-      "Undo Stage Hunk",
-    },
-    ["<leader>gd"] = {
-      "<cmd>Gitsigns diffthis HEAD<cr>",
-      "Git Diff",
-    },
+    ["gd"] = { "<cmd>Gitsigns diffthis HEAD<cr>", "Git Diff" },
+    ["gj"] = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
+    ["gk"] = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
+    ["gl"] = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
+    ["gL"] = { "<cmd>lua require 'gitsigns'.toggle_current_line_blame()<cr>", "Blame Inline" },
+    ["gp"] = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
+    ["gP"] = { "<cmd>lua require 'gitsigns'.preview_hunk_inline()<cr>", "Preview Hunk Inline" },
+    ["gr"] = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
+    ["gR"] = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
+    ["gs"] = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
+    ["gu"] = { "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", "Undo Stage Hunk" },
+  }, {
+    mode = "n",     -- NORMAL mode
+    prefix = "<leader>",
+    silent = true,  -- use `silent` when creating keymaps
+    noremap = true, -- use `noremap` when creating keymaps
   })
 
-  require("gitsigns").setup({
+  require "gitsigns".setup {
     signs = {
       add = {
         hl = "GitSignsAdd",
@@ -75,7 +74,7 @@ M.config = function()
       row = 0,
       col = 1,
     },
-  })
+  }
 end
 
 return M
