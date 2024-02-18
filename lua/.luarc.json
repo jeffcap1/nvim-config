@@ -1,6 +1,17 @@
 {
-    "diagnostics.globals": [
-        "vim",
-        "spec"
-    ]
+  "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
+  "runtime.version": "Lua 5.3",
+  "diagnostics.globals": [
+    "vim",
+    "spec"
+  ],
+  "Lua.format.defaultConfig": {
+    "indent_style": "space",
+    "indent_size": "2",
+    "tab_width": "2",
+    "continuation_indent": "2",
+    "max_line_length": "120",
+    "call_arg_parentheses": "remove",
+    "quote_style": "double"
+  }
 }

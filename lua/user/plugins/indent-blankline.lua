@@ -32,10 +32,26 @@ function M.config()
 
   local icons = require("user.icons")
   require("ibl").setup({
+    exclude = {
+      filetypes = {
+        "checkhealth",
+        "dashboard",
+        "gitcommit",
+        "help",
+        "lazy",
+        "lspinfo",
+        "neogitstatus",
+        "NvimTree",
+        "startify",
+        "TelescopePrompt",
+        "TelescopeResults",
+        "text",
+        "Trouble",
+      },
+    },
     scope = { highlight = highlight },
     indent = {
       char = icons.ui.ThinLineDashedMiddle,
-      tab_char = { "a", "b", "c" },
       highlight = { "Function", "Label" },
     },
   })

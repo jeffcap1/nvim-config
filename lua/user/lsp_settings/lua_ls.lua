@@ -1,14 +1,8 @@
 -- https://luals.github.io/wiki/settings/
+-- https://github.com/LuaLS/vscode-lua/blob/master/setting/schema.json
 return {
   settings = {
     Lua = {
-      format = {
-        enable = false,
-        -- defaultConfig = {
-        --   indent_style = "space",
-        --   indent_size = "2",
-        -- },
-      },
       diagnostics = {
         globals = { "vim", "spec" },
       },
@@ -21,17 +15,17 @@ return {
       workspace = {
         checkThirdParty = false,
         library = {
-          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-          [vim.fn.stdpath("config") .. "/lua"] = true,
+          [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+          [vim.fn.stdpath "config" .. "/lua"] = true,
         },
       },
       hint = {
         enable = true,
         arrayIndex = "Disable", -- "Enable" | "Auto" | "Disable"
         await = true,
-        paramName = "All", -- "All" | "Literal" | "Disable"
+        paramName = "All",      -- "All" | "Literal" | "Disable"
         paramType = true,
-        semicolon = "All", -- "All" | "SameLine" | "Disable"
+        semicolon = "All",      -- "All" | "SameLine" | "Disable"
         setType = false,
       },
       telemetry = {
