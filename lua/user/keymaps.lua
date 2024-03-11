@@ -1,10 +1,6 @@
 local keymap = vim.keymap.set
 
 -- Better window navigation
-keymap("n", "<m-h>", "<C-w>h", XTND({ desc = "Move to window left" }))
-keymap("n", "<m-j>", "<C-w>j", XTND({ desc = "Move to window down" }))
-keymap("n", "<m-k>", "<C-w>k", XTND({ desc = "Move to window up" }))
-keymap("n", "<m-l>", "<C-w>l", XTND({ desc = "Move to window right" }))
 keymap("n", "<m-tab>", "<c-6>")
 
 -- Stay in indent mode
@@ -42,7 +38,7 @@ keymap("n", "g#", "g#zz", XTND({ desc = "Previous match" }))
 vim.cmd([[:amenu 10.100 mousemenu.Goto\ Definition <cmd>lua vim.lsp.buf.definition()<cr>]])
 vim.cmd([[:amenu 10.110 mousemenu.References <cmd>lua vim.lsp.buf.references()<cr>]])
 keymap("n", "<RightMouse>", "<cmd>:popup mousemenu<cr>", { silent = true })
-keymap("n", "<Tab>", "<cmd>:popup mousemenu<cr>", { silent = true })
+-- keymap("n", "<Tab>", "<cmd>:popup mousemenu<cr>", { silent = true })
 
 -- working with multi-line
 keymap({ "n", "x" }, "j", "gj", XTND({ desc = "Move down" }))

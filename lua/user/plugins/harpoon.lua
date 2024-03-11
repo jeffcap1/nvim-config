@@ -1,19 +1,33 @@
 local M = {
   "ThePrimeagen/harpoon",
   event = "VeryLazy",
+  branch = "harpoon2",
   dependencies = {
     { "nvim-lua/plenary.nvim" },
   },
 }
 
 function M.config()
+  local harpoon = require("harpoon")
+
+  -- REQUIRED
+  harpoon:setup({})
+  -- REQUIRED
+
   local keymaps = {
-    { "n", "<s-m>", "<cmd>lua require('user.plugins.harpoon').mark_file()<cr>", { desc = "Harpoon Mark File" } },
-    { "n", "<TAB>", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", { desc = "Harpoon Toggle UI" } },
-    { "n", "<leader>1", "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", { desc = "Harpoon File 1" } },
-    { "n", "<leader>2", "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", { desc = "Harpoon File 2" } },
-    { "n", "<leader>3", "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", { desc = "Harpoon File 3" } },
-    { "n", "<leader>4", "<cmd>lua require('harpoon.ui').nav_file(4)<cr>", { desc = "Harpoon File 4" } },
+    {"n", "<c-m>", function() harpoon:list():append() end, { desc = "Harpoon Mark File" }},
+    {"n", "<leader>h", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "Harpoon Toggle UI" }},
+
+    -- hop to files 1-4 in the list
+    {"n", "<leader>1", function() harpoon:list():select(1) end, { desc = "Harpoon File 1" }},
+    {"n", "<leader>2", function() harpoon:list():select(2) end, { desc = "Harpoon File 2" }},
+    {"n", "<leader>3", function() harpoon:list():select(3) end, { desc = "Harpoon File 3" }},
+    {"n", "<leader>4", function() harpoon:list():select(4) end, { desc = "Harpoon File 4" }},
+
+    -- Toggle previous & next buffers stored within Harpoon list
+    {"n", "<c-s-j>", function() harpoon:list():prev() end, { desc = "Harpoon Next File" }},
+    {"n", "<c-s-k>", function() harpoon:list():next() end, { desc = "Harpoon Prev File" }},
+
   }
 
   for _, keymap in ipairs(keymaps) do

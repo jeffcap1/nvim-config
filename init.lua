@@ -17,6 +17,7 @@ spec("user.plugins.none-ls")
 spec("user.plugins.schemastore")
 
 -- core plugins
+spec("user.plugins.vim-tmux-navigator")
 spec("user.plugins.treesitter")
 spec("user.plugins.telescope")
 spec("user.plugins.gitsigns")
