@@ -30,6 +30,9 @@ local M = {
 }
 
 function M.set_cmp_colors()
+  -- allows background to be transparent
+  vim.opt.pumblend = 0
+
   -- Customization for Pmenu
   vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#282C34", fg = "NONE" })
   vim.api.nvim_set_hl(0, "Pmenu", { fg = "#C5CDD9", bg = "#22252A" })
