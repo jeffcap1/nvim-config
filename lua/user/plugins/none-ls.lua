@@ -41,6 +41,7 @@ function M.config()
       formatting.phpcsfixer,
       formatting.prettier,
       formatting.stylua,
+      formatting.sql_formatter,
     },
   }
 

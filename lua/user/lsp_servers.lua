@@ -9,7 +9,6 @@ USERS_LSP_SERVERS = {
   "lua_ls",
   "marksman",
   "pyright",
-  "sqlls",
   "tsserver",
   "yamlls",
 }
