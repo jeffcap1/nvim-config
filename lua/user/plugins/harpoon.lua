@@ -15,8 +15,8 @@ function M.config()
   -- REQUIRED
 
   local keymaps = {
-    {"n", "<c-m>", function() harpoon:list():append() end, { desc = "Harpoon Mark File" }},
-    {"n", "<leader>h", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "Harpoon Toggle UI" }},
+    {"n", "<leader>hm", function() harpoon:list():append() end, { desc = "Harpoon Mark File" }},
+    {"n", "<leader>hh", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "Harpoon Toggle UI" }},
 
     -- hop to files 1-4 in the list
     {"n", "<leader>1", function() harpoon:list():select(1) end, { desc = "Harpoon File 1" }},
