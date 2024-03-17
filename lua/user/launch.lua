@@ -6,7 +6,7 @@ function spec(item)
 end
 
 -- check if a variable is a table
-local function is_table(t) return type(t) == 'table' end
+local function is_table(t) return type(t) == "table" end
 
 -- print a tables' values
 -- @see https://stackoverflow.com/a/27028488
@@ -28,7 +28,7 @@ end
 -- extends defualt options, typically for keymaps
 function XTND(...)
   local options = { noremap = true, silent = true }
-  local opts = {...}
+  local opts = { ... }
 
   if opts then
     local _opts = {}
@@ -42,4 +42,3 @@ function XTND(...)
 
   return options
 end
-

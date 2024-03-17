@@ -13,11 +13,11 @@ M.config = function()
     ["gk"] = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
     ["gl"] = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
     ["gL"] = { "<cmd>lua require 'gitsigns'.toggle_current_line_blame()<cr>", "Blame Inline" },
-    ["gp"] = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
-    ["gP"] = { "<cmd>lua require 'gitsigns'.preview_hunk_inline()<cr>", "Preview Hunk Inline" },
+    ["gh"] = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
+    ["gH"] = { "<cmd>lua require 'gitsigns'.preview_hunk_inline()<cr>", "Preview Hunk Inline" },
     ["gr"] = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
     ["gR"] = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
-    ["gs"] = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
+    ["gS"] = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
     ["gu"] = { "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", "Undo Stage Hunk" },
   }, {
     mode = "n",     -- NORMAL mode
