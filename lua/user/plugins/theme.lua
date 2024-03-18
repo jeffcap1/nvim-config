@@ -37,7 +37,7 @@ function M.config()
     custom_highlights = function(colors)
       return {
         CursorLine = { ctermbg = colors.none, bg = "#242539" },
-        ColorColumn = { ctermbg = colors.none, bg = "#242539" },
+        -- ColorColumn = { ctermbg = colors.none, bg = "#242539" },
       }
     end,
     integrations = {
