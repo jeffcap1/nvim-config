@@ -10,5 +10,6 @@ USERS_LSP_SERVERS = {
   "marksman",
   "pyright",
   "tsserver",
+  "theme_check", -- Shopify theme check
   "yamlls",
 }
