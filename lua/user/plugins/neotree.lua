@@ -8,15 +8,22 @@ local M = {
   },
 }
 function M.config()
-  require("neo-tree").setup({
+  require "neo-tree".setup {
     event_handlers = {
       {
         event = "neo_tree_buffer_enter",
         handler = function()
-          vim.cmd([[
+          vim.cmd [[
           setlocal relativenumber
-        ]])
+        ]]
         end,
+      },
+      {
+        event = "file_opened",
+        handler = function(file_path)
+          -- auto close
+          vim.cmd("Neotree close")
+        end
       },
     },
     window = {
@@ -27,7 +34,7 @@ function M.config()
         },
       },
     },
-  })
+  }
   vim.keymap.set(
     "n",
     "<m-[>",
