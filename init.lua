@@ -57,5 +57,6 @@ spec("user.plugins.extras.modicator")
 spec("user.plugins.extras.navbuddy")
 spec("user.plugins.extras.trouble")
 spec("user.plugins.extras.todo-comment")
+spec("user.plugins.extras.pretty-ts-errors")
 
 require("user.lazy")
