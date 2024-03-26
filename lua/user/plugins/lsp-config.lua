@@ -116,7 +116,7 @@ function M.config()
       keymap("n", "<leader>ll", vim.lsp.codelens.run, _opts { desc = "CodeLens Action" })
       keymap("n", "<leader>lq", vim.diagnostic.setloclist, _opts { desc = "Diagnostic list locations" })
       keymap("n", "<leader>lr", lspbuf.rename, _opts { desc = "LSP rename" })
-      keymap("n", "<leader>ltd", lspbuf.type_definition, _opts { desc = "LSP type definition" })
+      keymap("n", "<leader>lD", lspbuf.type_definition, _opts { desc = "LSP type definition" })
       keymap(
         "n",
         "<leader>lh",
