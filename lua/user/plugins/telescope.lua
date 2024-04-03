@@ -1,6 +1,5 @@
 local M = {
   "nvim-telescope/telescope.nvim",
-  tag = "0.1.5",
   dependencies = {
     { "nvim-lua/plenary.nvim" },
     { "nvim-telescope/telescope-media-files.nvim" },
@@ -126,6 +125,11 @@ function M.config()
         theme = "dropdown",
         initial_mode = "normal",
       },
+
+      -- Enable if perf issue continues in live_grep
+      -- preview = {
+      --   treesitter = false,
+      -- }
     },
   }
   require "telescope".load_extension "ui-select"
