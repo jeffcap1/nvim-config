@@ -3,10 +3,12 @@ local M = {
 }
 
 M.config = function()
+  require("blame").setup()
+
   local wk = require("which-key")
 
   wk.register({
-    ["gb"] = { "<cmd>ToggleBlame<cr>", "Blame" }
+    ["gb"] = { "<cmd>BlameToggle<cr>", "Blame" }
   }, {
     mode = "n",     -- NORMAL mode
     prefix = "<leader>",
