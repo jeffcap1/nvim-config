@@ -1,6 +1,6 @@
 local M = {
   "LunarVim/breadcrumbs.nvim",
-  dependancies = {
+  dependencies = {
     "SmiteshP/nvim-navic",
   },
 }
