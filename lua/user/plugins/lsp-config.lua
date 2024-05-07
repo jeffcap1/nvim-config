@@ -26,6 +26,12 @@ function M.config()
   local icons = require "user.icons"
   local capabilities = require "cmp_nvim_lsp".default_capabilities()
 
+  -- fix line folding errors
+  capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true,
+  }
+
   local default_diagnostic_config = {
     signs = {
       active = true,
