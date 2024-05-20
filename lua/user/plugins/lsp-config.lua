@@ -11,15 +11,9 @@ local M = {
 M.toggle_inlay_hints = function()
   if vim.lsp.inlay_hint then
     local bufnr = vim.api.nvim_get_current_buf()
-    vim.lsp.inlay_hint.enable(bufnr, not vim.lsp.inlay_hint.is_enabled(bufnr))
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = bufnr })
   end
 end
-
--- function M.common_capabilities()
---   local capabilities = vim.lsp.protocol.make_client_capabilities()
---   capabilities.textDocument.completion.completionItem.snippetSupport = true
---   return capabilities
--- end
 
 function M.config()
   local lspconfig = require "lspconfig"
@@ -58,7 +52,7 @@ function M.config()
 
   vim.diagnostic.config(default_diagnostic_config)
 
-  for _, sign in ipairs(vim.tbl_get(vim.diagnostic.config(), "signs", "values") or {}) do
+  for _, sign in ipairs(vim.tbl_get((vim.diagnostic.config() or {}), "signs", "values") or {}) do
     vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
   end
 
@@ -70,7 +64,6 @@ function M.config()
   -- setup language server
   for _, lsp_server in pairs(USERS_LSP_SERVERS) do
     local opts = {
-      -- capabilities = M.common_capabilities(),
       capabilities = capabilities,
     }
 
@@ -100,9 +93,8 @@ function M.config()
       end
 
       local client = vim.lsp.get_client_by_id(ev.data.client_id)
-      -- if client.supports_method("textDocument/inlayHint") then
-      if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-        vim.lsp.inlay_hint.enable(ev.buf, true)
+      if client and client.supports_method "textDocument/inlayHint" then
+        vim.lsp.inlay_hint.enable(true)
       end
 
       -- Buffer local mappings.

@@ -75,8 +75,8 @@ function M.config()
     -- close_fold_kinds = { "comment" },
     enable_get_fold_virt_text = true,
     fold_virt_text_handler = handler,
-    close_fold_kinds = {},
-    -- close_fold_kinds = { "imports", "comment" },
+    close_fold_kinds_for_ft = {},
+    -- close_fold_kinds_for_ft = { "imports", "comment" },
     provider_selector = function(bufnr, filetype, buftype)
       -- if you prefer treesitter provider rather than lsp,
       -- return ftMap[filetype] or {'treesitter', 'indent'}

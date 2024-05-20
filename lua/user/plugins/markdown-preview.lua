@@ -8,6 +8,4 @@ local M = {
   end,
 }
 
-function M.event() end
-
 return M

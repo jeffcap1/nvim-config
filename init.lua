@@ -3,7 +3,8 @@ require("user.launch")
 require("user.options")
 require("user.keymaps")
 require("user.autocmds")
-require("user.lsp_servers") -- LSP servers
+require("user.lsp_servers")              -- LSP servers
+pcall(require, "user.local_lsp_servers") -- local LSP servers
 
 -- startup
 spec("user.plugins.theme")
@@ -52,7 +53,8 @@ spec("user.plugins.extras.eyeliner")
 spec("user.plugins.extras.gitlinker")
 spec("user.plugins.extras.tabby")
 spec("user.plugins.extras.lab")
-spec("user.plugins.extras.colorizer")
+-- spec("user.plugins.extras.colorizer")
+spec("user.plugins.extras.highlight-colors")
 spec("user.plugins.extras.modicator")
 spec("user.plugins.extras.navbuddy")
 spec("user.plugins.extras.trouble")

@@ -40,6 +40,9 @@ vim.opt.cmdheight = 1 -- more space in the neovim command line for displaying me
 -- markdown
 vim.opt.conceallevel = 0 -- so that `` is visible in markdown files
 
+-- mouse model
+vim.opt.mousemodel = "extend"
+
 -- search
 vim.opt.ignorecase = true -- ignore case in search patterns
 vim.opt.smartcase = true -- smart case

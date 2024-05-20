@@ -8,8 +8,8 @@ local M = {
 function M.config()
   require("lualine").setup({
     options = {
-      theme = "dracula",
-      -- theme = "catppuccin",
+      -- theme = "dracula",
+      theme = "catppuccin",
     },
     sections = {
       lualine_y = { "copilot", "progress" },

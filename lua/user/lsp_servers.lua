@@ -5,12 +5,10 @@ USERS_LSP_SERVERS = {
   "graphql",
   "html",
   "jsonls",
-  "intelephense",
   "lua_ls",
   "marksman",
   "pyright",
   "ruff_lsp",
   "tsserver",
-  "theme_check", -- Shopify theme check
   "yamlls",
 }
