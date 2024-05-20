@@ -1,4 +1,5 @@
 .DS_Store
 autoload/
 lazy-lock.json
+local_lsp_servers.lua
 
