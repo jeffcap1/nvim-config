@@ -10,24 +10,27 @@ function M.config()
 
   tb.setup({})
 
-  keymap("n", "<leader>xx", function()
-    tb.toggle()
-  end, XTND({ desc = "Trouble toggle list" }))
-  keymap("n", "<leader>xw", function()
-    tb.toggle("workspace_diagnostics")
-  end, XTND({ desc = "Trouble toggle workspace diagnostics" }))
-  keymap("n", "<leader>xd", function()
-    tb.toggle("document_diagnostics")
-  end, XTND({ desc = "Trouble toggle document diagnostics" }))
-  keymap("n", "<leader>xq", function()
-    tb.toggle("quickfix")
-  end, XTND({ desc = "Trouble toggle quickfix list" }))
-  keymap("n", "<leader>xl", function()
-    tb.toggle("loclist")
-  end, XTND({ desc = "Trouble toggle loclist" }))
-  keymap("n", "gR", function()
-    tb.toggle("lsp_references")
-  end, XTND({ desc = "Trouble toggle lsp references" }))
+  keymap(
+    "n",
+    "<leader>xx",
+    "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+    XTND({ desc = "Buffer Diagnostics (Trouble)" })
+  )
+  keymap(
+    "n",
+    "<leader>xw",
+    "<cmd>Trouble diagnostics toggle focus=true<cr>",
+    XTND({ desc = "Workspace Diagnostics (Trouble)" })
+  )
+  keymap("n", "<leader>xs", "<cmd>Trouble symbols toggle focus=true<cr>", XTND({ desc = "Symbols (Trouble)" }))
+  keymap("n", "<leader>xl", "<cmd>Trouble loclist toggle<cr>", XTND({ desc = "Location List (Trouble)" }))
+  keymap("n", "<leader>xq", "<cmd>Trouble qflist toggle<cr>", XTND({ desc = "Quickfix List (Trouble)" }))
+  keymap(
+    "n",
+    "gR",
+    "<cmd>Trouble lsp toggle focus=true win.position=right<cr>",
+    XTND({ desc = "LSP Definitions / refs / ... (Trouble)" })
+  )
 end
 
 return M
