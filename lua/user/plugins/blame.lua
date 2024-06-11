@@ -1,5 +1,5 @@
 local M = {
-  "FabijanZulj/blame.nvim"
+  "FabijanZulj/blame.nvim",
 }
 
 M.config = function()
@@ -8,11 +8,11 @@ M.config = function()
   local wk = require("which-key")
 
   wk.register({
-    ["gb"] = { "<cmd>BlameToggle<cr>", "Blame" }
+    ["gb"] = { "<cmd>BlameToggle<cr>", "Blame" },
   }, {
-    mode = "n",     -- NORMAL mode
+    mode = "n", -- NORMAL mode
     prefix = "<leader>",
-    silent = true,  -- use `silent` when creating keymaps
+    silent = true, -- use `silent` when creating keymaps
     noremap = true, -- use `noremap` when creating keymaps
   })
 end
