@@ -4,12 +4,25 @@ local M = {
 }
 
 function M.config()
-  require("oil").setup({
-    float = {
-      max_height = 20,
-      max_width = 60,
+  require "oil".setup {
+    delete_to_trash = true,
+    skip_confirm_for_simple_edits = true,
+    view_options = {
+      show_hidden = true,
+      natural_order = true,
+      -- This function defines what will never be shown, even when `show_hidden` is set
+      is_always_hidden = function(name, _)
+        return name == ".."
+      end,
     },
-  })
+    win_options = {
+      wrap = false,
+    },
+    float = {
+      max_height = 40,
+      max_width = 80,
+    },
+  }
   vim.keymap.set("n", "-", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
 end
 
