@@ -40,6 +40,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     "oil",
     "spectre_panel",
     "lir",
+    "typescript-errors",
     "DressingSelect",
     "tsplayground",
     "",
