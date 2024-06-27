@@ -51,8 +51,9 @@ function M.config()
     },
     scope = { highlight = highlight },
     indent = {
-      char = icons.ui.ThinLineDashedMiddle,
-      highlight = { "Function", "Label" },
+      char = icons.ui.BoldLineDashedMiddle,
+      tab_char = icons.ui.BoldLineMiddle,
+      -- highlight = { "Function", "Label" },
     },
   }
 
