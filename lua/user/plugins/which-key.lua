@@ -23,7 +23,10 @@ function M.config()
     d = { name = "Debug" },
     f = { name = "Find" },
     g = { name = "Git" },
-    l = { name = "LSP" },
+    l = {
+      name = "LSP",
+      f = { name = "Format" },
+    },
     p = { name = "Project" },
     x = { name = "Trouble" },
     t = {

@@ -5,9 +5,9 @@ local M = {
 local autoformat = true
 
 function M.auto_format(client, bufnr)
-  if client.supports_method "textDocument/formatting" then
+  if client.supports_method("textDocument/formatting") then
     local augroup = vim.api.nvim_create_augroup("auto_format", { clear = true })
-    vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
+    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
     vim.api.nvim_create_autocmd("BufWritePre", {
       group = augroup,
       buffer = bufnr,
@@ -21,12 +21,12 @@ function M.auto_format(client, bufnr)
 end
 
 function M.config()
-  local null_ls = require "null-ls"
+  local null_ls = require("null-ls")
 
   local formatting = null_ls.builtins.formatting
   local diagnostics = null_ls.builtins.diagnostics
 
-  null_ls.setup {
+  null_ls.setup({
     debug = false,
     on_attach = function(client, bufnr)
       M.auto_format(client, bufnr)
@@ -40,7 +40,7 @@ function M.config()
       formatting.stylua,
       formatting.sql_formatter,
       formatting.phpcsfixer,
-      formatting.prettier.with {
+      formatting.prettier.with({
         filetypes = {
           "css",
           "scss",
@@ -58,16 +58,22 @@ function M.config()
           "javascriptreact",
           "typescriptreact",
         },
-      },
+      }),
     },
-  }
+  })
 
-  vim.keymap.set("n", "<leader>lf", function()
+  vim.keymap.set("n", "<leader>lff", function()
     vim.lsp.buf.format()
-  end, XTND { desc = "LSP format" })
-  vim.keymap.set("n", "<leader>lt", function()
+  end, XTND({ desc = "Format File" }))
+
+  vim.keymap.set("n", "<leader>lfs", function()
+    vim.notify("󰉼  formatting is " .. (autoformat and "enabled" or "disabled"))
+  end, XTND({ desc = "Format Status" }))
+
+  vim.keymap.set("n", "<leader>lft", function()
     autoformat = not autoformat
-  end, XTND { desc = "LSP toggle autoformat" })
+    vim.notify("󰉼  formatting is " .. (autoformat and "enabled" or "disabled"))
+  end, XTND({ desc = "Format Toggle" }))
 end
 
 return M
