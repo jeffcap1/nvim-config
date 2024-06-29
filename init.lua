@@ -3,7 +3,7 @@ require("user.launch")
 require("user.options")
 require("user.keymaps")
 require("user.autocmds")
-require("user.lsp_servers") -- LSP servers
+require("user.lsp_servers")              -- LSP servers
 pcall(require, "user.local_lsp_servers") -- local LSP servers
 
 -- startup
@@ -36,6 +36,7 @@ spec("user.plugins.bqf")
 spec("user.plugins.comment")
 spec("user.plugins.nvim-surround")
 spec("user.plugins.indent-blankline")
+spec("user.plugins.mini-indentscope")
 spec("user.plugins.autopairs")
 spec("user.plugins.autotag")
 spec("user.plugins.markdown-preview")

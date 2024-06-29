@@ -1,6 +1,6 @@
 local M = {
   "lukas-reineke/indent-blankline.nvim",
-  event = "VeryLazy",
+  event = { "BufReadPost", "BufWritePost", "BufNewFile" },
   main = "ibl",
 }
 
@@ -49,7 +49,10 @@ function M.config()
         "Trouble",
       },
     },
-    scope = { highlight = highlight },
+    scope = {
+      enabled = true,
+      highlight = highlight,
+    },
     indent = {
       char = icons.ui.BoldLineDashedMiddle,
       tab_char = icons.ui.BoldLineMiddle,
