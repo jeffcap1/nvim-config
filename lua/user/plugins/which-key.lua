@@ -26,6 +26,7 @@ function M.config()
     l = {
       name = "LSP",
       f = { name = "Format" },
+      c = { name = "Choose" },
     },
     p = { name = "Project" },
     x = { name = "Trouble" },

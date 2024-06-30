@@ -3,7 +3,7 @@ require("user.launch")
 require("user.options")
 require("user.keymaps")
 require("user.autocmds")
-require("user.lsp_servers")              -- LSP servers
+require("user.lsp_servers") -- LSP servers
 pcall(require, "user.local_lsp_servers") -- local LSP servers
 
 -- startup
@@ -16,6 +16,7 @@ spec("user.plugins.mason")
 spec("user.plugins.lsp-config")
 spec("user.plugins.none-ls")
 spec("user.plugins.schemastore")
+spec("user.plugins.venv-selector")
 
 -- core plugins
 spec("user.plugins.vim-tmux-navigator")
