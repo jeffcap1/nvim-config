@@ -4,11 +4,14 @@ local M = {
   event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 }
 
-local icons = require("user.icons")
+local icons = require "user.icons"
 M.opts = {
   draw = {
     delay = 0,
     priority = 2,
+    animation = function()
+      return 0
+    end,
   },
   options = {
     try_as_border = true,
