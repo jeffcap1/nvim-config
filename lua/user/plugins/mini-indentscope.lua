@@ -4,7 +4,7 @@ local M = {
   event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 }
 
-local icons = require "user.icons"
+local icons = require("user.icons")
 M.opts = {
   draw = {
     delay = 0,
@@ -20,20 +20,40 @@ M.opts = {
 }
 
 M.init = function()
-  vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost", "BufNewFile" }, {
+  vim.api.nvim_create_autocmd("FileType", {
     pattern = {
       "alpha",
       "dashboard",
+      "DiffviewFiles",
+      "dirvish",
+      "DressingInput",
+      "DressingSelect",
+      "fugitive",
       "fzf",
+      "harpoon",
       "help",
+      "Jaq",
       "lazy",
       "lazyterm",
+      "lir",
       "mason",
+      "minifiles",
       "neo-tree",
+      "NeogitCommitMessage",
+      "NeogitStatus",
+      "netrw",
       "notify",
+      "NvimTree",
+      "oil",
+      "Outline",
+      "qf",
+      "spectre_panel",
+      "startify",
+      "TelescopePrompt",
       "toggleterm",
       "Trouble",
       "trouble",
+      -- "markdown"
     },
     callback = function()
       vim.b.miniindentscope_disable = true
