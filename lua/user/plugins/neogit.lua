@@ -5,20 +5,20 @@ local M = {
     "sindrets/diffview.nvim",
     "nvim-telescope/telescope.nvim",
   },
-  config = true
+  config = true,
 }
 
 M.config = function()
-  local wk = require "which-key"
-  local neogit = require "neogit"
+  local wk = require("which-key")
+  local neogit = require("neogit")
 
   neogit.setup({})
 
-  wk.register({
-    ["gs"] = { neogit.open, "Neogit Open" },
-    ["gc"] = { "<cmd>Neogit commit<cr>", "Neogit Commit" },
-    ["gp"] = { "<cmd>Neogit pull<cr>", "Neogit Pull" },
-    ["gP"] = { "<cmd>Neogit push<cr>", "Neogit Push" },
+  wk.add({
+    { "<leader>gs", neogit.open,              desc = "Neogit Open" },
+    { "<leader>gc", "<cmd>Neogit commit<cr>", desc = "Neogit Commit" },
+    { "<leader>gp", "<cmd>Neogit pull<cr>",   desc = "Neogit Pull" },
+    { "<leader>gP", "<cmd>Neogit push<cr>",   desc = "Neogit Push" },
   }, {
     mode = "n",     -- NORMAL mode
     prefix = "<leader>",
@@ -26,6 +26,5 @@ M.config = function()
     noremap = true, -- use `noremap` when creating keymaps
   })
 end
-
 
 return M

@@ -8,7 +8,37 @@ local M = {
   opts = {},
 }
 
-function M.config()
+M.keys = {
+
+  { "<leader>_", "<cmd>res<CR>", desc = "Zoom horizontal split" },
+  { "<leader>|", "<cmd>vert res<CR>", desc = "Zoom vertical split" },
+  -- { "<leader>a", "<cmd>Alpha<cr>", desc = "Alpha" },
+  { "<leader>b", group = "Buffers" },
+  { "<leader>c", group = "Comments" },
+  { "<leader>d", group = "Debug" },
+  { "<leader>f", group = "Find" },
+  { "<leader>g", group = "Git" },
+  { "<leader>h", group = "Harpoon", icon = "󱡅 " },
+  { "<leader>l", group = "LSP" },
+  { "<leader>lc", group = "Choose" },
+  { "<leader>lf", group = "Format" },
+  { "<leader>p", group = "Proect" },
+  { "<leader>q", "<cmd>confirm q<CR>", desc = "Quit" },
+  { "<leader>s", "<cmd>split<CR>", desc = "Split" },
+  { "<leader>t", group = "Tab" },
+  { "<leader>tH", "<cmd>-tabmove<cr>", desc = "Move Left" },
+  { "<leader>tL", "<cmd>+tabmove<cr>", desc = "Move Right" },
+  { "<leader>tN", "<cmd>tabnew %<cr>", desc = "New Tab" },
+  { "<leader>th", "<cmd>tabnext<cr>", desc = "Go to Left" },
+  { "<leader>tl", "<cmd>tabprev<cr>", desc = "Go to Right" },
+  { "<leader>tn", "<cmd>$tabnew<cr>", desc = "New Empty Tab" },
+  { "<leader>to", "<cmd>tabonly<cr>", desc = "Only" },
+  -- { "<leader>t;", "<cmd>tabnew | terminal<CR>", desc = "Term" },
+  { "<leader>v", "<cmd>vsplit<CR>", desc = "Split" },
+  { "<leader>x", group = "Trouble" },
+}
+
+--[[ function M.config()
   local mappings = {
     ["|"] = { "<cmd>vert res<CR>", "Zoom vertical split" },
     ["_"] = { "<cmd>res<CR>", "Zoom horizontal split" },
@@ -44,6 +74,7 @@ function M.config()
     -- T = { name = "Treesitter" },
   }
 
+
   local which_key = require "which-key"
 
   local opts = {
@@ -52,6 +83,6 @@ function M.config()
   }
 
   which_key.register(mappings, opts)
-end
+end ]]
 
 return M

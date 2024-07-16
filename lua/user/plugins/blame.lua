@@ -7,12 +7,12 @@ M.config = function()
 
   local wk = require("which-key")
 
-  wk.register({
-    ["gb"] = { "<cmd>BlameToggle<cr>", "Blame" },
+  wk.add({
+    { "<leader>gb", "<cmd>BlameToggle<cr>", desc = "Blame" },
   }, {
-    mode = "n", -- NORMAL mode
+    mode = "n",     -- NORMAL mode
     prefix = "<leader>",
-    silent = true, -- use `silent` when creating keymaps
+    silent = true,  -- use `silent` when creating keymaps
     noremap = true, -- use `noremap` when creating keymaps
   })
 end
