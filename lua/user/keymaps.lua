@@ -15,10 +15,10 @@ keymap("v", "<c-k>", ":m '<-2<cr>gv=gv", XTND({ desc = "Move line up" }))
 keymap("x", "p", '"_dP', XTND({ desc = "Paste without yanking" }))
 
 -- delete won't copy to register
-keymap({ "n", "v" }, "<leader>d", '"_d', XTND({ desc = "Delete without yanking" }))
+-- keymap({ "n", "v" }, "<leader>d", '"_d', XTND({ desc = "Delete without yanking" }))
 
 -- allows copying to system clipboard
-keymap({ "n", "v" }, "<leader>y", '"+y', XTND({ desc = "Yank to clipboard" }))
+-- keymap({ "n", "v" }, "<leader>y", '"+y', XTND({ desc = "Yank to clipboard" }))
 
 -- better defaults for Y and J
 keymap("n", "Y", "yg$", XTND({ desc = "Yank to end of line" }))
@@ -43,10 +43,10 @@ keymap("n", "<RightMouse>", "<cmd>:popup mousemenu<cr>", { silent = true })
 -- working with multi-line
 keymap({ "n", "x" }, "j", "gj", XTND({ desc = "Move down" }))
 keymap({ "n", "x" }, "k", "gk", XTND({ desc = "Move up" }))
-keymap("n", "<leader>w", "<cmd>lua vim.wo.wrap = not vim.wo.wrap<cr>", XTND({ desc = "Toggle word wrap" }))
+-- keymap("n", "<leader>w", "<cmd>lua vim.wo.wrap = not vim.wo.wrap<cr>", XTND({ desc = "Toggle word wrap" }))
 
 -- toggle relative numbers (easier for pairing)
-keymap("n", "<leader>rn", "<cmd>lua vim.wo.rnu = not vim.wo.rnu<cr>", XTND({ desc = "Toggle rnu" }))
+keymap("n", "<leader><leader>r", "<cmd>lua vim.wo.rnu = not vim.wo.rnu<cr>", XTND({ desc = "Toggle rnu" }))
 
 -- Source config
 keymap("n", "<leader><leader>c", "<cmd>source ~/.config/nvim/init.lua<cr>", { noremap = true, desc = "Reload Config" })
