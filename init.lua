@@ -66,4 +66,6 @@ spec("user.plugins.extras.trouble")
 spec("user.plugins.extras.todo-comment")
 spec("user.plugins.extras.pretty-ts-errors")
 
+pcall(require, "user.plugins.local_only") -- local plugins
+
 require("user.lazy")
