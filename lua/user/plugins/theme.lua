@@ -6,21 +6,21 @@ local M = {
 }
 
 function M.config()
-  require("catppuccin").setup({
+  require "catppuccin".setup {
     flavour = "mocha",
     transparent_background = true, -- disables setting the background color.
-    show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
-    term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
+    show_end_of_buffer = false,    -- shows the '~' characters after the end of buffers
+    term_colors = false,           -- sets terminal colors (e.g. `g:terminal_color_0`)
     dim_inactive = {
-      enabled = false, -- dims the background color of inactive window
+      enabled = false,             -- dims the background color of inactive window
       shade = "dark",
-      percentage = 0.15, -- percentage of the shade to apply to the inactive window
+      percentage = 0.15,           -- percentage of the shade to apply to the inactive window
     },
-    no_italic = false, -- Force no italic
-    no_bold = false, -- Force no bold
-    no_underline = false, -- Force no underline
-    styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
-      comments = { "italic" }, -- Change the style of comments
+    no_italic = false,             -- Force no italic
+    no_bold = false,               -- Force no bold
+    no_underline = false,          -- Force no underline
+    styles = {                     -- Handles the styles of general hi groups (see `:h highlight-args`):
+      comments = { "italic" },     -- Change the style of comments
       conditionals = { "italic" },
       loops = {},
       functions = {},
@@ -63,7 +63,6 @@ function M.config()
       harpoon = true,
       neogit = true,
       nvim_surround = true,
-      ts_rainbow2 = true,
       lsp_trouble = true,
       mason = true,
       ufo = true,
@@ -75,8 +74,8 @@ function M.config()
         indentscope_color = "", -- catppuccin color (eg. `lavender`) Default: text
       },
     },
-  })
-  vim.cmd.colorscheme("catppuccin")
+  }
+  vim.cmd.colorscheme "catppuccin"
 end
 
 return M
