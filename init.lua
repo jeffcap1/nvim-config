@@ -3,7 +3,7 @@ require("user.launch")
 require("user.options")
 require("user.keymaps")
 require("user.autocmds")
-require("user.lsp_servers")              -- LSP servers
+require("user.lsp_servers") -- LSP servers
 pcall(require, "user.local_lsp_servers") -- local LSP servers
 
 -- startup
@@ -49,7 +49,6 @@ spec("user.plugins.noice")
 -- other useful plugins
 spec("user.plugins.navic")
 spec("user.plugins.breadcrumbs")
-spec("user.plugins.extras.copilot")
 spec("user.plugins.extras.oil")
 -- spec("user.plugins.extras.illuminate")
 spec("user.plugins.extras.eyeliner")
