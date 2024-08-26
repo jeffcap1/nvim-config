@@ -14,7 +14,15 @@ function M.config()
     end
   end
 
-  require "lualine".setup {
+  local function show_copilot_status()
+    if vim.g.loaded_copilot then
+      return "copilot"
+    else
+      return ""
+    end
+  end
+
+  require("lualine").setup({
     options = {
       -- theme = "dracula",
       theme = "catppuccin",
@@ -22,10 +30,10 @@ function M.config()
 
     { show_codeium_status },
     sections = {
-      lualine_y = { "copilot", show_codeium_status, "progress", "selectioncount" },
+      lualine_y = { show_copilot_status, show_codeium_status, "progress", "selectioncount" },
       lualine_z = { "location" },
     },
-  }
+  })
 end
 
 return M

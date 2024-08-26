@@ -9,7 +9,7 @@ local M = {
 }
 
 M.config = function()
-  -- vim.g.codeium_disable_bindings = 1
+  vim.g.codeium_disable_bindings = 1
   vim.g.codeium_enable_chat = 1
   vim.g.codeium_filetypes = {
     markdown = true,
@@ -23,16 +23,16 @@ M.config = function()
   }
 
   vim.keymap.set("i", "<C-l>", function()
-    vim.notify("accepting codeium suggestion")
+    vim.notify "accepting codeium suggestion"
     return vim.fn["codeium#Accept"]()
   end, { expr = true, silent = true })
 
-  vim.keymap.set("i", "<c-j>", function()
-    return vim.fn["codeium#CycleCompletions(1)"]()
+  vim.keymap.set("i", "<c-n>", function()
+    return vim.fn["codeium#CycleCompletions"](1)
   end, { expr = true, silent = true })
 
-  vim.keymap.set("i", "<c-k>", function()
-    return vim.fn["codeium#CycleCompletions(-1)"]()
+  vim.keymap.set("i", "<c-p>", function()
+    return vim.fn["codeium#CycleCompletions"](-1)
   end, { expr = true, silent = true })
 
   vim.keymap.set("i", "<c-h>", function()
