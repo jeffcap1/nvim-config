@@ -19,6 +19,13 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   command = "%s/\\s\\+$//e",
 })
 
+-- change cursor to vertical blinking bar when leaving neovim
+vim.api.nvim_create_autocmd({ "VimLeave" }, {
+  callback = function()
+    vim.opt.guicursor = "a:ver1-blinkon1"
+  end,
+})
+
 -- stop auto commenting new lines when hitting o or O
 vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
   callback = function()
