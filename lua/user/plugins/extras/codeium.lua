@@ -4,9 +4,9 @@ local M = {
 }
 
 M.config = function()
-  local neocodeium = require "neocodeium"
+  local neocodeium = require("neocodeium")
 
-  neocodeium.setup {
+  neocodeium.setup({
     filetypes = {
       -- markdown = true,
       help = false,
@@ -19,11 +19,11 @@ M.config = function()
       ["dap-repl"] = false,
       ["."] = false,
     },
-  }
+  })
 
   vim.keymap.set("i", "<C-l>", function()
-    vim.notify "accepting codeium suggestion"
-    return neocodeium.accept
+    vim.notify("accepting codeium suggestion")
+    return neocodeium.accept()
   end, { expr = true, silent = true })
 
   vim.keymap.set("i", "<c-n>", function()
