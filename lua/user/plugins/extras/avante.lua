@@ -1,10 +1,43 @@
+local function check_architecture()
+  -- Execute the 'uname -m' command to get the system architecture
+  local handle = io.popen("uname -m")
+
+  if handle == nil then
+    return "Failed to execute 'uname -m'"
+  end
+
+  local architecture = handle:read("*a")
+  handle:close()
+
+  -- Trim any trailing whitespace from the output
+  architecture = architecture:gsub("%s+", "")
+
+  -- Check if the architecture is arm64 or x86_64
+  if architecture == "arm64" then
+    return "arm"
+  elseif architecture == "x86_64" then
+    return "intel"
+  else
+    return "Unknown architecture: " .. architecture
+  end
+end
+
+local function get_build_function()
+  local arch = check_architecture()
+  if arch == "intel" then
+    return "make BUILD_FROM_SOURCE=true"
+  else
+    return "make"
+  end
+end
+
 local M = {
   "yetone/avante.nvim",
   event = "VeryLazy",
   lazy = false,
   version = false, -- set this if you want to always pull the latest change
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-  build = "make",
+  build = get_build_function(),
   -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
   dependencies = {
     "stevearc/dressing.nvim",
