@@ -16,6 +16,7 @@ M.config = function()
       svn = false,
       cvs = false,
       TelescopePrompt = false,
+      DressingInput = false,
       ["dap-repl"] = false,
       ["."] = false,
     },
