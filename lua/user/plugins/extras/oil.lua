@@ -4,7 +4,7 @@ local M = {
 }
 
 function M.config()
-  require "oil".setup {
+  require("oil").setup({
     delete_to_trash = true,
     skip_confirm_for_simple_edits = true,
     view_options = {
@@ -20,9 +20,9 @@ function M.config()
     },
     float = {
       max_height = 40,
-      max_width = 80,
+      max_width = 200,
     },
-  }
+  })
   vim.keymap.set("n", "-", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
 end
 
