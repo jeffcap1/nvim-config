@@ -49,4 +49,4 @@ keymap({ "n", "x" }, "k", "gk", XTND({ desc = "Move up" }))
 keymap("n", "<leader><leader>r", "<cmd>lua vim.wo.rnu = not vim.wo.rnu<cr>", XTND({ desc = "Toggle rnu" }))
 
 -- Source config
-keymap("n", "<leader><leader>c", "<cmd>source ~/.config/nvim/init.lua<cr>", { noremap = true, desc = "Reload Config" })
+keymap("n", "<leader><leader>c", "<cmd>luafile $MYVIMRC<CR>", { noremap = true, desc = "Reload Config" })
