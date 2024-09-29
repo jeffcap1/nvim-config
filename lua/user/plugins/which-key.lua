@@ -39,7 +39,7 @@ M.opts.spec = {
   { "<leader>y", '"+y', mode = { "n", "v" }, desc = "Yank to clipboard", icon = "󰅇 " },
   { "<leader>v", "<cmd>vsplit<CR>", desc = "Split", icon = " " },
   {
-    "<leader>w",
+    "<leader><space>w",
     function()
       vim.wo.wrap = not vim.wo.wrap
       vim.notify("Word wrap " .. (vim.wo.wrap and "enabled" or "disabled"))

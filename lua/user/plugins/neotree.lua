@@ -3,19 +3,19 @@ local M = {
   branch = "v3.x",
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "nvim-tree/nvim-web-devicons",
+    "echasnovski/mini.icons",
     "MunifTanjim/nui.nvim",
   },
 }
 function M.config()
-  require "neo-tree".setup {
+  require("neo-tree").setup({
     event_handlers = {
       {
         event = "neo_tree_buffer_enter",
         handler = function()
-          vim.cmd [[
+          vim.cmd([[
           setlocal relativenumber
-        ]]
+        ]])
         end,
       },
       {
@@ -23,7 +23,7 @@ function M.config()
         handler = function(file_path)
           -- auto close
           vim.cmd("Neotree close")
-        end
+        end,
       },
     },
     window = {
@@ -34,7 +34,8 @@ function M.config()
         },
       },
     },
-  }
+  })
+
   vim.keymap.set(
     "n",
     "<m-[>",
