@@ -66,6 +66,7 @@ spec("user.plugins.extras.pretty-ts-errors")
 spec("user.plugins.extras.tabby")
 spec("user.plugins.extras.todo-comment")
 spec("user.plugins.extras.trouble")
+spec("user.plugins.extras.wit-search")
 spec("user.plugins.navic")
 
 pcall(require, "user.plugins.local_only") -- local plugins
