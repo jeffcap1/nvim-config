@@ -12,8 +12,26 @@ function M.config()
     style = "glyph",
     extension = {
       astro = {
-        glyph = "",
+        glyph = " ",
         hl = "MiniIconsOrange",
+      },
+    },
+    file = {
+      [".prettierrc"] = {
+        glyph = " ",
+        hl = "MiniIconsBlue",
+      },
+      [".prettierignore"] = {
+        glyph = " ",
+        hl = "MiniIconsGray",
+      },
+      [".nvmrc"] = {
+        glyph = " ",
+        hl = "MiniIconsGreen",
+      },
+      ["eslint.config.mjs"] = {
+        glyph = "󰱺 ",
+        hl = "MiniIconsPurple",
       },
     },
   })
