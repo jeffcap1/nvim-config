@@ -132,6 +132,7 @@ return {
     TriangleShortArrowLeft = "",
     TriangleShortArrowRight = "",
     TriangleShortArrowUp = "",
+    TriangleShortArrowRightNoSpace = "",
   },
   diagnostics = {
     BoldError = "",
