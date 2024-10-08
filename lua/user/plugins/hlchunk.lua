@@ -42,7 +42,6 @@ M.config = function()
       enable = true,
       exclude_filetypes = exclusions,
       chars = {
-        -- "│"
         icons.ui.BoldLineDashedMiddle,
       },
       style = {
@@ -50,7 +49,7 @@ M.config = function()
       },
     },
     blank = {
-      enable = true,
+      enable = false,
       exclude_filetypes = exclusions,
     },
     line_num = {
