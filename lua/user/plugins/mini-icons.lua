@@ -33,6 +33,10 @@ function M.config()
         glyph = "󰱺 ",
         hl = "MiniIconsPurple",
       },
+      ["tmux.conf"] = {
+        glyph = " ",
+        hl = "MiniIconsGreen",
+      },
     },
   })
 
