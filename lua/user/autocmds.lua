@@ -1,8 +1,10 @@
+local function augroup(name)
+  return vim.api.nvim_create_augroup("local_user_" .. name, { clear = true })
+end
+
 -- highlight yanked text
-local yank_group = vim.api.nvim_create_augroup("HighlightYank", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
-  group = yank_group,
-  pattern = "*",
+  group = augroup("highlight_yank"),
   callback = function()
     vim.highlight.on_yank({
       higroup = "IncSearch", -- alternate: "Visual"
@@ -11,10 +13,19 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
+-- resize splits if window got resized
+vim.api.nvim_create_autocmd({ "VimResized" }, {
+  group = augroup("resize_splits"),
+  callback = function()
+    local current_tab = vim.fn.tabpagenr()
+    vim.cmd("tabdo wincmd =")
+    vim.cmd("tabnext " .. current_tab)
+  end,
+})
+
 -- remove whitespace on save
-local whitespace_group = vim.api.nvim_create_augroup("BufWhiteSpace", { clear = true })
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  group = whitespace_group,
+  group = augroup("remove_whitespace"),
   pattern = "*",
   command = "%s/\\s\\+$//e",
 })
@@ -49,6 +60,14 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     "typescript-errors",
     "DressingSelect",
     "tsplayground",
+    "startuptime",
+    "tsplayground",
+    "neotest-output",
+    "checkhealth",
+    "neotest-summary",
+    "neotest-output-panel",
+    "dbout",
+    "gitsigns-blame",
     "",
   },
   callback = function()
@@ -80,5 +99,44 @@ vim.api.nvim_create_autocmd({ "CursorHold" }, {
       -- luasnip.unlink_current()
       vim.cmd([[silent! lua require("luasnip").unlink_current()]])
     end
+  end,
+})
+
+-- Auto create dir when saving a file, in case some intermediate directory does not exist
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  group = augroup("auto_create_dir"),
+  callback = function(event)
+    if event.match:match("^%w%w+:[\\/][\\/]") then
+      return
+    end
+    local file = vim.uv.fs_realpath(event.match) or event.match
+    vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
+  end,
+})
+
+-- fix performance issues with big files
+vim.filetype.add({
+  pattern = {
+    [".*"] = {
+      function(path, buf)
+        return vim.bo[buf]
+            and vim.bo[buf].filetype ~= "bigfile"
+            and path
+            and vim.fn.getfsize(path) > vim.g.bigfile_size
+            and "bigfile"
+          or nil
+      end,
+    },
+  },
+})
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  group = augroup("bigfile"),
+  pattern = "bigfile",
+  callback = function(ev)
+    vim.b.minianimate_disable = true
+    vim.schedule(function()
+      vim.bo[ev.buf].syntax = vim.filetype.match({ buf = ev.buf }) or ""
+    end)
   end,
 })
