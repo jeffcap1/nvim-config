@@ -1,8 +1,8 @@
 local M = {
   "OXY2DEV/markview.nvim",
-  lazy = false, -- Recommended
-  ft = { "markdown", "Avante" }, -- If you decide to lazy-load anyway
-
+  enabled = true,
+  lazy = false, -- Recommended lazy = false to stop lazy loading
+  ft = { "markdown", "Avante", "quarto", "norg", "rmd", "org", "vimwiki" }, -- If you decide to lazy-load anyway
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
     "echasnovski/mini.icons",
@@ -10,10 +10,15 @@ local M = {
 }
 
 M.opts = {
-  filetypes = { "markdown", "Avante", "quarto", "rmd" },
-  -- filetypes = { "markdown", "norg", "rmd", "org", "vimwiki", "Avante" },
-  -- buf_ignore = {},
+  filetypes = { "markdown", "Avante", "quarto", "norg", "rmd", "org", "vimwiki" },
+  debounce = 100,
   -- max_length = 99999,
+  -- buf_ignore = {},
+  callbacks = {
+    on_enable = function(buf, win)
+      NOTIFY.INFO("markview on_enable!")
+    end,
+  },
 }
 
 return M

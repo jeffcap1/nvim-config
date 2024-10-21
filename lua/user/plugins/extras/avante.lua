@@ -39,38 +39,59 @@ local M = {
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   build = get_build_function(),
   -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
-  dependencies = {
-    "stevearc/dressing.nvim",
-    "nvim-lua/plenary.nvim",
-    "MunifTanjim/nui.nvim",
-    --- The below dependencies are optional,
-    "echasnovski/mini.icons", -- or "nvim-tree/nvim-web-devicons"
-    {
-      -- support for image pasting
-      "HakonHarnes/img-clip.nvim",
-      event = "VeryLazy",
-      opts = {
-        -- recommended settings
-        default = {
-          embed_image_as_base64 = false,
-          prompt_for_file_name = false,
-          drag_and_drop = {
-            insert_mode = true,
-          },
-          -- required for Windows users
-          use_absolute_path = true,
+}
+
+M.dependencies = {
+  "nvim-treesitter/nvim-treesitter",
+  "stevearc/dressing.nvim",
+  "nvim-lua/plenary.nvim",
+  "MunifTanjim/nui.nvim",
+  --- The below dependencies are optional,
+  "echasnovski/mini.icons", -- or "nvim-tree/nvim-web-devicons"
+  {
+    -- support for image pasting
+    "HakonHarnes/img-clip.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- recommended settings
+      default = {
+        embed_image_as_base64 = false,
+        prompt_for_file_name = false,
+        drag_and_drop = {
+          insert_mode = true,
         },
+        -- required for Windows users
+        use_absolute_path = true,
       },
     },
-    {
-      "OXY2DEV/markview.nvim",
-      enabled = true,
-      lazy = false,
-      ft = { "markdown", "norg", "rmd", "org", "vimwiki", "Avante" },
-      opts = {
-        filetypes = { "markdown", "norg", "rmd", "org", "vimwiki", "Avante" },
-        buf_ignore = {},
-        max_length = 99999,
+  },
+  --[[ {
+    -- Make sure to set this up properly if you have lazy=true
+    "MeanderingProgrammer/render-markdown.nvim",
+    opts = {
+      filetypes = { "markdown", "norg", "rmd", "org", "vimwiki", "Avante" },
+    },
+    ft = { "markdown", "norg", "rmd", "org", "vimwiki", "Avante" },
+  }, ]]
+
+  {
+    "OXY2DEV/markview.nvim",
+    enabled = true,
+    lazy = false, -- Recommended lazy = false to stop lazy loading
+    ft = { "markdown", "Avante", "quarto", "norg", "rmd", "org", "vimwiki" }, -- If you decide to lazy-load anyway
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "echasnovski/mini.icons",
+    },
+    opts = {
+      filetypes = { "markdown", "Avante", "quarto", "norg", "rmd", "org", "vimwiki" },
+      debounce = 100,
+      max_length = 99999,
+      buf_ignore = {},
+      callbacks = {
+        on_enable = function(buf, win)
+          NOTIFY.INFO("markview on_enable from Avante!")
+        end,
       },
     },
   },
@@ -88,10 +109,12 @@ M.opts = {
   },
   gemini = {
     -- @see https://ai.google.dev/gemini-api/docs/models/gemini
-    model = "gemini-1.5-pro-exp-0827",
-    -- model = "gemini-1.5-flash",
+    -- model = "gemini-1.5-pro-exp-0827",
+    model = "gemini-1.5-flash",
+    timeout = 60000, -- Timeout in milliseconds (default: 30000)
     temperature = 0,
     max_tokens = 4096,
+    ["local"] = false,
   },
   mappings = {
     diff = {
@@ -123,5 +146,11 @@ M.opts = {
     },
   },
 }
+
+M.config = function(_, opts)
+  vim.opt.laststatus = 3
+
+  require("avante").setup(opts)
+end
 
 return M
