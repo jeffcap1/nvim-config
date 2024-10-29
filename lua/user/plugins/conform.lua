@@ -41,7 +41,10 @@ M.config = function()
         return
       end
       -- I recommend these options. See :help conform.format for details.
-      return { timeout_ms = 500, lsp_format = "fallback" }
+      return {
+        timeout_ms = 5000,
+        lsp_format = "fallback",
+      }
     end,
   })
 
