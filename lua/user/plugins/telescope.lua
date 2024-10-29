@@ -2,6 +2,7 @@ local M = {
   "nvim-telescope/telescope.nvim",
   dependencies = {
     { "nvim-lua/plenary.nvim" },
+    { "nvim-telescope/telescope-live-grep-args.nvim" },
     { "nvim-telescope/telescope-media-files.nvim" },
     { "nvim-telescope/telescope-ui-select.nvim" },
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = true },
@@ -9,8 +10,10 @@ local M = {
 }
 
 function M.config()
+  local telescope = require("telescope")
   local builtin = require("telescope.builtin")
-  local extensions = require("telescope").extensions
+
+  local extensions = telescope.extensions
   local keymap = vim.keymap.set
 
   keymap("n", "<leader>fp", builtin.git_files, XTND({ desc = "Git Files" }))
@@ -21,6 +24,7 @@ function M.config()
   keymap("n", "<leader>fb", builtin.current_buffer_fuzzy_find, XTND({ desc = "Telescope Find Buffer" }))
   keymap("n", "<leader>ff", builtin.find_files, XTND({ desc = "Find Files" }))
   keymap("n", "<leader>ft", builtin.live_grep, XTND({ desc = "Find Text" }))
+  keymap("n", "<leader>fg", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
   keymap("n", "<leader>fs", builtin.grep_string, XTND({ desc = "Find String" }))
   keymap("n", "<leader>fh", builtin.help_tags, XTND({ desc = "Help" }))
   keymap("n", "<leader>fi", extensions.media_files.media_files, XTND({ desc = "Media" }))
@@ -34,8 +38,9 @@ function M.config()
 
   local icons = require("user.icons")
   local actions = require("telescope.actions")
+  local lga_actions = require("telescope-live-grep-args.actions")
 
-  require("telescope").setup({
+  telescope.setup({
     defaults = {
       prompt_prefix = icons.ui.Telescope .. " ",
       selection_caret = icons.ui.Forward .. " ",
@@ -67,11 +72,22 @@ function M.config()
         override_file_sorter = true, -- override the file sorter
         case_mode = "smart_case", -- or "ignore_case" or "respect_case"
       },
-    },
-    pickers = {
-      live_grep = {
-        theme = "dropdown",
+      live_grep_args = {
+        auto_quoting = true,
+        mappings = {
+          i = {
+            ["<C-k>"] = lga_actions.quote_prompt(),
+            ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+            ["<C-s>"] = actions.to_fuzzy_refine,
+          },
+        },
       },
+    },
+
+    pickers = {
+      -- live_grep = {
+      --   theme = "dropdown",
+      -- },
 
       grep_string = {
         theme = "dropdown",
@@ -134,7 +150,11 @@ function M.config()
       },
     },
   })
-  require("telescope").load_extension("ui-select")
+
+  -- then load the extension
+  telescope.load_extension("ui-select")
+  telescope.load_extension("fzf")
+  telescope.load_extension("live_grep_args")
 end
 
 return M
