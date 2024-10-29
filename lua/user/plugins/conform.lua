@@ -11,7 +11,7 @@ M.config = function()
       lua = { "stylua" },
       -- Conform will run multiple formatters sequentially
       -- python = { "isort", "black" },
-      python = { "ruff" },
+      python = { "ruff_format" },
       -- You can customize some of the format options for the filetype (:help conform.format)
       -- Conform will run the first available formatter
       javascript = { "prettierd", "prettier", stop_after_first = true },
@@ -30,7 +30,7 @@ M.config = function()
       yaml = { "prettierd", "prettier", stop_after_first = true },
       markdown = { "prettierd", "prettier", stop_after_first = true },
       graphql = { "prettierd", "prettier", stop_after_first = true },
-      sql = { "sql-formatter" },
+      sql = { "sql_formatter" },
       php = { "phpcbf", "phpcsfixer" },
       -- Use the "_" filetype to run formatters on filetypes that don't
       -- have other formatters configured.
@@ -44,6 +44,13 @@ M.config = function()
       return { timeout_ms = 500, lsp_format = "fallback" }
     end,
   })
+
+  conform.formatters.sql_formatter = {
+    args = {
+      "-l",
+      "postgresql",
+    },
+  }
 
   vim.keymap.set({ "n", "v" }, "<leader>lff", function()
     conform.format({ timeout_ms = 500, lsp_format = "fallback" })
