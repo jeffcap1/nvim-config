@@ -1,5 +1,6 @@
 local M = {
   "nvimtools/none-ls.nvim",
+  event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 }
 
 -- local autoformat = true
@@ -37,28 +38,28 @@ function M.config()
 
       -- formatters
       -- formatting.htmlbeautifier,
-    --   formatting.stylua,
-    --   formatting.sql_formatter,
-    --   formatting.phpcsfixer,
-    --   formatting.prettier.with({
-    --     filetypes = {
-    --       "css",
-    --       "scss",
-    --       "less",
-    --       "html",
-    --       "markdown",
-    --       "json",
-    --       "yaml",
-    --       "lua",
-    --       "astro",
-    --       "vue",
-    --       "svelte",
-    --       "javascript",
-    --       "typescript",
-    --       "javascriptreact",
-    --       "typescriptreact",
-    --     },
-    --   }),
+      --   formatting.stylua,
+      --   formatting.sql_formatter,
+      --   formatting.phpcsfixer,
+      --   formatting.prettier.with({
+      --     filetypes = {
+      --       "css",
+      --       "scss",
+      --       "less",
+      --       "html",
+      --       "markdown",
+      --       "json",
+      --       "yaml",
+      --       "lua",
+      --       "astro",
+      --       "vue",
+      --       "svelte",
+      --       "javascript",
+      --       "typescript",
+      --       "javascriptreact",
+      --       "typescriptreact",
+      --     },
+      --   }),
     },
   })
 

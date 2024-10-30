@@ -1,5 +1,6 @@
 local M = {
   "folke/trouble.nvim",
+  event = "VeryLazy",
   dependencies = {
     "echasnovski/mini.icons",
   },

@@ -1,5 +1,6 @@
 local M = {
   "OlegGulevskyy/better-ts-errors.nvim",
+  event = "VeryLazy",
   dependencies = { "MunifTanjim/nui.nvim" },
   opts = {
     keymaps = {

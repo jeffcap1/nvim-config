@@ -9,7 +9,7 @@ local M = {
 -- NeoCodeium Status
 -- @see https://www.reddit.com/r/neovim/comments/1fc34na/comment/lm5wr1j/?rdt=59883
 function get_codeium_status()
-  local status, serverstatus = require "neocodeium".get_status()
+  local status, serverstatus = require("neocodeium").get_status()
 
   -- Tables to map serverstatus and status to corresponding symbols
   local server_status_symbols = {
@@ -51,7 +51,7 @@ function M.config()
     end
   end
 
-  require "lualine".setup {
+  require("lualine").setup({
     options = {
       -- theme = "dracula",
       theme = "catppuccin",
@@ -61,7 +61,7 @@ function M.config()
       lualine_y = { show_copilot_status, show_codeium_status, "progress", "selectioncount" },
       lualine_z = { "location" },
     },
-  }
+  })
 end
 
 return M

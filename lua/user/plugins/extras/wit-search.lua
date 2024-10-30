@@ -1,5 +1,6 @@
 local M = {
   "aliqyan-21/wit.nvim",
+  event = "VeryLazy",
 }
 
 M.config = function()

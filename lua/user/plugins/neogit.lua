@@ -1,5 +1,6 @@
 local M = {
   "NeogitOrg/neogit",
+  event = { "BufReadPost", "BufNewFile" },
   dependencies = {
     "nvim-lua/plenary.nvim", -- required
     "sindrets/diffview.nvim",

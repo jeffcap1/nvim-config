@@ -1,5 +1,7 @@
 local M = {
   "hrsh7th/nvim-cmp",
+  version = false, -- last release is way too old
+  event = "InsertEnter",
   dependencies = {
     {
       "hrsh7th/cmp-nvim-lsp",
@@ -7,15 +9,9 @@ local M = {
         "onsails/lspkind.nvim",
       },
     },
-    {
-      "hrsh7th/cmp-buffer",
-    },
-    {
-      "hrsh7th/cmp-path",
-    },
-    {
-      "hrsh7th/cmp-cmdline",
-    },
+    { "hrsh7th/cmp-buffer" },
+    { "hrsh7th/cmp-path" },
+    { "hrsh7th/cmp-cmdline" },
     {
       "L3MON4D3/LuaSnip",
       build = "make install_jsregexp",
@@ -24,9 +20,7 @@ local M = {
         "rafamadriz/friendly-snippets",
       },
     },
-    {
-      "hrsh7th/cmp-nvim-lua",
-    },
+    { "hrsh7th/cmp-nvim-lua" },
   },
 }
 

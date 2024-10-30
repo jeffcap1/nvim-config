@@ -21,7 +21,12 @@ function M.config()
   keymap("n", "<leader>fa", function()
     builtin.find_files({ hidden = true, no_ignore = true })
   end, XTND({ desc = "Find All Files" }))
-  keymap("n", "<leader>fb", builtin.current_buffer_fuzzy_find, XTND({ desc = "Telescope Find Buffer" }))
+  keymap(
+    "n",
+    "<leader>fb",
+    "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>",
+    XTND({ desc = "Telescope Find Buffer" })
+  )
   keymap("n", "<leader>ff", builtin.find_files, XTND({ desc = "Find Files" }))
   keymap("n", "<leader>ft", builtin.live_grep, XTND({ desc = "Find Text" }))
   keymap("n", "<leader>fg", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
@@ -35,6 +40,10 @@ function M.config()
   keymap("n", "<leader>fR", builtin.registers, XTND({ desc = "Registers" }))
   keymap("n", "<leader>fq", builtin.quickfix, XTND({ desc = "Telescope Quick Fix" }))
   keymap("n", "<leader>fQ", builtin.quickfixhistory, XTND({ desc = "Telescope QF History" }))
+  keymap("n", "<leader>fd", "<cmd>Telescope diagnostics bufnr=0<cr>", { desc = "Document Diagnostics" })
+  keymap("n", "<leader>fD", "<cmd>Telescope diagnostics<cr>", { desc = "Workspace Diagnostics" })
+  keymap("n", "<leader>fo", "<cmd>Telescope vim_options<cr>", { desc = "Options" })
+  keymap("n", "<leader>fy", "<cmd>Telescope vim_options<cr>", { desc = "Options" })
 
   local icons = require("user.icons")
   local actions = require("telescope.actions")

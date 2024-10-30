@@ -1,7 +1,7 @@
 local M = {
   "OXY2DEV/markview.nvim",
   enabled = true,
-  lazy = false, -- Recommended lazy = false to stop lazy loading
+  -- lazy = false, -- Recommended lazy = false to stop lazy loading
   ft = { "markdown", "Avante", "quarto", "norg", "rmd", "org", "vimwiki" }, -- If you decide to lazy-load anyway
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
