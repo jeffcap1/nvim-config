@@ -9,9 +9,13 @@ local M = {
   },
 }
 
-function M.config()
-  local keymap = vim.keymap.set
+-- stylua: ignore
+M.keys = {
+  {"<leader>/", "<Plug>(comment_toggle_linewise_current)", desc = "Toggle comment", silent = true, noremap = true},
+  {"<leader>/", "<Plug>(comment_toggle_blockwise_visual)", desc = "Toggle comment", mode = "x", silent = true, noremap = true},
+}
 
+function M.config()
   vim.g.skip_ts_context_commentstring_module = true
 
   ---@diagnostic disable: missing-fields
@@ -21,8 +25,6 @@ function M.config()
 
   require("Comment").setup({
     pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-    keymap("n", "<leader>/", "<Plug>(comment_toggle_linewise_current)", XTND({ desc = "Toggle comment" })),
-    keymap("x", "<leader>/", "<Plug>(comment_toggle_linewise_visual)", XTND({ desc = "Visually toggle comment" })),
   })
 end
 
