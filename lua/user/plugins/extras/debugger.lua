@@ -12,6 +12,7 @@ end
 -- 1. setup dap
 local dap_core = {
   "mfussenegger/nvim-dap",
+  event = "VeryLazy",
   dependencies = {
     "rcarriga/nvim-dap-ui",
     -- "nvim-telescope/telescope-dap.nvim",
