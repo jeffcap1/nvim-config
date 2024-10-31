@@ -2,7 +2,6 @@ local M = {
   "nvim-neo-tree/neo-tree.nvim",
   branch = "v3.x",
   cmd = "Neotree",
-  event = "BufReadPre",
   dependencies = {
     "nvim-lua/plenary.nvim",
     "echasnovski/mini.icons",
