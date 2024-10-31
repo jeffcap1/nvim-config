@@ -1,6 +1,12 @@
 local M = {
   "akinsho/toggleterm.nvim",
+  event = "VeryLazy",
   version = "*",
+}
+
+M.keys = {
+  { "m-;", "<cmd>:ToggleTerm<cr>", desc = "Toggle Floating Terminal", silent = true, noremap = true },
+  { "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", desc = "Lazy Git Terminal", silent = true, noremap = true },
 }
 
 function M.config()
@@ -11,14 +17,10 @@ function M.config()
 
   local Terminal = require("toggleterm.terminal").Terminal
   local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
-  local keymap = vim.keymap.set
 
   function _LAZYGIT_TOGGLE()
     lazygit:toggle()
   end
-
-  keymap("n", "<leader>;", "<cmd>:ToggleTerm<cr>", XTND({ desc = "Toggle Floating Terminal" }))
-  keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", XTND({ desc = "Lazy Git Terminal" }))
 end
 
 return M

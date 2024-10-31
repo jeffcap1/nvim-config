@@ -1,5 +1,6 @@
 local M = {
   "nvim-telescope/telescope.nvim",
+  event = "VeryLazy",
   dependencies = {
     { "nvim-lua/plenary.nvim" },
     { "nvim-telescope/telescope-live-grep-args.nvim" },
@@ -12,25 +13,19 @@ local M = {
 function M.config()
   local telescope = require("telescope")
   local builtin = require("telescope.builtin")
-
   local extensions = telescope.extensions
+
   local keymap = vim.keymap.set
 
+  -- stylua: ignore start
   keymap("n", "<leader>fp", builtin.git_files, XTND({ desc = "Git Files" }))
   keymap("n", "<leader>bb", builtin.buffers, XTND({ desc = "Buffers" }))
-  keymap("n", "<leader>fa", function()
-    builtin.find_files({ hidden = true, no_ignore = true })
-  end, XTND({ desc = "Find All Files" }))
-  keymap(
-    "n",
-    "<leader>fb",
-    "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>",
-    XTND({ desc = "Telescope Find Buffer" })
-  )
-  keymap("n", "<leader>ff", builtin.find_files, XTND({ desc = "Find Files" }))
-  keymap("n", "<leader>ft", builtin.live_grep, XTND({ desc = "Find Text" }))
-  keymap("n", "<leader>fg", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
-  keymap("n", "<leader>fs", builtin.grep_string, XTND({ desc = "Find String" }))
+  -- keymap("n", "<leader>bb", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", XTND({ desc = "Buffers" }))
+  keymap("n", "<leader>fa", function() builtin.find_files({ hidden = true, no_ignore = true }) end, XTND({ desc = "All Files" }))
+  keymap("n", "<leader>ff", builtin.find_files, XTND({ desc = "Files" }))
+  keymap("n", "<leader>ft", builtin.live_grep, XTND({ desc = "Text" }))
+  keymap("n", "<leader>fg", extensions.live_grep_args.live_grep_args, XTND({ desc = "Ripgrep" }))
+  keymap("n", "<leader>fs", builtin.grep_string, XTND({ desc = "String" }))
   keymap("n", "<leader>fh", builtin.help_tags, XTND({ desc = "Help" }))
   keymap("n", "<leader>fi", extensions.media_files.media_files, XTND({ desc = "Media" }))
   keymap("n", "<leader>fl", builtin.resume, XTND({ desc = "Resume" }))
@@ -43,7 +38,7 @@ function M.config()
   keymap("n", "<leader>fd", "<cmd>Telescope diagnostics bufnr=0<cr>", { desc = "Document Diagnostics" })
   keymap("n", "<leader>fD", "<cmd>Telescope diagnostics<cr>", { desc = "Workspace Diagnostics" })
   keymap("n", "<leader>fo", "<cmd>Telescope vim_options<cr>", { desc = "Options" })
-  keymap("n", "<leader>fy", "<cmd>Telescope vim_options<cr>", { desc = "Options" })
+  -- stylua: ignore end
 
   local icons = require("user.icons")
   local actions = require("telescope.actions")
@@ -94,10 +89,6 @@ function M.config()
     },
 
     pickers = {
-      -- live_grep = {
-      --   theme = "dropdown",
-      -- },
-
       grep_string = {
         theme = "dropdown",
       },
@@ -108,15 +99,19 @@ function M.config()
       },
 
       buffers = {
-        theme = "dropdown",
-        previewer = false,
+        -- theme = "dropdown",
+        -- previewer = false,
+        theme = "ivy",
         initial_mode = "normal",
+        sort_lastused = true,
+        sort_mru = true,
         mappings = {
           i = {
             ["<C-d>"] = actions.delete_buffer,
           },
           n = {
             ["dd"] = actions.delete_buffer,
+            ["q"] = actions.close,
           },
         },
       },
