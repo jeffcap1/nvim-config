@@ -87,7 +87,29 @@ function M.config()
     return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
   end
 
+  local max_buffer_size = 1024 * 1024 -- 1 Megabyte max
+
+  local buffer_source = {
+    name = "buffer",
+    option = {
+      get_bufnrs = function()
+        local buf = vim.api.nvim_get_current_buf()
+        local byte_size = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
+        if byte_size > max_buffer_size then
+          return {}
+        end
+        return { buf }
+      end,
+      indexing_interval = 1000,
+    },
+  }
   cmp.setup({
+    performance = {
+      fetching_timeout = 1,
+      trigger_debounce_time = 500,
+      throttle = 550,
+      -- fetching_timeout = 80,
+    },
     snippet = {
       -- REQUIRED - you must specify a snippet engine
       expand = function(args)
@@ -170,16 +192,32 @@ function M.config()
     experimental = {
       ghost_text = false,
     },
-    sources = {
-      { name = "copilot" },
-      { name = "codeium" },
-      { name = "nvim_lsp" },
-      { name = "lazydev", group_index = 0 },
-      { name = "luasnip" },
-      { name = "nvim_lua" },
-      { name = "buffer" },
-      { name = "path" },
-    },
+    sources = cmp.config.sources(
+      {
+        -- { name = "copilot" },
+        -- { name = "codeium" },
+        { name = "path" },
+        { name = "nvim_lsp", max_item_count = 20, priority_weight = 100 },
+        { name = "nvim_lsp_signature_help", priority_weight = 100 },
+        { name = "nvim_lua" },
+        { name = "luasnip", priority_weight = 80 },
+        { name = "lazydev", group_index = 0 },
+      },
+      vim.tbl_filter(function(component)
+        return component ~= nil
+      end, {
+        vim.tbl_deep_extend("force", buffer_source, {
+          max_item_count = 5,
+          option = {
+            keyword_length = 3,
+          },
+          priority_weight = 60,
+          entry_filter = function(entry)
+            return not entry.exact
+          end,
+        }),
+      })
+    ),
   })
 end
 
