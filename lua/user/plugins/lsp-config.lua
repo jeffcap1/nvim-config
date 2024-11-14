@@ -1,6 +1,7 @@
 local M = {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
+  dependencies = { "saghen/blink.cmp" },
 }
 
 M.toggle_inlay_hints = function()
@@ -13,7 +14,8 @@ end
 function M.config()
   local lspconfig = require("lspconfig")
   local icons = require("user.icons")
-  local capabilities = require("cmp_nvim_lsp").default_capabilities()
+  -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
+  local capabilities = require("blink.cmp").get_lsp_capabilities()
 
   -- fix line folding errors
   capabilities.textDocument.foldingRange = {

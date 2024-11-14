@@ -1,4 +1,5 @@
 -- include different lua config files
+
 require("user.launch")
 require("user.options")
 require("user.keymaps")
@@ -17,7 +18,9 @@ spec("user.plugins.theme")
 spec("user.plugins.alpha")
 
 -- lsp
-spec("user.plugins.cmp")
+-- spec("user.plugins.cmp")
+spec("user.plugins.blink")
+spec("user.plugins.luasnip")
 spec("user.plugins.mason")
 spec("user.plugins.lsp-config")
 spec("user.plugins.none-ls")
@@ -25,7 +28,6 @@ spec("user.plugins.conform")
 spec("user.plugins.schemastore")
 spec("user.plugins.venv-selector")
 spec("user.plugins.mini-icons")
--- spec("user.plugins.web-devicons")
 
 -- core plugins
 spec("user.plugins.vim-tmux-navigator")
@@ -50,15 +52,12 @@ spec("user.plugins.indent-blankline")
 spec("user.plugins.autopairs")
 spec("user.plugins.autotag")
 spec("user.plugins.markdown-preview")
-spec("user.plugins.markview")
 spec("user.plugins.marks")
 spec("user.plugins.rainbow-delimiters")
 spec("user.plugins.which-key")
 spec("user.plugins.noice")
 
 -- other useful plugins
--- spec("user.plugins.extras.colorizer")
--- spec("user.plugins.extras.illuminate")
 spec("user.plugins.breadcrumbs")
 spec("user.plugins.extras.debugger")
 spec("user.plugins.extras.dressing")

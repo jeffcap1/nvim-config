@@ -20,7 +20,6 @@ function M.config()
   -- stylua: ignore start
   keymap("n", "<leader>fp", builtin.git_files, XTND({ desc = "Git Files" }))
   keymap("n", "<leader>bb", builtin.buffers, XTND({ desc = "Buffers" }))
-  -- keymap("n", "<leader>bb", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", XTND({ desc = "Buffers" }))
   keymap("n", "<leader>fa", function() builtin.find_files({ hidden = true, no_ignore = true }) end, XTND({ desc = "All Files" }))
   keymap("n", "<leader>ff", builtin.find_files, XTND({ desc = "Files" }))
   keymap("n", "<leader>ft", builtin.live_grep, XTND({ desc = "Text" }))
