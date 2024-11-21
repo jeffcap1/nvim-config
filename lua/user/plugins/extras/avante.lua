@@ -65,35 +65,13 @@ M.dependencies = {
       },
     },
   },
-  --[[ {
+  {
     -- Make sure to set this up properly if you have lazy=true
     "MeanderingProgrammer/render-markdown.nvim",
     opts = {
       filetypes = { "markdown", "norg", "rmd", "org", "vimwiki", "Avante" },
     },
     ft = { "markdown", "norg", "rmd", "org", "vimwiki", "Avante" },
-  }, ]]
-
-  {
-    "OXY2DEV/markview.nvim",
-    enabled = true,
-    lazy = false, -- Recommended lazy = false to stop lazy loading
-    ft = { "markdown", "Avante", "quarto", "norg", "rmd", "org", "vimwiki" }, -- If you decide to lazy-load anyway
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "echasnovski/mini.icons",
-    },
-    opts = {
-      filetypes = { "markdown", "Avante", "quarto", "norg", "rmd", "org", "vimwiki" },
-      debounce = 100,
-      max_length = 99999,
-      buf_ignore = {},
-      callbacks = {
-        on_enable = function(buf, win)
-          NOTIFY.INFO("markview on_enable from Avante!")
-        end,
-      },
-    },
   },
 }
 
@@ -114,7 +92,6 @@ M.opts = {
     timeout = 60000, -- Timeout in milliseconds (default: 30000)
     temperature = 0,
     max_tokens = 4096,
-    ["local"] = false,
   },
   mappings = {
     diff = {
