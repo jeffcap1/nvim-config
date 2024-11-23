@@ -27,9 +27,11 @@ M.opts = {
     autocomplete = {
       -- draw = "reversed",
       winblend = vim.o.pumblend,
+      border = "rounded",
     },
     documentation = {
       auto_show = true,
+      border = "rounded",
     },
     ghost_text = {
       enabled = false,
