@@ -16,6 +16,33 @@ M.opts = {
   },
 }
 
+M.keys = function()
+  local harpoon = require("harpoon")
+
+  -- stylua: ignore
+  local keymaps = {
+    { "<leader>hm", function() harpoon:list():add() end, desc = "Harpoon Mark File", },
+    { "<leader>hh", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, desc = "Harpoon Toggle UI", },
+
+    -- Toggle previous & next buffers stored within Harpoon list
+    { "]f", function() harpoon:list():next() end, desc = "Next Harpoon File" },
+    { "[f", function() harpoon:list():prev() end, desc = "Previous Harpoon File" },
+  }
+
+  -- hop to files 1-4 in the list
+  for i = 1, 5 do
+    table.insert(keymaps, {
+      "<leader>h" .. i,
+      function()
+        harpoon:list():select(i)
+      end,
+      desc = "Harpoon File " .. i,
+    })
+  end
+
+  return keymaps
+end
+
 function M.config()
   local harpoon = require("harpoon")
 
@@ -31,59 +58,6 @@ function M.config()
       vim.notify("󱡅  marked file")
     end,
   })
-
-  local keymaps = {
-    {
-      "n",
-      "<leader>hm",
-      function()
-        harpoon:list():add()
-      end,
-      { desc = "Harpoon Mark File" },
-    },
-    {
-      "n",
-      "<leader>hh",
-      function()
-        harpoon.ui:toggle_quick_menu(harpoon:list())
-      end,
-      { desc = "Harpoon Toggle UI" },
-    },
-
-    -- Toggle previous & next buffers stored within Harpoon list
-    {
-      "n",
-      "<leader>hn",
-      function()
-        harpoon:list():next()
-      end,
-      { desc = "Harpoon Next File" },
-    },
-    {
-      "n",
-      "<leader>hp",
-      function()
-        harpoon:list():prev()
-      end,
-      { desc = "Harpoon Prev File" },
-    },
-  }
-
-  -- hop to files 1-4 in the list
-  for i = 1, 5 do
-    table.insert(keymaps, {
-      "n",
-      "<leader>h" .. i,
-      function()
-        harpoon:list():select(i)
-      end,
-      { desc = "Harpoon File " .. i },
-    })
-  end
-
-  for _, keymap in ipairs(keymaps) do
-    vim.keymap.set(keymap[1], keymap[2], keymap[3], XTND(keymap[4]))
-  end
 end
 
 return M

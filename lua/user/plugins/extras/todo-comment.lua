@@ -5,17 +5,15 @@ local M = {
   opts = {},
 }
 
-function M.config()
+M.keys = function()
   local tc = require("todo-comments")
-  local keymap = vim.keymap.set
-
-  tc.setup({})
-
-  keymap("n", "<leader>cj", tc.jump_next, XTND({ desc = "Next todo comment" }))
-  keymap("n", "<leader>ck", tc.jump_prev, XTND({ desc = "Previous todo comment" }))
-  keymap("n", "<leader>cl", "<cmd>TodoLocList<cr>", XTND({ desc = "Quickfix list for todo comments" }))
-  keymap("n", "<leader>cq", "<cmd>TodoQuickFix<cr>", XTND({ desc = "Quickfix list for todo comments" }))
-  keymap("n", "<leader>ct", "<cmd>TodoTelescope<cr>", XTND({ desc = "Quickfix list for todo comments" }))
+  return {
+    { "]c", tc.jump_next, desc = "Next todo comment" },
+    { "[c", tc.jump_prev, desc = "Previous todo comment" },
+    { "<leader>tl", "<cmd>TodoLocList<cr>", desc = "Quickfix list for todo comments" },
+    { "<leader>tq", "<cmd>TodoQuickFix<cr>", desc = "Quickfix list for todo comments" },
+    { "<leader>tt", "<cmd>TodoTelescope<cr>", desc = "Quickfix list for todo comments" },
+  }
 end
 
 return M
