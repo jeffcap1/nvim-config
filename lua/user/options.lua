@@ -37,10 +37,7 @@ vim.opt.showcmd = false
 vim.opt.laststatus = 3
 vim.opt.cmdheight = 1 -- more space in the neovim command line for displaying messages
 -- vim.opt.timeoutlen = 1000 -- time to wait for a mapped sequence to complete (in milliseconds)
-
--- markdown
-vim.opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
--- vim.opt.conceallevel = 0 -- so that `` is visible in markdown files
+vim.opt.conceallevel = 0 -- so that `` is visible in markdown files and "" in json files
 
 -- mouse model
 vim.opt.mousemodel = "extend"

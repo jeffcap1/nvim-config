@@ -87,6 +87,14 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
+-- set options for markdown files
+vim.api.nvim_create_autocmd({ "Filetype" }, {
+  pattern = { "markdown" },
+  callback = function()
+    vim.opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
+  end,
+})
+
 -- fix context issue when not completeing a snippet
 vim.api.nvim_create_autocmd({ "CursorHold" }, {
   callback = function()
