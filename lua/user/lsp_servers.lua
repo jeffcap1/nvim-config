@@ -10,7 +10,7 @@ USERS_LSP_SERVERS = {
   "lua_ls",
   "marksman",
   "pyright",
-  "ruff_lsp",
+  "ruff",
   "tailwindcss",
   "ts_ls",
   "yamlls",

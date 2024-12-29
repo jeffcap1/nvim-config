@@ -14,23 +14,30 @@ local M = {
 -- local icons = require("user.icons")
 
 M.opts = {
-  highlight = {
+  appearance = {
     -- sets the fallback highlight groups to nvim-cmp's highlight groups
     -- useful for when your theme doesn't support blink.cmp
     -- will be removed in a future release, assuming themes add support
     use_nvim_cmp_as_default = false,
+    -- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+    -- adjusts spacing to ensure icons are aligned
+    nerd_font_variant = "mono",
   },
-  -- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-  -- adjusts spacing to ensure icons are aligned
-  nerd_font_variant = "mono",
-  windows = {
-    autocomplete = {
-      -- draw = "reversed",
-      winblend = vim.o.pumblend,
-      border = "rounded",
+
+  completion = {
+    accept = {
+      -- experimental auto-brackets support
+      auto_brackets = { enabled = true },
     },
     documentation = {
       auto_show = true,
+      window = {
+        winblend = vim.o.pumblend,
+        border = "rounded",
+      },
+    },
+    menu = {
+      winblend = vim.o.pumblend,
       border = "rounded",
     },
     ghost_text = {
@@ -38,17 +45,15 @@ M.opts = {
     },
   },
 
-  accept = {
-    expand_snippet = function(...)
-      return require("luasnip").lsp_expand(...)
-    end,
-    -- experimental auto-brackets support
-    auto_brackets = { enabled = true },
+  -- experimental signature help support
+  signature = {
+    enabled = true,
   },
 
-  -- experimental signature help support
-  trigger = {
-    signature_help = { enabled = true },
+  snippets = {
+    expand = function(...)
+      return require("luasnip").lsp_expand(...)
+    end,
   },
 
   keymap = {
@@ -57,14 +62,12 @@ M.opts = {
   },
 
   sources = {
+    cmdline = {},
     providers = {
-      lsp = {
-        -- dont show LuaLS require statements when lazydev has items
-        fallback_for = { "lazydev" },
-      },
       lazydev = {
         name = "LazyDev",
         module = "lazydev.integrations.blink",
+        fallbacks = { "lsp" },
       },
     },
   },
