@@ -123,7 +123,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 })
 
 -- fix performance issues with big files
-vim.filetype.add({
+--[[ vim.filetype.add({
   pattern = {
     [".*"] = {
       function(path, buf)
@@ -147,4 +147,4 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
       vim.bo[ev.buf].syntax = vim.filetype.match({ buf = ev.buf }) or ""
     end)
   end,
-})
+}) ]]

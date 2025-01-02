@@ -15,7 +15,7 @@ pcall(require, "user.local_dap_servers")
 
 -- startup
 spec("user.plugins.theme")
-spec("user.plugins.alpha")
+-- spec("user.plugins.alpha")
 
 -- lsp
 -- spec("user.plugins.cmp")
@@ -30,6 +30,7 @@ spec("user.plugins.venv-selector")
 spec("user.plugins.mini-icons")
 
 -- core plugins
+spec("user.plugins.snacks")
 spec("user.plugins.vim-tmux-navigator")
 spec("user.plugins.treesitter")
 spec("user.plugins.telescope")
