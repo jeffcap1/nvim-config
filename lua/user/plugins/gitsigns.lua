@@ -1,6 +1,7 @@
 local M = {
   "lewis6991/gitsigns.nvim",
-  cmd = "Gitsigns",
+  -- cmd = "Gitsigns",
+  event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 }
 
 -- stylua: ignore start

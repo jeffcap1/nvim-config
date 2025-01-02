@@ -6,7 +6,7 @@ local M = {
 
 M.keys = {
   { "m-;", "<cmd>:ToggleTerm<cr>", desc = "Toggle Floating Terminal", silent = true, noremap = true },
-  { "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", desc = "Lazy Git Terminal", silent = true, noremap = true },
+  -- { "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", desc = "Lazy Git Terminal", silent = true, noremap = true },
 }
 
 function M.config()
@@ -15,12 +15,12 @@ function M.config()
     direction = "float",
   })
 
-  local Terminal = require("toggleterm.terminal").Terminal
+  --[[ local Terminal = require("toggleterm.terminal").Terminal
   local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
 
   function _LAZYGIT_TOGGLE()
     lazygit:toggle()
-  end
+  end ]]
 end
 
 return M
