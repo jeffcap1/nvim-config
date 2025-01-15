@@ -38,6 +38,7 @@ M.config = function()
     },
     format_on_save = function(bufnr)
       if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+        vim.notify("󰉼  formatting is disabled")
         return
       end
       -- I recommend these options. See :help conform.format for details.
