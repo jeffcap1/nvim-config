@@ -15,10 +15,8 @@ pcall(require, "user.local_dap_servers")
 
 -- startup
 spec("user.plugins.theme")
--- spec("user.plugins.alpha")
 
 -- lsp
--- spec("user.plugins.cmp")
 spec("user.plugins.blink")
 spec("user.plugins.luasnip")
 spec("user.plugins.mason")
@@ -27,9 +25,10 @@ spec("user.plugins.none-ls")
 spec("user.plugins.conform")
 spec("user.plugins.schemastore")
 spec("user.plugins.venv-selector")
-spec("user.plugins.mini-icons")
 
 -- core plugins
+spec("user.plugins.mini-icons")
+spec("user.plugins.persisted")
 spec("user.plugins.snacks")
 spec("user.plugins.vim-tmux-navigator")
 spec("user.plugins.treesitter")
@@ -48,8 +47,6 @@ spec("user.plugins.project")
 spec("user.plugins.bqf")
 spec("user.plugins.comment")
 spec("user.plugins.nvim-surround")
--- spec("user.plugins.hlchunk")
--- spec("user.plugins.indent-blankline")
 spec("user.plugins.autopairs")
 spec("user.plugins.autotag")
 spec("user.plugins.markdown-preview")
@@ -61,7 +58,6 @@ spec("user.plugins.noice")
 -- other useful plugins
 spec("user.plugins.breadcrumbs")
 spec("user.plugins.extras.debugger")
--- spec("user.plugins.extras.dressing") -- snacks?
 spec("user.plugins.extras.eyeliner")
 spec("user.plugins.extras.gitlinker") -- snacks?
 spec("user.plugins.extras.highlight-colors")
