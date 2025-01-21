@@ -68,6 +68,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     "neotest-output-panel",
     "dbout",
     "gitsigns-blame",
+    "dap-float",
     "",
   },
   callback = function()

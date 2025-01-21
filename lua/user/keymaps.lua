@@ -20,6 +20,10 @@ keymap("x", "p", '"_dP', XTND({ desc = "Paste without yanking" }))
 -- allows copying to system clipboard
 -- keymap({ "n", "v" }, "<leader>y", '"+y', XTND({ desc = "Yank to clipboard" }))
 
+-- buffer navigation
+keymap("n", "]b", "<cmd>bnext<cr>", XTND({ desc = "Next Buffer" }))
+keymap("n", "[b", "<cmd>bprev<cr>", XTND({ desc = "Previous Buffer" }))
+
 -- better defaults for Y and J
 keymap("n", "Y", "yg$", XTND({ desc = "Yank to end of line" }))
 keymap("n", "J", "mzJ`z", XTND({ desc = "Join lines" }))
