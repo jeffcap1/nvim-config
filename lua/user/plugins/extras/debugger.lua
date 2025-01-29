@@ -65,9 +65,11 @@ dap_core.config = function()
   end
 
   -- Extends dap.configurations with entries read from .vscode/launch.json
+  -- TODO: Remove in the future once confirmed this is unnecessary.
+  --[[ -- Removing because it was duplicating entries
   if vim.fn.filereadable(".vscode/launch.json") then
     vscode.load_launchjs()
-  end
+  end ]]
 end
 
 -- 2. setup dap-ui
