@@ -24,6 +24,10 @@ keymap("x", "p", '"_dP', XTND({ desc = "Paste without yanking" }))
 keymap("n", "]b", "<cmd>bnext<cr>", XTND({ desc = "Next Buffer" }))
 keymap("n", "[b", "<cmd>bprev<cr>", XTND({ desc = "Previous Buffer" }))
 
+-- tab navigation
+keymap("n", "]t", "<cmd>tabnext<cr>", XTND({ desc = "Next Tab" }))
+keymap("n", "[t", "<cmd>tabprev<cr>", XTND({ desc = "Previous Tab" }))
+
 -- better defaults for Y and J
 keymap("n", "Y", "yg$", XTND({ desc = "Yank to end of line" }))
 keymap("n", "J", "mzJ`z", XTND({ desc = "Join lines" }))
