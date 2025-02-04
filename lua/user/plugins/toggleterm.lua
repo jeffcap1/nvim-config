@@ -5,7 +5,7 @@ local M = {
 }
 
 M.keys = {
-  { "m-;", "<cmd>:ToggleTerm<cr>", desc = "Toggle Floating Terminal", silent = true, noremap = true },
+  { "<m-;>", "<cmd>:ToggleTerm<cr>", desc = "Toggle Floating Terminal", silent = true, noremap = true },
   -- { "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", desc = "Lazy Git Terminal", silent = true, noremap = true },
 }
 
