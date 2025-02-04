@@ -3,6 +3,13 @@ local M = {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
+    {
+      "MeanderingProgrammer/render-markdown.nvim",
+      opts = {
+        filetypes = { "markdown", "norg", "rmd", "org", "vimwiki", "CodeCompanion" },
+      },
+      ft = { "markdown", "norg", "rmd", "org", "vimwiki", "CodeCompanion" },
+    },
   },
 }
 
