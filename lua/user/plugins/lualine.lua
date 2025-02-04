@@ -8,7 +8,7 @@ local M = {
 
 -- NeoCodeium Status
 -- @see https://www.reddit.com/r/neovim/comments/1fc34na/comment/lm5wr1j/?rdt=59883
-function get_codeium_status()
+local function get_codeium_status()
   local status, serverstatus = require("neocodeium").get_status()
 
   -- Tables to map serverstatus and status to corresponding symbols
