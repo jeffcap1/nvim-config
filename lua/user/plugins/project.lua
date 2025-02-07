@@ -18,8 +18,6 @@ function M.config()
   })
 
   local keymap = vim.api.nvim_set_keymap
-
-  keymap("n", "<leader>pp", "<cmd>Telescope projects<cr>", XTND({ desc = "Project List" }))
 end
 
 return M

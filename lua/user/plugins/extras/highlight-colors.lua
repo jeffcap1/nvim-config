@@ -4,7 +4,7 @@ local M = {
 }
 
 function M.config()
-  require "nvim-highlight-colors".setup {
+  require("nvim-highlight-colors").setup({
     render = "virtual",
     virtual_symbol = "■",
     enable_named_colors = false,
@@ -37,9 +37,13 @@ function M.config()
       "toggleterm",
       "DressingSelect",
       "TelescopePrompt",
-    }
-  }
-
+      "snacks_picker_input",
+      "snacks_picker_preview",
+      "snacks_picker_list",
+      "snacks_terminal",
+      "snacks_explorer",
+    },
+  })
 end
 
 return M

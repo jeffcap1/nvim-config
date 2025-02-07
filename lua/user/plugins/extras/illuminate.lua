@@ -31,6 +31,11 @@ function M.config()
       "DressingInput",
       "DressingSelect",
       "TelescopePrompt",
+      "snacks_picker_input",
+      "snacks_picker_preview",
+      "snacks_picker_list",
+      "snacks_terminal",
+      "snacks_explorer",
     },
   })
 end
