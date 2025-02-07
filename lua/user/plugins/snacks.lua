@@ -4,6 +4,9 @@ local M = {
   "folke/snacks.nvim",
   priority = 1000,
   lazy = false,
+  dependencies = {
+    "echasnovski/mini.icons",
+  },
 }
 
 ---@type snacks.Config
@@ -38,6 +41,7 @@ M.opts = {
   },
   explorer = { enabled = true },
   lazygit = { enabled = true },
+  picker = { enabled = true },
   quickfile = { enabled = true },
   scroll = { enabled = true },
   scratch = { enabled = true },
@@ -47,9 +51,9 @@ M.opts = {
 
 -- stylua: ignore
 M.keys = {
-  { "<m-[>",  function() Snacks.explorer() end, desc = "File Explorer" },
-  { "<leader>z",  function() Snacks.zen() end, desc = "Toggle Zen Mode" },
-  { "<leader>Z",  function() Snacks.zen.zoom() end, desc = "Toggle Zoom" },
+  { "<m-[>",      function() Snacks.explorer() end, desc = "File Explorer" },
+  { "<leader>Z",  function() Snacks.zen() end, desc = "Toggle Zen Mode" },
+  { "<leader>z",  function() Snacks.zen.zoom() end, desc = "Toggle Zoom" },
   { "<leader>.",  function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
   { "<leader>n",  function() Snacks.notifier.show_history() end, desc = "Notification History" },
   { "<leader>S",  function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
@@ -60,6 +64,28 @@ M.keys = {
   { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
   { "]]",         function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
   { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
+  -- picker
+  { "<leader>bb", function() Snacks.picker.buffers({ focus = "list", layout = { preset = 'ivy' } }) end, desc = "Buffers" },
+  { "<leader>ff", function() Snacks.picker.files({ matcher = { frecency = true }, hidden = true }) end, desc = "Find Files" },
+  { "<leader>fg", function() Snacks.picker.git_files({ layout = { preset = 'telescope' }, matcher = { frecency = true } }) end, desc = "Git Files" },
+  { "<leader>fp", function() Snacks.picker.projects({ matcher = { frecency = true } }) end, desc = "Projects" },
+  { "<leader>ft", function() Snacks.picker.grep() end, desc = "Text" },
+  { "<leader>fw", function() Snacks.picker.grep_word() end, desc = "String" },
+  { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent" },
+  { "<leader>fR", function() Snacks.picker.resume() end, desc = "Resume" },
+  { "<leader>f\"", function() Snacks.picker.registers() end, desc = "Registers" },
+  { "<leader>fd", function() Snacks.picker.diagnostics({ focus = "list" }) end, desc = "Diagnostics" },
+  { "<leader>fD", function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer Diagnostics" },
+  { "<leader>fk", function() Snacks.picker.keymaps({ layout = { preset = 'ivy' } }) end, desc = "Keymaps" },
+  { "<leader>fl", function() Snacks.picker.loclist() end, desc = "Location List" },
+  { "<leader>fm", function() Snacks.picker.marks() end, desc = "Marks" },
+  { "<leader>fM", function() Snacks.picker.man() end, desc = "Man Pages" },
+  { "<leader>fh", function() Snacks.picker.help() end, desc = "Help Pages" },
+  { "<leader>fq", function() Snacks.picker.qflist() end, desc = "Quickfix List" },
+  { "<leader>fs", function() Snacks.picker.lsp_symbols({ layout = { preset = 'dropdown' } }) end, desc = "LSP Symbols" },
+  { "<leader>fS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
+  { '<leader>f/', function() Snacks.picker.search_history() end, desc = "Search History" },
+  -- news
   {
     "<leader>N",
     desc = "Neovim News",

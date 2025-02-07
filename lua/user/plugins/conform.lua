@@ -72,13 +72,13 @@ M.config = function()
     local bufnr = vim.api.nvim_get_current_buf()
     vim.cmd((vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat) and "FormatEnable" or "FormatDisable")
     vim.notify("󰉼  formatting is " .. (vim.g.disable_autoformat and "disabled" or "enabled"))
-  end, XTND({ desc = "Format Toggle Global" }))
+  end, XTND({ desc = "Toggle Format (Global)" }))
 
   vim.keymap.set("n", "<leader>lfb", function()
     local bufnr = vim.api.nvim_get_current_buf()
     vim.cmd(vim.b[bufnr].disable_autoformat and "FormatEnable" or "FormatDisable!")
     vim.notify("󰉼  formatting is " .. (vim.b[bufnr].disable_autoformat and "disabled" or "enabled"))
-  end, XTND({ desc = "Format Toggle Buffer" }))
+  end, XTND({ desc = "Toggle Format (Buffer)" }))
 end
 
 -- custom commands

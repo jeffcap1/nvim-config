@@ -3,7 +3,8 @@
   "runtime.version": "Lua 5.3",
   "diagnostics.globals": [
     "vim",
-    "spec"
+    "spec",
+        "Snacks"
   ],
   "Lua.format.defaultConfig": {
     "indent_style": "space",
