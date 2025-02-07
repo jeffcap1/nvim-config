@@ -40,7 +40,7 @@ spec("user.plugins.ufo")
 spec("user.plugins.harpoon")
 spec("user.plugins.lualine")
 -- spec("user.plugins.neotree")
-spec("user.plugins.toggleterm")
+-- spec("user.plugins.toggleterm")
 spec("user.plugins.project")
 
 -- quality of life

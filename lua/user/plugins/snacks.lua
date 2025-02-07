@@ -45,6 +45,7 @@ M.opts = {
   quickfile = { enabled = true },
   scroll = { enabled = true },
   scratch = { enabled = true },
+  terminal = { enabled = true, win = { style = "float", border = "rounded" } },
   words = { enabled = true },
   zen = { enabled = true },
 }
@@ -85,6 +86,8 @@ M.keys = {
   { "<leader>fs", function() Snacks.picker.lsp_symbols({ layout = { preset = 'dropdown' } }) end, desc = "LSP Symbols" },
   { "<leader>fS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
   { '<leader>f/', function() Snacks.picker.search_history() end, desc = "Search History" },
+  -- terminal
+  { "<m-`>", function() Snacks.terminal.toggle() end, desc = "Terminal",  mode = { "n", "t" } },
   -- news
   {
     "<leader>N",
