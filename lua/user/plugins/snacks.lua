@@ -87,7 +87,7 @@ M.keys = {
   { "<leader>fS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
   { '<leader>f/', function() Snacks.picker.search_history() end, desc = "Search History" },
   -- terminal
-  { "<m-`>", function() Snacks.terminal.toggle() end, desc = "Terminal",  mode = { "n", "t" } },
+  { "<m-;>", function() Snacks.terminal.toggle() end, desc = "Terminal",  mode = { "n", "t" } },
   -- news
   {
     "<leader>N",
