@@ -43,6 +43,7 @@ dap_core.keys = {
   { "<leader>ds", function() require("dap").session() end, desc = "Session" },
   { "<leader>dt", function() require("dap").terminate() end, desc = "Terminate" },
 }
+-- stylua: ignore end
 
 dap_core.config = function()
   local icons = require("user.icons")
@@ -83,6 +84,7 @@ local dap_ui = {
       { "<leader>dw", function() require("dapui").elements.watches.add() end, "Add Watch", },
       { "<leader>dh", function() require("dap.ui.widgets").hover() end, desc = "Widgets" },
     },
+  -- stylua: ignore end
   opts = {},
   config = function(_, opts)
     local dap = require("dap")

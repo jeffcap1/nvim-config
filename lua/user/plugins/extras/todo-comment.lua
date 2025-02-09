@@ -16,6 +16,7 @@ M.keys = function()
     { "<leader>tt", function() Snacks.picker.todo_comments({ layout = { preset = 'ivy' } }) end, desc = "Todo" },
     { "<leader>tT", function () Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" }, layout = { preset = 'ivy' } }) end, desc = "Todo/Fix/Fixme" },
   }
+  -- stylua: ignore end
 end
 
 return M

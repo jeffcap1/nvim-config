@@ -7,6 +7,7 @@ local M = {
 M.keys = {
   { "<leader>gb", "<cmd>BlameToggle<cr>", desc = "Blame", silent = true, noremap = true },
 }
+-- stylua: ignore end
 
 M.config = function()
   require("blame").setup()

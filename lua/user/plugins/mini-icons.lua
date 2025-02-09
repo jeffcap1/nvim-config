@@ -32,6 +32,7 @@ function M.config()
       ["yarn.lock"] = { glyph = "", hl = "MiniIconsBlue" },
     },
   })
+  -- stylua: ignore end
 
   MiniIcons.mock_nvim_web_devicons()
 end
