@@ -1,6 +1,6 @@
 local M = {
   "0x100101/lab.nvim",
-  event = "VeryLazy",
+  event = { "BufReadPost", "BufNewFile" },
   build = "cd js && npm ci",
 }
 

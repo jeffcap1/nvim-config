@@ -10,8 +10,6 @@ local M = {
       dependencies = { "nvim-lua/plenary.nvim" },
     },
   },
-  -- lazy = false,
-  event = "VeryLazy",
   ft = { "python" },
   branch = "regexp", -- This is the regexp branch, use this for the new version
 }

@@ -54,7 +54,7 @@ end
 
 local M = {
   "echasnovski/mini.ai",
-  event = "VeryLazy",
+  event = { "BufReadPost", "BufNewFile" },
   version = "*",
 }
 
@@ -81,10 +81,6 @@ function M.opts()
       U = ai.gen_spec.function_call({ name_pattern = "[%w_]" }), -- without dot in function name
     },
   }
-end
-
-function M.config()
-  require("mini.ai").setup()
 end
 
 return M

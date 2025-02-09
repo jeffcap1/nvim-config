@@ -9,7 +9,7 @@ local theme = {
 
 return {
   "nanozuki/tabby.nvim",
-  event = "VeryLazy",
+  event = { "BufReadPost", "BufNewFile" },
   config = function()
     require("tabby.tabline").set(function(line)
       return {

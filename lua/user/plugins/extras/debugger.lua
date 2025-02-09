@@ -12,15 +12,11 @@ end
 -- 1. setup dap
 local dap_core = {
   "mfussenegger/nvim-dap",
-  event = "VeryLazy",
+  lazy = true,
   dependencies = {
     "rcarriga/nvim-dap-ui",
-    -- "nvim-telescope/telescope-dap.nvim",
     -- virtual text for the debugger
-    {
-      "theHamsta/nvim-dap-virtual-text",
-      opts = {},
-    },
+    "theHamsta/nvim-dap-virtual-text",
   },
 }
 
@@ -64,18 +60,12 @@ dap_core.config = function()
   vscode.json_decode = function(str)
     return vim.json.decode(json.json_strip_comments(str))
   end
-
-  -- Extends dap.configurations with entries read from .vscode/launch.json
-  -- TODO: Remove in the future once confirmed this is unnecessary.
-  --[[ -- Removing because it was duplicating entries
-  if vim.fn.filereadable(".vscode/launch.json") then
-    vscode.load_launchjs()
-  end ]]
 end
 
 -- 2. setup dap-ui
 local dap_ui = {
   "rcarriga/nvim-dap-ui",
+  lazy = true,
   dependencies = { "nvim-neotest/nvim-nio" },
     -- stylua: ignore
     keys = {
@@ -105,6 +95,7 @@ local dap_ui = {
 -- 3. setup mason.nvim integration
 local dap_mason = {
   "jay-babu/mason-nvim-dap.nvim",
+  lazy = true,
   dependencies = "mason.nvim",
   cmd = { "DapInstall", "DapUninstall" },
   opts = {

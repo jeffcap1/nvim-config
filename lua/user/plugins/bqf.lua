@@ -1,14 +1,14 @@
 local M = {
   "kevinhwang91/nvim-bqf",
-  event = "VeryLazy",
+  ft = "qf",
   dependencies = {
-    'junegunn/fzf.vim',
-    'junegunn/fzf',
+    "junegunn/fzf.vim",
+    "junegunn/fzf",
   },
 }
 
 function M.config()
-  require "bqf".setup {
+  require("bqf").setup({
     auto_enable = true,
     magic_window = true,
     auto_resize_height = false,
@@ -30,7 +30,7 @@ function M.config()
         if fsize > 100 * 1024 then
           -- skip file size greater than 100k
           ret = false
-        elseif bufname:match "^fugitive://" then
+        elseif bufname:match("^fugitive://") then
           -- skip fugitive buffer
           ret = false
         end
@@ -70,7 +70,7 @@ function M.config()
         },
       },
     },
-  }
+  })
 end
 
 return M

@@ -1,12 +1,13 @@
 local M = {
   {
     "justinsgithub/wezterm-types",
-    event = "VeryLazy",
+    ft = "lua", -- only load on lua files
+    dependencies = { "folke/lazydev.nvim" },
   }, -- wezterm typings
   {
     "folke/lazydev.nvim",
     ft = "lua", -- only load on lua files
-    event = "VeryLazy",
+    event = { "BufReadPost", "BufNewFile" },
     opts = {
       enable = true,
       library = {

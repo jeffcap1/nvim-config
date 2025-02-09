@@ -1,6 +1,6 @@
 local M = {
   "chentoast/marks.nvim",
-  event = "VeryLazy",
+  event = { "BufReadPost", "BufNewFile" },
 }
 
 M.opts = {

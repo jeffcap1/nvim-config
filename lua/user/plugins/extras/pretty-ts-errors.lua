@@ -1,6 +1,6 @@
 local M = {
   "OlegGulevskyy/better-ts-errors.nvim",
-  event = "VeryLazy",
+  ft = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
   dependencies = { "MunifTanjim/nui.nvim" },
   opts = {},
 }

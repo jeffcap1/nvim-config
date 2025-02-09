@@ -1,5 +1,6 @@
 local M = {
   "olimorris/codecompanion.nvim",
+  event = { "BufReadPost", "BufNewFile" },
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",

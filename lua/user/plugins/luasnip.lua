@@ -1,6 +1,6 @@
 local M = {
   "L3MON4D3/LuaSnip",
-  lazy = true,
+  event = "InsertEnter",
   dependencies = {
     {
       "rafamadriz/friendly-snippets",
@@ -9,10 +9,11 @@ local M = {
       end,
     },
   },
-  opts = {
-    history = true,
-    delete_check_events = "TextChanged",
-  },
+}
+
+M.opts = {
+  history = true,
+  delete_check_events = "TextChanged",
 }
 
 return M

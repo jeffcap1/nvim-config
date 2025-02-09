@@ -1,6 +1,6 @@
 local M = {
   "b0o/schemastore.nvim",
-  lazy = true,
+  event = { "BufReadPost", "BufNewFile" },
 }
 
 -- function M.config()

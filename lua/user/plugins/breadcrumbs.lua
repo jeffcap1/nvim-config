@@ -1,13 +1,10 @@
 local M = {
   "LunarVim/breadcrumbs.nvim",
-  event = "VeryLazy",
+  event = { "BufReadPost", "BufNewFile" },
   dependencies = {
     "SmiteshP/nvim-navic",
   },
+  opts = true,
 }
-
-function M.config()
-  require("breadcrumbs").setup()
-end
 
 return M

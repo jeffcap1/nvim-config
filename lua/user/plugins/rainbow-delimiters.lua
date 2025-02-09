@@ -1,9 +1,6 @@
 local M = {
   "hiphish/rainbow-delimiters.nvim",
-  event = "VeryLazy",
+  event = { "BufReadPost", "BufNewFile" },
 }
-
--- function M.config()
--- end
 
 return M

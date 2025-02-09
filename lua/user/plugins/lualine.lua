@@ -1,5 +1,6 @@
 local M = {
   "nvim-lualine/lualine.nvim",
+  event = { "BufReadPost", "BufNewFile" },
   dependencies = {
     "AndreM222/copilot-lualine",
     "monkoose/neocodeium",
@@ -33,35 +34,33 @@ local function get_codeium_status()
   return luacodeium
 end
 
-function M.config()
-  local function show_codeium_status()
-    local status = get_codeium_status()
-    if status ~= "󰣼 󱚧 " then
-      return status
-    else
-      return ""
-    end
+local function show_codeium_status()
+  local status = get_codeium_status()
+  if status ~= "󰣼 󱚧 " then
+    return status
+  else
+    return ""
   end
-
-  local function show_copilot_status()
-    if vim.g.loaded_copilot then
-      return "copilot"
-    else
-      return ""
-    end
-  end
-
-  require("lualine").setup({
-    options = {
-      -- theme = "dracula",
-      theme = "catppuccin",
-    },
-
-    sections = {
-      lualine_y = { show_copilot_status, show_codeium_status, "progress", "selectioncount" },
-      lualine_z = { "location" },
-    },
-  })
 end
+
+local function show_copilot_status()
+  if vim.g.loaded_copilot then
+    return "copilot"
+  else
+    return ""
+  end
+end
+
+M.config = {
+  options = {
+    -- theme = "dracula",
+    theme = "catppuccin",
+  },
+
+  sections = {
+    lualine_y = { show_copilot_status, show_codeium_status, "progress", "selectioncount" },
+    lualine_z = { "location" },
+  },
+}
 
 return M

@@ -1,10 +1,10 @@
 local M = {
   "numToStr/Comment.nvim",
-  event = "VeryLazy",
+  event = { "BufReadPost", "BufWritePost", "BufNewFile" },
   dependencies = {
     {
       "JoosepAlviste/nvim-ts-context-commentstring",
-      event = "VeryLazy",
+      event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     },
   },
 }
@@ -14,8 +14,9 @@ M.keys = {
   {"<leader>/", "<Plug>(comment_toggle_linewise_current)", desc = "Toggle comment", silent = true, noremap = true},
   {"<leader>/", "<Plug>(comment_toggle_blockwise_visual)", desc = "Toggle comment", mode = "x", silent = true, noremap = true},
 }
+-- stylua: ignore end
 
-function M.config()
+function M.opts()
   vim.g.skip_ts_context_commentstring_module = true
 
   ---@diagnostic disable: missing-fields
