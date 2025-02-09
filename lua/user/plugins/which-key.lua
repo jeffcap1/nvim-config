@@ -6,6 +6,16 @@ local M = {
   },
 }
 
+M.opts = {
+  ---@type false | "classic" | "modern" | "helix"
+  preset = "helix",
+  win = {
+    wo = {
+      winblend = 0,
+    },
+  },
+}
+
 M.opts.spec = {
   { "<leader>_", "<cmd>res<CR>", desc = "Zoom horizontal split", icon = " " },
   { "<leader>|", "<cmd>vert res<CR>", desc = "Zoom vertical split", icon = " " },
@@ -60,8 +70,8 @@ M.keys = {
     end,
     desc = "Buffer Local Keymaps (which-key)",
   },
-  { "b]", "<cmd>bnext<cr>", desc = "Next Buffer" },
-  { "b[", "<cmd>bprev<cr>", desc = "Previous Buffer" },
+  { "]b", "<cmd>bnext<cr>", desc = "Next Buffer" },
+  { "[b", "<cmd>bprev<cr>", desc = "Previous Buffer" },
 }
 
 return M
