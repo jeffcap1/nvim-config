@@ -9,8 +9,8 @@ M.keys = function()
   local tc = require("todo-comments")
   -- stylua: ignore
   return {
-    { "]c", tc.jump_next, desc = "Next todo comment" },
-    { "[c", tc.jump_prev, desc = "Previous todo comment" },
+    { "]t", tc.jump_next, desc = "Next todo comment" },
+    { "[t", tc.jump_prev, desc = "Previous todo comment" },
     { "<leader>tl", "<cmd>TodoLocList<cr>", desc = "Quickfix list for todo comments" },
     { "<leader>tq", "<cmd>TodoQuickFix<cr>", desc = "Quickfix list for todo comments" },
     { "<leader>tt", function() Snacks.picker.todo_comments({ layout = { preset = 'ivy' } }) end, desc = "Todo" },
