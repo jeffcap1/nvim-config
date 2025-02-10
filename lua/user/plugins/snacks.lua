@@ -9,7 +9,6 @@ local M = {
   },
 }
 
----@type snacks.Config
 M.opts = {
   bigfile = { enabled = true },
   bufdelete = { enabled = true },
@@ -43,6 +42,7 @@ M.opts = {
   lazygit = { enabled = true },
   picker = { enabled = true },
   quickfile = { enabled = true },
+  scope = { enabled = true },
   scroll = { enabled = true },
   scratch = { enabled = true },
   terminal = { enabled = true, win = { style = "float", border = "rounded" } },
