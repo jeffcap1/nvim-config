@@ -34,6 +34,12 @@ M.opts = {
     win = { style = "input" },
     expand = true,
   },
+  styles = {
+    input = {
+      relative = "cursor",
+      row = 1,
+    },
+  },
   notifier = {
     enabled = true,
     timeout = 3000,
