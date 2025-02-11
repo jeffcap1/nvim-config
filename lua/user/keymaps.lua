@@ -42,11 +42,8 @@ local function center_on_scroll(km)
   return km
 end
 
--- keymap("n", "<C-d>", "<C-d>zz", XTND({ desc = "Scroll down" }))
--- keymap("n", "<C-u>", "<C-u>zz", XTND({ desc = "Scroll up" }))
-
 -- stylua: ignore
-local scroll_keymaps = {
+local scroll_center_keymaps = {
   {"n", "Next Match" },
   {"N", "Previous Match" },
   {"*", "Next Match" },
@@ -55,49 +52,13 @@ local scroll_keymaps = {
   {"g#", "Previous Match" },
   {"<c-d>", "Half Page Down" },
   {"<c-u>", "Half Page Up" },
-  {"<c-f>", "Full Page Down" },
-  {"<c-b>", "Full Page Up" },
 }
 
-for key, km in pairs(scroll_keymaps) do
+for key, km in pairs(scroll_center_keymaps) do
   keymap("n", km[1], function()
     return center_on_scroll(km[1])
   end, { expr = true, desc = km[2] })
 end
-
---[[ keymap("n", "n", function()
-  return center_on_scroll("n")
-end, { expr = true, desc = "Next match" })
-keymap("n", "N", function()
-  return center_on_scroll("Nzz")
-end, { expr = true, desc = "Previous match" })
-keymap("n", "*", function()
-  return center_on_scroll("*zz")
-end, { expr = true, desc = "Next match" })
-keymap("n", "#", function()
-  return center_on_scroll("#zz")
-end, { expr = true, desc = "Previous match" })
-keymap("n", "g*", function()
-  return center_on_scroll("g*zz")
-end, { expr = true, desc = "Next match" })
-keymap("n", "g#", function()
-  return center_on_scroll("g#zz")
-end, { expr = true, desc = "Previous match" })
-keymap("n", "<C-d>", function()
-  return center_on_scroll("<C-d>")
-end, { expr = true })
-keymap("n", "<C-k>", function()
-  return center_on_scroll("<C-d>")
-end, { expr = true })
-
-keymap("n", "<C-u>", function()
-  vim.wo.scrolloff = 999
-  vim.defer_fn(function()
-    vim.wo.scrolloff = 8
-  end, 500)
-  return "<c-u>"
-end, { expr = true }) ]]
--- stylua: ignore end
 
 -- add context menu
 vim.cmd([[:amenu 10.100 mousemenu.Goto\ Definition <cmd>lua vim.lsp.buf.definition()<cr>]])
