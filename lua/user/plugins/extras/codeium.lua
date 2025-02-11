@@ -1,6 +1,5 @@
 local M = {
   "monkoose/neocodeium",
-  event = { "BufReadPost", "BufNewFile" },
 }
 
 M.config = {

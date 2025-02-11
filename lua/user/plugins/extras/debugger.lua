@@ -12,7 +12,6 @@ end
 -- 1. setup dap
 local dap_core = {
   "mfussenegger/nvim-dap",
-  lazy = true,
   dependencies = {
     "rcarriga/nvim-dap-ui",
     -- virtual text for the debugger

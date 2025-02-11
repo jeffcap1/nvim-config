@@ -1,6 +1,5 @@
 local M = {
   "nvim-lualine/lualine.nvim",
-  event = { "BufReadPost", "BufNewFile" },
   dependencies = {
     "AndreM222/copilot-lualine",
     "monkoose/neocodeium",

@@ -57,7 +57,6 @@ spec("user.plugins.noice")
 spec("user.plugins.breadcrumbs")
 spec("user.plugins.extras.debugger")
 spec("user.plugins.extras.flash")
--- spec("user.plugins.extras.eyeliner")
 spec("user.plugins.extras.gitlinker")
 spec("user.plugins.extras.highlight-colors")
 spec("user.plugins.extras.lab")
@@ -72,6 +71,8 @@ spec("user.plugins.extras.todo-comment")
 spec("user.plugins.extras.trouble")
 spec("user.plugins.extras.wit-search")
 spec("user.plugins.navic")
+
+-- spec("user.plugins.extras.eyeliner")
 
 pcall(require, "user.plugins.local_only") -- local plugins
 
