@@ -40,7 +40,17 @@ M.opts = {
   },
   explorer = { enabled = true },
   lazygit = { enabled = true },
-  picker = { enabled = true },
+  picker = {
+    enabled = true,
+    sources = {
+      explorer = {
+        hidden = true,
+        follow = true,
+        ignored = true,
+        exclude = { "node_modules", ".git", ".venv" },
+      },
+    },
+  },
   quickfile = { enabled = true },
   scope = { enabled = true },
   scroll = { enabled = true },
