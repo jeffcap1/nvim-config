@@ -7,11 +7,12 @@ local M = {
   {
     "folke/lazydev.nvim",
     ft = "lua", -- only load on lua files
-    event = { "BufReadPost", "BufNewFile" },
     opts = {
       enable = true,
       library = {
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
         { path = "wezterm-types", mods = { "wezterm" } },
+        { path = "snacks.nvim", words = { "Snacks" } },
       },
     },
   },
