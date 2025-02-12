@@ -50,6 +50,7 @@ M.opts = {
     enabled = true,
     sources = {
       explorer = {
+        auto_close = true,
         hidden = true,
         follow = true,
         ignored = true,
