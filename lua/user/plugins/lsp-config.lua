@@ -94,7 +94,7 @@ function M.config()
       -- See `:help vim.lsp.*` for documentation on any of the below functions
       -- See `:help vim.diagnostic.*` for documentation on any of the below functions
       keymap("n", "gh", lspbuf.hover, _opts({ desc = "LSP hover help" }))
-      keymap("n", "gs", lspbuf.signature_help, _opts({ desc = "LSP function signature" }))
+      keymap("n", "gH", lspbuf.signature_help, _opts({ desc = "LSP function signature" }))
       keymap("n", "gd", lspbuf.definition, _opts({ desc = "LSP definition" }))
       keymap("n", "gD", lspbuf.declaration, _opts({ desc = "LSP declaration" }))
       keymap("n", "gI", lspbuf.implementation, _opts({ desc = "LSP implementation" }))
