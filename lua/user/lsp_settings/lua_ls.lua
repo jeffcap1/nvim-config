@@ -14,12 +14,6 @@ return {
       },
       workspace = {
         checkThirdParty = false,
-        library = {
-          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-          [vim.fn.stdpath("config") .. "/lua"] = true,
-          [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-          [vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy"] = true,
-        },
         maxPreload = 100000,
         preloadFileSize = 10000,
       },
@@ -31,6 +25,12 @@ return {
         paramType = true,
         semicolon = "All", -- "All" | "SameLine" | "Disable"
         setType = false,
+      },
+      codeLens = {
+        enable = true,
+      },
+      semantic = {
+        keyword = true,
       },
       telemetry = {
         enable = false,
