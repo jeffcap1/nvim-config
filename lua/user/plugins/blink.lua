@@ -7,13 +7,18 @@ local M = {
   },
   event = "InsertEnter",
   dependencies = {
+    { "L3MON4D3/LuaSnip", version = "v2.*" },
     "rafamadriz/friendly-snippets",
   },
 }
 
 -- local icons = require("user.icons")
 
+---@module 'blink.cmp'
+---@type blink.cmp.Config
 M.opts = {
+  -- Disable cmdline
+  cmdline = { enabled = false },
   appearance = {
     -- sets the fallback highlight groups to nvim-cmp's highlight groups
     -- useful for when your theme doesn't support blink.cmp
@@ -26,7 +31,6 @@ M.opts = {
 
   completion = {
     accept = {
-      -- experimental auto-brackets support
       auto_brackets = { enabled = true },
     },
     documentation = {
@@ -62,7 +66,6 @@ M.opts = {
   },
 
   sources = {
-    cmdline = {},
     providers = {
       lazydev = {
         name = "LazyDev",
