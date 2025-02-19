@@ -9,6 +9,7 @@ local M = {
   },
 }
 
+---@type snacks.Config
 M.opts = {
   bigfile = { enabled = true },
   bufdelete = { enabled = true },
@@ -45,6 +46,12 @@ M.opts = {
     timeout = 3000,
   },
   explorer = { enabled = true },
+  image = {
+    enabled = true,
+    doc = {
+      inline = false,
+    },
+  },
   lazygit = { enabled = true },
   picker = {
     enabled = true,
