@@ -2,7 +2,7 @@ local M = {
   "monkoose/neocodeium",
 }
 
-M.config = {
+M.opts = {
   filetypes = {
     help = false,
     gitcommit = false,

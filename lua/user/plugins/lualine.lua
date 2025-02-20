@@ -50,7 +50,7 @@ local function show_copilot_status()
   end
 end
 
-M.config = {
+M.opts = {
   options = {
     -- theme = "dracula",
     theme = "catppuccin",

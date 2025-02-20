@@ -20,6 +20,7 @@ function M.config()
       "luadoc",
       "markdown",
       "markdown_inline",
+      "regex",
       "sql",
       "typescript",
       "vim",
