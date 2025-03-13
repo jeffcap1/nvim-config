@@ -47,18 +47,10 @@ vim.opt.ignorecase = true -- ignore case in search patterns
 vim.opt.smartcase = true -- smart case
 
 -- show invisible characters
--- vim.opt.listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣"
--- vim.opt.listchars = "tab:>·,trail:~,extends:>,precedes:<,space:·"
--- vim.opt.listchars = "tab:⇥¬¬,trail:·,extends:>,precedes:<,space:·"
--- vim.opt.listchars = "eol:󰌑,tab:>·,trail:~,extends:>,precedes:<"
--- vim.opt.listchars = "eol:↵,tab:>·,trail:~,extends:>,precedes:<"
--- vim.opt.listchars = "eol:↵,tab:⇥-,trail:~,extends:>,precedes:<"
 vim.opt.listchars = "eol:↵,tab:| ,trail:~,extends:>,precedes:<"
 vim.opt.list = true
 vim.opt.fillchars = vim.opt.fillchars + "eob: "
-vim.opt.fillchars:append({
-  stl = " ",
-})
+vim.opt.fillchars:append({ stl = " " })
 vim.opt.shortmess:append("c")
 
 -- Set filetype to `bigfile` for files larger than 1.5 MB
@@ -70,8 +62,8 @@ vim.g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB
 -- general settings
 vim.opt.termguicolors = true -- set term gui colors (most terminals support this)
 vim.opt.cursorline = true -- highlight the current line
-vim.opt.scrolloff = 8
-vim.opt.sidescrolloff = 8
+vim.opt.scrolloff = 2
+vim.opt.sidescrolloff = 2
 vim.opt.isfname:append("@-@")
 vim.opt.wrap = false -- display lines as one long line
 vim.opt.updatetime = 50 -- faster updates

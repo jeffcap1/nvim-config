@@ -67,7 +67,16 @@ M.opts = {
   },
   quickfile = { enabled = true },
   scope = { enabled = true },
-  scroll = { enabled = true },
+  scroll = {
+    enabled = true,
+    -- what buffers to animate
+    filter = function(buf)
+      return vim.g.snacks_scroll ~= false
+        and vim.b[buf].snacks_scroll ~= false
+        and vim.bo[buf].buftype ~= "terminal"
+        and vim.bo[buf].filetype ~= "blink-cmp-menu"
+    end,
+  },
   scratch = { enabled = true },
   terminal = { enabled = true, win = { style = "float", border = "rounded" } },
   words = { enabled = true },

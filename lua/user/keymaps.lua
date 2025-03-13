@@ -37,7 +37,7 @@ keymap("n", "J", "mzJ`z", XTND({ desc = "Join lines" }))
 local function center_on_scroll(km)
   vim.wo.scrolloff = 999
   vim.defer_fn(function()
-    vim.wo.scrolloff = 8
+    vim.wo.scrolloff = 2
   end, 500)
   return km
 end
