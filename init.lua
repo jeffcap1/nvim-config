@@ -71,6 +71,7 @@ spec("user.plugins.extras.todo-comment")
 spec("user.plugins.extras.trouble")
 spec("user.plugins.extras.wit-search")
 spec("user.plugins.navic")
+spec("user.plugins.extras.virt-column")
 
 -- spec("user.plugins.extras.eyeliner")
 

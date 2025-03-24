@@ -67,7 +67,7 @@ vim.opt.sidescrolloff = 2
 vim.opt.isfname:append("@-@")
 vim.opt.wrap = false -- display lines as one long line
 vim.opt.updatetime = 50 -- faster updates
-vim.opt.colorcolumn = { "80", "120", "160" }
+-- vim.opt.colorcolumn = { "80", "120", "160" }
 vim.opt.ruler = true
 vim.opt.title = true
 vim.opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
