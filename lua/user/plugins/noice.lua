@@ -14,11 +14,10 @@ M.opts = {
     override = {
       ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
       ["vim.lsp.util.stylize_markdown"] = true,
-      -- ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
     },
   },
   presets = {
-    bottom_search = true, -- use a classic bottom cmdline for search
+    -- bottom_search = true, -- use a classic bottom cmdline for search
     lsp_doc_border = true,
     long_message_to_split = true,
   },

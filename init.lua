@@ -32,7 +32,6 @@ spec("user.plugins.persisted")
 spec("user.plugins.snacks")
 spec("user.plugins.vim-tmux-navigator")
 spec("user.plugins.treesitter")
--- spec("user.plugins.telescope") -- can this be removed?
 spec("user.plugins.gitsigns")
 spec("user.plugins.neogit")
 spec("user.plugins.blame")
@@ -73,6 +72,7 @@ spec("user.plugins.extras.trouble")
 spec("user.plugins.extras.wit-search")
 spec("user.plugins.navic")
 spec("user.plugins.extras.virt-column")
+spec("user.plugins.extras.bullets")
 
 -- spec("user.plugins.extras.eyeliner")
 
