@@ -23,6 +23,7 @@ M.opts = {
   },
   win_options = {
     wrap = false,
+    signcolumn = "yes:2",
   },
   float = {
     max_height = 40,
