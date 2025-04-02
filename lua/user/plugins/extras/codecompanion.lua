@@ -7,7 +7,7 @@ local M = {
     {
       "MeanderingProgrammer/render-markdown.nvim",
       opts = {
-        filetypes = { "markdown", "norg", "rmd", "org", "vimwiki", "codecompanion" },
+        file_types = { "markdown", "norg", "rmd", "org", "vimwiki", "codecompanion" },
       },
       ft = { "markdown", "norg", "rmd", "org", "vimwiki", "codecompanion" },
     },
