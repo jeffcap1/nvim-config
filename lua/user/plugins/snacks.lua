@@ -13,7 +13,26 @@ local M = {
 M.opts = {
   bigfile = { enabled = true },
   bufdelete = { enabled = true },
-  dashboard = { enabled = true },
+  dashboard = {
+    enabled = true,
+    preset = {
+      header = [[
+                                                                   
+      ████ ██████           █████      ██                    
+     ███████████             █████                            
+     █████████ ███████████████████ ███   ███████████  
+    █████████  ███    █████████████ █████ ██████████████  
+   █████████ ██████████ █████████ █████ █████ ████ █████  
+ ███████████ ███    ███ █████████ █████ █████ ████ █████ 
+██████  █████████████████████ ████ █████ █████ ████ ██████
+]],
+    },
+    config = function(opts)
+      -- stylua: ignore start
+      table.insert(opts.preset.keys,#opts.preset.keys, { action = ":Mason", key = "M", desc = "Mason", icon = " " })
+      -- stylua: ignore end
+    end,
+  },
   gitbrowse = { enabled = true },
   indent = {
     enabled = true,

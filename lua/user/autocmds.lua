@@ -24,11 +24,11 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 })
 
 -- remove whitespace on save
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+--[[ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   group = augroup("remove_whitespace"),
   pattern = "*",
   command = "%s/\\s\\+$//e",
-})
+}) ]]
 
 -- change cursor to vertical blinking bar when leaving neovim
 vim.api.nvim_create_autocmd({ "VimLeave" }, {
