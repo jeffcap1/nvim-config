@@ -12,6 +12,12 @@ M.keys = {
 
 ---@type Flash.Config
 M.opts = {
+  labels = "fghjklqwetyupzcvbnm", -- no aiorx
+  search = {
+    -- Search for me adds a protection layer, so if you mistype a word, it
+    -- doesn't exit
+    mode = "search",
+  },
   modes = {
     char = {
       jump_labels = true,

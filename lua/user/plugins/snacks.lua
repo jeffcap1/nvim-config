@@ -83,6 +83,29 @@ M.opts = {
         exclude = { "node_modules", ".git", ".venv" },
       },
     },
+    matcher = {
+      frecency = true,
+    },
+    win = {
+      input = {
+        keys = {
+          -- to close the picker on ESC instead of going to normal mode,
+          -- add the following keymap to your config
+          ["<Esc>"] = { "close", mode = { "n", "i" } },
+          -- I'm used to scrolling like this in LazyGit
+          ["J"] = { "preview_scroll_down", mode = { "i", "n" } },
+          ["K"] = { "preview_scroll_up", mode = { "i", "n" } },
+          ["H"] = { "preview_scroll_left", mode = { "i", "n" } },
+          ["L"] = { "preview_scroll_right", mode = { "i", "n" } },
+        },
+      },
+    },
+    formatters = {
+      file = {
+        filename_first = true, -- display filename before the file path
+        truncate = 80,
+      },
+    },
   },
   quickfile = { enabled = true },
   scope = { enabled = true },
@@ -118,10 +141,9 @@ M.keys = {
   { "]]",         function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
   { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
   -- picker
-  { "<leader>bb", function() Snacks.picker.buffers({ focus = "list", layout = { preset = 'ivy' } }) end, desc = "Buffers" },
-  { "<leader>ff", function() Snacks.picker.files({ matcher = { frecency = true }, hidden = true }) end, desc = "Find Files" },
-  { "<leader>fg", function() Snacks.picker.git_files({ layout = { preset = 'telescope' }, matcher = { frecency = true } }) end, desc = "Git Files" },
-  { "<leader>fp", function() Snacks.picker.projects({ matcher = { frecency = true } }) end, desc = "Projects" },
+  { "<leader>ff", function() Snacks.picker.files({ hidden = true }) end, desc = "Find Files" },
+  { "<leader>fg", function() Snacks.picker.git_files({ layout = { preset = 'telescope' } }) end, desc = "Git Files" },
+  { "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
   { "<leader>ft", function() Snacks.picker.grep() end, desc = "Text" },
   { "<leader>fw", function() Snacks.picker.grep_word() end, desc = "String" },
   { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent" },
@@ -138,6 +160,21 @@ M.keys = {
   { "<leader>fs", function() Snacks.picker.lsp_symbols({ layout = { preset = 'dropdown' } }) end, desc = "LSP Symbols" },
   { "<leader>fS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
   { '<leader>f/', function() Snacks.picker.search_history() end, desc = "Search History" },
+  { "<leader>bb", function()
+    Snacks.picker.buffers({
+      finder = "buffers",
+      format = "buffer",
+      hidden = false,
+      unloaded = true,
+      current = true,
+      sort_lastused = true,
+      focus = "list",
+      layout = { preset = 'ivy' },
+      win = {
+        list = { keys = { ["d"] = "bufdelete" } },
+      },
+    })
+  end, desc = "Buffers" },
   -- terminal
   { "<m-;>", function() Snacks.terminal.toggle() end, desc = "Terminal",  mode = { "n", "t" } },
   -- news
