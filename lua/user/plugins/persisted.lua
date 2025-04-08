@@ -3,17 +3,14 @@ local M = {
   lazy = false, -- make sure the plugin is always loaded at startup
 }
 
-M.ops = function()
-  require("telescope").load_extension("persisted")
-  return {
-    use_git_branch = true,
-    ignored_dirs = {
-      "~/Downloads/",
-      { "/", exact = true },
-      { "/tmp", exact = true },
-    },
-  }
-end
+M.ops = {
+  use_git_branch = true,
+  ignored_dirs = {
+    "~/Downloads/",
+    { "/", exact = true },
+    { "/tmp", exact = true },
+  },
+}
 
 vim.api.nvim_create_autocmd("User", {
   pattern = "PersistedTelescopeLoadPre",
