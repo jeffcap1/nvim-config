@@ -6,6 +6,7 @@ local M = {
 M.config = function()
   local conform = require("conform")
 
+  ---@type conform.setupOpts
   conform.setup({
     formatters_by_ft = {
       lua = { "stylua" },
@@ -36,6 +37,8 @@ M.config = function()
       -- have other formatters configured.
       ["_"] = { "trim_whitespace" },
     },
+    notify_on_error = true,
+    notify_no_formatters = true,
     format_on_save = function(bufnr)
       if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
         vim.notify("󰉼  formatting is disabled")
