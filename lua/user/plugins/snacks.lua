@@ -93,10 +93,10 @@ M.opts = {
           -- add the following keymap to your config
           ["<Esc>"] = { "close", mode = { "n", "i" } },
           -- I'm used to scrolling like this in LazyGit
-          ["J"] = { "preview_scroll_down", mode = { "i", "n" } },
-          ["K"] = { "preview_scroll_up", mode = { "i", "n" } },
-          ["H"] = { "preview_scroll_left", mode = { "i", "n" } },
-          ["L"] = { "preview_scroll_right", mode = { "i", "n" } },
+          ["<c-j>"] = { "preview_scroll_down", mode = { "i", "n" } },
+          ["<c-k>"] = { "preview_scroll_up", mode = { "i", "n" } },
+          ["<c-h>"] = { "preview_scroll_left", mode = { "i", "n" } },
+          ["<c-l>"] = { "preview_scroll_right", mode = { "i", "n" } },
         },
       },
     },
