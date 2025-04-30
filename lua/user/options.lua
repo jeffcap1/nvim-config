@@ -70,6 +70,7 @@ vim.opt.updatetime = 50 -- faster updates
 -- vim.opt.colorcolumn = { "80", "120", "160" }
 vim.opt.ruler = true
 vim.opt.title = true
+vim.opt.nrformats:append("alpha") -- Allow incrementing letters
 vim.opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
 vim.opt.wildmode = "longest:full,full" -- Command-line completion mode
 vim.opt.winminwidth = 5 -- Minimum window width
