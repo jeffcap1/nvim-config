@@ -58,11 +58,11 @@ function M.config()
     filter = {
       fzf = {
         action_for = {
-          ["ctrl-t"] = "tabedit",
-          ["ctrl-v"] = "vsplit",
-          ["ctrl-x"] = "split",
-          ["ctrl-q"] = "signtoggle",
-          ["ctrl-c"] = "closeall",
+          ["c-t"] = "tabedit",
+          ["c-v"] = "vsplit",
+          ["c-x"] = "split",
+          ["c-q"] = "signtoggle",
+          ["c-c"] = "closeall",
         },
         extra_opts = {
           description = "Extra options for fzf",

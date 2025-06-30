@@ -11,7 +11,7 @@ local M = {
 
 M.keys = {
   {
-    "<m-[>",
+    "<c-[>",
     ":Neotree filesystem reveal left<cr>",
     desc = "Neotree Open Filesystem",
     silent = true,
