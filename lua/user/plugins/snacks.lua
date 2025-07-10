@@ -16,6 +16,7 @@ M.opts = {
   dashboard = {
     enabled = true,
     preset = {
+      -- stylua: ignore start - ensure remove trailing whitespace on logo stays
       header = [[
                                                                    
       ████ ██████           █████      ██                    
@@ -25,7 +26,8 @@ M.opts = {
    █████████ ██████████ █████████ █████ █████ ████ █████  
  ███████████ ███    ███ █████████ █████ █████ ████ █████ 
 ██████  █████████████████████ ████ █████ █████ ████ ██████
-]],
+      ]],
+      -- stylua: ignore end
     },
     config = function(opts)
       -- stylua: ignore start
@@ -91,7 +93,7 @@ M.opts = {
         keys = {
           -- to close the picker on ESC instead of going to normal mode,
           -- add the following keymap to your config
-          ["<Esc>"] = { "close", mode = { "n", "i" } },
+          -- ["<Esc>"] = { "close", mode = { "n", "i" } },
           -- I'm used to scrolling like this in LazyGit
           ["<c-j>"] = { "preview_scroll_down", mode = { "i", "n" } },
           ["<c-k>"] = { "preview_scroll_up", mode = { "i", "n" } },
@@ -109,7 +111,7 @@ M.opts = {
   },
   quickfile = { enabled = true },
   scope = { enabled = true },
-  scroll = {
+  --[[ scroll = {
     enabled = true,
     -- what buffers to animate
     filter = function(buf)
@@ -118,7 +120,7 @@ M.opts = {
         and vim.bo[buf].buftype ~= "terminal"
         and vim.bo[buf].filetype ~= "blink-cmp-menu"
     end,
-  },
+  }, ]]
   scratch = { enabled = true },
   terminal = { enabled = true, win = { style = "float", border = "rounded" } },
   words = { enabled = true },
@@ -167,11 +169,14 @@ M.keys = {
       hidden = false,
       unloaded = true,
       current = true,
-      sort_lastused = true,
       focus = "list",
       layout = { preset = 'ivy' },
       win = {
-        list = { keys = { ["d"] = "bufdelete" } },
+        list = {
+          keys = {
+            ["d"] = { "bufdelete", mode = { "n" }, nowait = true }
+          }
+        },
       },
     })
   end, desc = "Buffers" },

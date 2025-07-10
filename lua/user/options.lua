@@ -76,15 +76,8 @@ vim.opt.wildmode = "longest:full,full" -- Command-line completion mode
 vim.opt.winminwidth = 5 -- Minimum window width
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 
-if vim.fn.has("nvim-0.10") == 1 then
-  vim.opt.smoothscroll = true
-  vim.opt.foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()"
-  vim.opt.foldmethod = "expr"
-  vim.opt.foldtext = ""
-else
-  vim.opt.foldmethod = "indent"
-  vim.opt.foldtext = "v:lua.require'lazyvim.util'.ui.foldtext()"
-end
+vim.opt.foldmethod = "indent"
+vim.opt.foldtext = "v:lua.require'lazyvim.util'.ui.foldtext()"
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
