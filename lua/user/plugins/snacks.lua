@@ -129,7 +129,7 @@ M.opts = {
 
 -- stylua: ignore
 M.keys = {
-  { "<m-[>",      function() Snacks.explorer() end, desc = "File Explorer" },
+  { "<c-e>",      function() Snacks.explorer() end, desc = "File Explorer" },
   { "<leader>Z",  function() Snacks.zen() end, desc = "Toggle Zen Mode" },
   { "<leader>z",  function() Snacks.zen.zoom() end, desc = "Toggle Zoom" },
   { "<leader>.",  function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
