@@ -45,17 +45,28 @@ dap_core.config = function()
 
   vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
 
-  for name, sign in pairs(icons.dap) do
-    sign = type(sign) == "table" and sign or { sign }
-    vim.fn.sign_define(
-      "Dap" .. name,
-      { text = sign[1], texthl = sign[2] or "DiagnosticInfo", linehl = sign[3], numhl = sign[3] }
-    )
+  for name, value in pairs(icons.dap) do
+    local text = ""
+    local texthl = "DiagnosticInfo"
+    local linehl = nil
+    local numhl = nil
+
+    if type(value) == "table" then
+      text = value[1]
+      texthl = value[2] or texthl
+      linehl = value[3]
+      numhl = value[3]
+    else
+      text = value
+    end
+
+    vim.fn.sign_define("Dap" .. name, { text = text, texthl = texthl, linehl = linehl, numhl = numhl })
   end
 
   -- setup dap config by VsCode launch.json file
   local vscode = require("dap.ext.vscode")
   local json = require("plenary.json")
+  ---@diagnostic disable-next-line: duplicate-set-field
   vscode.json_decode = function(str)
     return vim.json.decode(json.json_strip_comments(str))
   end

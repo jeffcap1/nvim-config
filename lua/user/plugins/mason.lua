@@ -14,6 +14,7 @@ function M.config()
 
   require("mason-lspconfig").setup({
     ensure_installed = USERS_LSP_SERVERS,
+    automatic_enable = false,
   })
 end
 

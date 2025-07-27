@@ -14,7 +14,6 @@ end
 function M.config()
   local lspconfig = require("lspconfig")
   local icons = require("user.icons")
-  -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
   local capabilities = require("blink.cmp").get_lsp_capabilities()
 
   -- fix line folding errors
@@ -23,15 +22,21 @@ function M.config()
     lineFoldingOnly = true,
   }
 
-  local default_diagnostic_config = {
+  vim.diagnostic.config({
     signs = {
-      active = true,
-      values = {
-        { name = "DiagnosticSignError", text = icons.diagnostics.Error },
-        { name = "DiagnosticSignWarn", text = icons.diagnostics.Warning },
-        { name = "DiagnosticSignHint", text = icons.diagnostics.Hint },
-        { name = "DiagnosticSignInfo", text = icons.diagnostics.Information },
+      text = {
+        [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
+        [vim.diagnostic.severity.WARN] = icons.diagnostics.Warning,
+        [vim.diagnostic.severity.INFO] = icons.diagnostics.Information,
+        [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
       },
+      numhl = {
+        [vim.diagnostic.severity.ERROR] = "DiagnosticError",
+        [vim.diagnostic.severity.WARN] = "DiagnosticWarn",
+        [vim.diagnostic.severity.INFO] = "DiagnosticInfo",
+        [vim.diagnostic.severity.HINT] = "DiagnosticHint",
+      },
+      define = true, -- Ensure default signs are defined with these customizations
     },
     virtual_text = false,
     update_in_insert = false,
@@ -41,21 +46,13 @@ function M.config()
       focusable = true,
       style = "minimal",
       border = "rounded",
-      source = "always",
+      source = true,
       header = "",
       prefix = "",
     },
-  }
-
-  vim.diagnostic.config(default_diagnostic_config)
-
-  for _, sign in ipairs(vim.tbl_get((vim.diagnostic.config() or {}), "signs", "values") or {}) do
-    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
-  end
+  })
 
   -- rounded borders for LSP
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
   require("lspconfig.ui.windows").default_options.border = "rounded"
 
   -- setup language server
@@ -86,10 +83,11 @@ function M.config()
       end
 
       local client = vim.lsp.get_client_by_id(ev.data.client_id)
-      if client and client.supports_method("textDocument/inlayHint") then
+      if client and client:supports_method("textDocument/inlayHint") then
         vim.lsp.inlay_hint.enable(true)
       end
 
+      -- stylua: ignore
       -- Buffer local mappings.
       -- See `:help vim.lsp.*` for documentation on any of the below functions
       -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -102,8 +100,13 @@ function M.config()
       keymap("n", "gl", vim.diagnostic.open_float, _opts({ desc = "Diagnostic line help" }))
 
       keymap({ "n", "v" }, "<leader>la", lspbuf.code_action, _opts({ desc = "LSP code actions" }))
-      keymap("n", "]d", vim.diagnostic.goto_next, _opts({ desc = "Goto next diagnostic" }))
-      keymap("n", "[d", vim.diagnostic.goto_prev, _opts({ desc = "Goto previous diagnostic" }))
+      keymap("n", "]d", function()
+        vim.diagnostic.jump({ count = 1 })
+      end, _opts({ desc = "Goto next diagnostic" }))
+      keymap("n", "[d", function()
+        vim.diagnostic.jump({ count = -1 })
+      end, _opts({ desc = "Goto previous diagnostic" }))
+
       keymap("n", "<leader>ll", vim.lsp.codelens.run, _opts({ desc = "CodeLens Action" }))
       keymap("n", "<leader>lq", vim.diagnostic.setloclist, _opts({ desc = "Diagnostic list locations" }))
       keymap("n", "<leader>lr", lspbuf.rename, _opts({ desc = "LSP rename" }))
@@ -114,6 +117,7 @@ function M.config()
         "<cmd>lua require('user.plugins.lsp-config').toggle_inlay_hints()<cr>",
         _opts({ desc = "Hints" })
       )
+      -- stylua: ignore end
     end,
   })
 end
