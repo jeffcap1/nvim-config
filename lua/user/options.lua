@@ -76,8 +76,19 @@ vim.opt.wildmode = "longest:full,full" -- Command-line completion mode
 vim.opt.winminwidth = 5 -- Minimum window width
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 
+-- folding
 vim.opt.foldmethod = "indent"
 vim.opt.foldtext = "v:lua.require'lazyvim.util'.ui.foldtext()"
+vim.o.foldcolumn = "1" -- '0' is not bad and will disable fold icons
+vim.o.foldlevel = 9999999 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 9999999
+vim.o.foldenable = true
+vim.opt.fillchars:append({
+  fold = " ",
+  foldopen = "",
+  foldsep = " ",
+  foldclose = "",
+})
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0

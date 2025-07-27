@@ -21,12 +21,6 @@ function M.config()
 
   require("statuscol").setup(cfg)
 
-  vim.o.foldcolumn = "0" -- '0' is not bad
-  vim.o.foldlevel = 9999999 -- Using ufo provider need a large value, feel free to decrease the value
-  vim.o.foldlevelstart = 9999999
-  vim.o.foldenable = true
-  vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-
   -- Redrawing and cursor enhancements
   vim.o.lazyredraw = false
   vim.o.cursorline = true
