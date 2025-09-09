@@ -8,6 +8,10 @@ local M = {
 function M.config()
   require("catppuccin").setup({
     flavour = "mocha",
+    float = {
+      solid = false,
+      transparent = true,
+    },
     transparent_background = true, -- disables setting the background color.
     show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
     term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
@@ -34,12 +38,6 @@ function M.config()
       operators = {},
     },
     color_overrides = {},
-    custom_highlights = function(colors)
-      return {
-        CursorLine = { ctermbg = colors.none, bg = "#242539" },
-        -- ColorColumn = { ctermbg = colors.none, bg = "#242539" },
-      }
-    end,
     integrations = {
       -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
       native_lsp = {
@@ -64,23 +62,23 @@ function M.config()
         enabled = true,
         lsp = true,
       },
-      harpoon = true,
-      neogit = true,
-      nvim_surround = true,
-      mason = true,
-      ufo = true,
-      rainbow_delimiters = true,
-      render_markdown = true,
-      which_key = true,
       blink_cmp = true,
+      dap = true,
+      dap_ui = true,
       diffview = true,
       flash = true,
-      snacks = true,
+      gitsigns = true,
+      harpoon = true,
       lsp_trouble = true,
-      mini = {
-        enabled = true,
-        indentscope_color = "", -- catppuccin color (eg. `lavender`) Default: text
-      },
+      mason = true,
+      neogit = true,
+      nvim_surround = true,
+      rainbow_delimiters = true,
+      render_markdown = true,
+      snacks = true,
+      treesitter = true,
+      ufo = true,
+      which_key = true,
     },
   })
   vim.cmd.colorscheme("catppuccin")
