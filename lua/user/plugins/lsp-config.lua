@@ -12,7 +12,6 @@ M.toggle_inlay_hints = function()
 end
 
 function M.config()
-  local lspconfig = require("lspconfig")
   local icons = require("user.icons")
   local capabilities = require("blink.cmp").get_lsp_capabilities()
 
@@ -66,7 +65,11 @@ function M.config()
       opts = vim.tbl_deep_extend("force", settings, opts)
     end
 
-    lspconfig[lsp_server].setup(opts)
+    -- optionally override defaults
+    vim.lsp.config(lsp_server, opts)
+
+    -- Enable filetype-based activation of the config.
+    vim.lsp.enable(lsp_server)
   end
 
   -- lsp keybindings

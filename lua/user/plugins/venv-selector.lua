@@ -11,7 +11,6 @@ local M = {
     },
   },
   ft = { "python" },
-  branch = "regexp", -- This is the regexp branch, use this for the new version
 }
 
 M.opts = {
