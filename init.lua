@@ -15,6 +15,7 @@ pcall(require, "user.local_dap_servers")
 
 -- startup
 spec("user.plugins.theme")
+spec("user.plugins.persisted")
 
 -- lsp
 spec("user.plugins.blink")
@@ -28,7 +29,6 @@ spec("user.plugins.venv-selector")
 
 -- core plugins
 spec("user.plugins.mini-icons")
-spec("user.plugins.persisted")
 spec("user.plugins.snacks")
 spec("user.plugins.vim-tmux-navigator")
 spec("user.plugins.treesitter")
