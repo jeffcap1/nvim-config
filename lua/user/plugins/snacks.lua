@@ -14,7 +14,7 @@ M.opts = {
   bigfile = { enabled = true },
   bufdelete = { enabled = true },
   dashboard = {
-    enabled = false,
+    enabled = true,
     preset = {
       -- stylua: ignore start - ensure remove trailing whitespace on logo stays
       header = [[
