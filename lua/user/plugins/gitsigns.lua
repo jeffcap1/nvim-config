@@ -14,8 +14,8 @@ M.keys = {
   { "<leader>gH", "<cmd>lua require 'gitsigns'.preview_hunk_inline()<cr>", desc = "Preview Hunk Inline", silent = true  },
   { "<leader>gr", "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", desc = "Reset Hunk", silent = true  },
   { "<leader>gR", "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", desc = "Reset Buffer", silent = true  },
-  { "<leader>gS", "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", desc = "Stage Hunk", silent = true  },
-  { "<leader>gu", "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", desc = "Undo Stage Hunk", silent = true  },
+  -- { "<leader>gS", "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", desc = "Stage Hunk", silent = true  },
+  -- { "<leader>gu", "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", desc = "Undo Stage Hunk", silent = true  },
 }
 -- stylua: ignore end
 

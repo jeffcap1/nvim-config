@@ -1,5 +1,5 @@
 local M = {
-  "SmiteshP/nvim-navic",
+  "hasansujon786/nvim-navbuddy",
   event = { "BufReadPost", "BufNewFile" },
 }
 

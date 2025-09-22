@@ -25,15 +25,17 @@ M.opts = {
     log_level = "DEBUG",
   },
   adapters = {
-    anthropic = function()
-      return require("codecompanion.adapters").extend("gemini", {
-        schema = {
-          model = {
-            default = "gemini-2.0-flash-exp",
+    http = {
+      gemini = function()
+        return require("codecompanion.adapters").extend("gemini", {
+          schema = {
+            model = {
+              default = "gemini-2.0-flash-exp",
+            },
           },
-        },
-      })
-    end,
+        })
+      end,
+    },
   },
 }
 
