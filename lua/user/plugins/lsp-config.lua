@@ -54,6 +54,19 @@ function M.config()
   -- rounded borders for LSP
   require("lspconfig.ui.windows").default_options.border = "rounded"
 
+  -- special setup for biome vs eslint
+  if FILE_EXISTS_IN_PROJECT_ROOT("biome.json") then
+    table.insert(USERS_LSP_SERVERS, "biome")
+  elseif
+    FILE_EXISTS_IN_PROJECT_ROOT(".eslintrc")
+    or FILE_EXISTS_IN_PROJECT_ROOT(".eslintrc.js")
+    or FILE_EXISTS_IN_PROJECT_ROOT(".eslintrc.json")
+  then
+    table.insert(USERS_LSP_SERVERS, "eslint")
+  else
+    vim.notify("No JS linter loaded", vim.log.levels.INFO)
+  end
+
   -- setup language server
   for _, lsp_server in pairs(USERS_LSP_SERVERS) do
     local opts = {

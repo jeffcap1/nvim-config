@@ -1,7 +1,6 @@
 USERS_LSP_SERVERS = {
   "bashls",
   "cssls",
-  "eslint",
   "gopls",
   "golangci_lint_ls",
   "graphql",

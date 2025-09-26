@@ -5,6 +5,27 @@ function spec(item)
   table.insert(LAZY_PLUGIN_SPEC, { import = item })
 end
 
+-- Try to get the workspace root from an active LSP client
+local function get_project_root()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local clients = vim.lsp.get_clients({ bufnr = bufnr })
+  if clients and #clients > 0 then
+    for _, client in ipairs(clients) do
+      if client.workspace_folders and #client.workspace_folders > 0 then
+        -- This gets the first workspace folder path
+        return client.workspace_folders[1].uri:gsub("file://", "")
+      end
+    end
+  end
+
+  return vim.fn.getcwd()
+end
+
+function FILE_EXISTS_IN_PROJECT_ROOT(filename)
+  local project_root = get_project_root()
+  return vim.fn.filereadable(project_root .. "/" .. filename) == 1
+end
+
 -- check if a variable is a table
 local function is_table(t)
   return type(t) == "table"

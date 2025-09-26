@@ -3,6 +3,14 @@ local M = {
   event = { "BufReadPre", "BufNewFile" },
 }
 
+local function get_js_formatter()
+  if FILE_EXISTS_IN_PROJECT_ROOT("biome.json") then
+    return { "biome" }
+  else
+    return { "prettierd", "prettier", stop_after_first = true }
+  end
+end
+
 M.config = function()
   local conform = require("conform")
 
@@ -15,14 +23,30 @@ M.config = function()
       python = { "ruff_format" },
       -- You can customize some of the format options for the filetype (:help conform.format)
       -- Conform will run the first available formatter
-      javascript = { "prettierd", "prettier", stop_after_first = true },
-      typescript = { "prettierd", "prettier", stop_after_first = true },
-      javascriptreact = { "prettierd", "prettier", stop_after_first = true },
-      typescriptreact = { "prettierd", "prettier", stop_after_first = true },
-      astro = { "prettierd", "prettier", stop_after_first = true },
-      vue = { "prettierd", "prettier", stop_after_first = true },
-      svelte = { "prettierd", "prettier", stop_after_first = true },
-      css = { "prettierd", "prettier", stop_after_first = true },
+      javascript = function()
+        return get_js_formatter()
+      end,
+      typescript = function()
+        return get_js_formatter()
+      end,
+      javascriptreact = function()
+        return get_js_formatter()
+      end,
+      typescriptreact = function()
+        return get_js_formatter()
+      end,
+      astro = function()
+        return get_js_formatter()
+      end,
+      vue = function()
+        return get_js_formatter()
+      end,
+      svelte = function()
+        return get_js_formatter()
+      end,
+      css = function()
+        return get_js_formatter()
+      end,
       scss = { "prettierd", "prettier", stop_after_first = true },
       less = { "prettierd", "prettier", stop_after_first = true },
       html = { "prettierd", "prettier", stop_after_first = true },
