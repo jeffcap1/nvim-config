@@ -13,6 +13,7 @@ end
 
 M.config = function()
   local conform = require("conform")
+  local util = require("conform.util")
 
   ---@type conform.setupOpts
   conform.setup({
@@ -20,7 +21,7 @@ M.config = function()
       lua = { "stylua" },
       -- Conform will run multiple formatters sequentially
       -- python = { "isort", "black" },
-      python = { "ruff_format" },
+      python = { "ruff_organize_imports", "ruff_format" },
       -- You can customize some of the format options for the filetype (:help conform.format)
       -- Conform will run the first available formatter
       javascript = function()

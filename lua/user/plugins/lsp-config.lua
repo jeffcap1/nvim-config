@@ -67,10 +67,22 @@ function M.config()
     vim.notify("No JS linter loaded", vim.log.levels.INFO)
   end
 
+  -- define your on_attach once
+  local on_attach = function(client, bufnr)
+    -- disable formatting for specific servers
+    if client.name == "ruff_lsp" or client.name == "pyright" then
+      client.server_capabilities.documentFormattingProvider = false
+      client.server_capabilities.documentRangeFormattingProvider = false
+    end
+
+    -- (optional) put your keymaps or other buffer-local stuff here
+  end
+
   -- setup language server
   for _, lsp_server in pairs(USERS_LSP_SERVERS) do
     local opts = {
       capabilities = capabilities,
+      on_attach = on_attach,
     }
 
     local require_ok, settings = pcall(require, "user.lsp_settings." .. lsp_server)
