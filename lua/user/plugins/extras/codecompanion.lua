@@ -14,10 +14,16 @@ local M = {
   },
 }
 
+local copilot_dir = vim.fn.expand("~/.config/github-copilot")
+local copilot_available = vim.fn.isdirectory(copilot_dir) == 1
+
 M.opts = {
   strategies = {
     chat = {
-      adapter = "gemini",
+      adapter = copilot_available and "copilot" or "gemini",
+    },
+    inline = {
+      adapter = copilot_available and "copilot" or "gemini",
     },
   },
   opts = {
@@ -34,6 +40,9 @@ M.opts = {
             },
           },
         })
+      end,
+      copilot = function()
+        return require("codecompanion.adapters").extend("copilot", {})
       end,
     },
   },
