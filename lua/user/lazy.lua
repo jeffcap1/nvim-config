@@ -28,4 +28,8 @@ require("lazy").setup({
     enabled = true,
     notify = false, -- get a notification when changes are found
   },
+  rocks = {
+    enabled = true, -- keep rocks support
+    hererocks = true, -- Lazy will auto-install a local Lua 5.1 + luarocks
+  },
 })

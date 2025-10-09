@@ -13,7 +13,7 @@ M.opts = {
     keymap = {
       jump_next = "<c-j>",
       jump_prev = "<c-k>",
-      accept = "<c-l>",
+      -- accept = "<c-l>",
       refresh = "r",
       open = "<M-CR>",
     },
