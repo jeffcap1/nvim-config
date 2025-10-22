@@ -63,7 +63,7 @@ function M.config()
     or FILE_EXISTS_IN_PROJECT_ROOT(".eslintrc.json")
   then
     table.insert(USERS_LSP_SERVERS, "eslint")
-  else
+  elseif IS_JS_FILETYPE() then
     vim.notify("No JS linter loaded", vim.log.levels.INFO)
   end
 
