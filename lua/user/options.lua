@@ -24,6 +24,7 @@ vim.opt.splitright = true -- force all vertical splits to go to the right of cur
 -- pop up menu settings
 vim.opt.pumheight = 10 -- pop up menu height
 vim.opt.pumblend = 0 -- pop up menu transparency
+vim.opt.winborder = "rounded"
 
 -- backups and swap files
 vim.opt.backup = false -- creates a backup file
