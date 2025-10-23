@@ -10,6 +10,8 @@ M.keys = {
   { "-", "<CMD>Oil --float<CR>", desc = "Open parent directory" },
 }
 
+---@module 'oil'
+---@type oil.SetupOpts
 M.opts = {
   delete_to_trash = true,
   skip_confirm_for_simple_edits = true,
@@ -28,6 +30,7 @@ M.opts = {
   float = {
     max_height = 40,
     max_width = 200,
+    border = "rounded",
   },
 }
 
