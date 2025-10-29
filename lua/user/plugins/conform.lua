@@ -84,6 +84,10 @@ M.config = function()
     },
   }
 
+  conform.formatters.biome = {
+    prepend_args = { "check", "--write" },
+  }
+
   vim.keymap.set({ "n", "v" }, "<leader>lff", function()
     conform.format({ timeout_ms = 500, lsp_format = "fallback" })
   end, XTND({ desc = "Format File" }))
