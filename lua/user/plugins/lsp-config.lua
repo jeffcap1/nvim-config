@@ -60,7 +60,11 @@ function M.config()
   elseif
     FILE_EXISTS_IN_PROJECT_ROOT(".eslintrc")
     or FILE_EXISTS_IN_PROJECT_ROOT(".eslintrc.js")
+    or FILE_EXISTS_IN_PROJECT_ROOT(".eslintrc.mjs")
+    or FILE_EXISTS_IN_PROJECT_ROOT(".eslintrc.cjs")
+    or FILE_EXISTS_IN_PROJECT_ROOT(".eslintrc.ts")
     or FILE_EXISTS_IN_PROJECT_ROOT(".eslintrc.json")
+    or FILE_EXISTS_IN_PROJECT_ROOT(".eslintrc.jsonc")
   then
     table.insert(USERS_LSP_SERVERS, "eslint")
   elseif IS_JS_FILETYPE() then
