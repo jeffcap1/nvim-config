@@ -20,7 +20,7 @@ M.opts.spec = {
   { "<leader>_", "<cmd>res<CR>", desc = "Zoom horizontal split", icon = " " },
   { "<leader>|", "<cmd>vert res<CR>", desc = "Zoom vertical split", icon = " " },
   { "<leader>b", group = "Buffers" },
-  { "<leader>c", group = "Comments", icon = "󰭹 " },
+  { "<leader>c", group = "CodeCompanion", icon = "󰭹 " },
   { "<leader>d", group = "Debug" },
   { "<leader>f", group = "Find" },
   { "<leader>g", group = "Git" },
