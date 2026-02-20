@@ -28,6 +28,8 @@ return {
       },
     },
     typescript = {
+      importModuleSpecifierPreference = "non-relative",
+      importModuleSpecifierEnding = "minimal",
       updateImportsOnFileMove = { enabled = "always" },
       suggest = {
         completeFunctionCalls = true,
@@ -44,6 +46,8 @@ return {
     },
 
     javascript = {
+      importModuleSpecifierPreference = "non-relative",
+      importModuleSpecifierEnding = "minimal",
       inlayHints = {
         includeInlayEnumMemberValueHints = true,
         includeInlayFunctionLikeReturnTypeHints = true,
