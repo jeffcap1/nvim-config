@@ -53,7 +53,7 @@ end
 M.opts = {
   options = {
     -- theme = "dracula",
-    theme = "catppuccin",
+    theme = "catppuccin-nvim",
   },
 
   sections = {
