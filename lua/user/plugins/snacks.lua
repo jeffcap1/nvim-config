@@ -14,7 +14,7 @@ M.opts = {
   bigfile = { enabled = true },
   bufdelete = { enabled = true },
   dashboard = {
-    enabled = true,
+    enabled = false,
     preset = {
       -- stylua: ignore start - ensure remove trailing whitespace on logo stays
       header = [[
@@ -111,16 +111,6 @@ M.opts = {
   },
   quickfile = { enabled = true },
   scope = { enabled = true },
-  --[[ scroll = {
-    enabled = true,
-    -- what buffers to animate
-    filter = function(buf)
-      return vim.g.snacks_scroll ~= false
-        and vim.b[buf].snacks_scroll ~= false
-        and vim.bo[buf].buftype ~= "terminal"
-        and vim.bo[buf].filetype ~= "blink-cmp-menu"
-    end,
-  }, ]]
   scratch = { enabled = true },
   terminal = { enabled = true, win = { style = "float", border = "rounded" } },
   words = { enabled = true },
@@ -148,8 +138,8 @@ M.keys = {
   { "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
   { "<leader>ft", function() Snacks.picker.grep() end, desc = "Text" },
   { "<leader>fw", function() Snacks.picker.grep_word() end, desc = "String" },
-  { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent" },
-  { "<leader>fR", function() Snacks.picker.resume() end, desc = "Resume" },
+  { "<leader>fR", function() Snacks.picker.recent() end, desc = "Recent" },
+  { "<leader>fr", function() Snacks.picker.resume() end, desc = "Resume" },
   { "<leader>f\"", function() Snacks.picker.registers() end, desc = "Registers" },
   { "<leader>fd", function() Snacks.picker.diagnostics({ focus = "list" }) end, desc = "Diagnostics" },
   { "<leader>fD", function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer Diagnostics" },
@@ -169,6 +159,7 @@ M.keys = {
       hidden = false,
       unloaded = true,
       current = true,
+      sort_lastused = true, -- maybe false?
       focus = "list",
       layout = { preset = 'ivy' },
       win = {
