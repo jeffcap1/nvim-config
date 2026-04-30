@@ -55,7 +55,7 @@ spec("user.plugins.noice")
 -- other useful plugins
 spec("user.plugins.breadcrumbs")
 spec("user.plugins.extras.debugger")
-spec("user.plugins.extras.flash")
+spec("user.plugins.extras.leap")
 spec("user.plugins.extras.highlight-colors")
 spec("user.plugins.extras.lab")
 spec("user.plugins.extras.lazydev")
