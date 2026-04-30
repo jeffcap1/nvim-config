@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- resize splits if window got resized
-vim.api.nvim_create_autocmd({ "VimResized" }, {
+vim.api.nvim_create_autocmd("VimResized", {
   group = augroup("resize_splits"),
   callback = function()
     local current_tab = vim.fn.tabpagenr()
@@ -23,29 +23,15 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
   end,
 })
 
--- remove whitespace on save
---[[ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  group = augroup("remove_whitespace"),
-  pattern = "*",
-  command = "%s/\\s\\+$//e",
-}) ]]
-
--- change cursor to vertical blinking bar when leaving neovim
-vim.api.nvim_create_autocmd({ "VimLeave" }, {
-  callback = function()
-    vim.opt.guicursor = "a:ver1-blinkon1"
-  end,
-})
-
 -- stop auto commenting new lines when hitting o or O
-vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
+--[[ vim.api.nvim_create_autocmd("BufWinEnter", {
   callback = function()
     vim.cmd("set formatoptions-=cro")
   end,
-})
+}) ]]
 
 -- allow quitting with q in certain contexts
-vim.api.nvim_create_autocmd({ "FileType" }, {
+vim.api.nvim_create_autocmd("FileType", {
   pattern = {
     "netrw",
     "Jaq",
@@ -80,7 +66,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 -- set options for filetypes
-vim.api.nvim_create_autocmd({ "FileType" }, {
+vim.api.nvim_create_autocmd("FileType", {
   pattern = { "gitcommit", "markdown", "NeogitCommitMessage" },
   callback = function()
     vim.opt_local.wrap = true
@@ -89,7 +75,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 -- set options for markdown files
-vim.api.nvim_create_autocmd({ "Filetype" }, {
+vim.api.nvim_create_autocmd("FileType", {
   pattern = { "markdown" },
   callback = function()
     vim.opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
@@ -97,7 +83,7 @@ vim.api.nvim_create_autocmd({ "Filetype" }, {
 })
 
 -- fix context issue when not completeing a snippet
-vim.api.nvim_create_autocmd({ "CursorHold" }, {
+vim.api.nvim_create_autocmd("CursorHold", {
   callback = function()
     local status_ok, luasnip = pcall(require, "luasnip")
     if not status_ok then
@@ -112,7 +98,7 @@ vim.api.nvim_create_autocmd({ "CursorHold" }, {
 })
 
 -- Auto create dir when saving a file, in case some intermediate directory does not exist
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+vim.api.nvim_create_autocmd("BufWritePre", {
   group = augroup("auto_create_dir"),
   callback = function(event)
     if event.match:match("^%w%w+:[\\/][\\/]") then
@@ -122,30 +108,3 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
   end,
 })
-
--- fix performance issues with big files
---[[ vim.filetype.add({
-  pattern = {
-    [".*"] = {
-      function(path, buf)
-        return vim.bo[buf]
-            and vim.bo[buf].filetype ~= "bigfile"
-            and path
-            and vim.fn.getfsize(path) > vim.g.bigfile_size
-            and "bigfile"
-          or nil
-      end,
-    },
-  },
-})
-
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  group = augroup("bigfile"),
-  pattern = "bigfile",
-  callback = function(ev)
-    vim.b.minianimate_disable = true
-    vim.schedule(function()
-      vim.bo[ev.buf].syntax = vim.filetype.match({ buf = ev.buf }) or ""
-    end)
-  end,
-}) ]]

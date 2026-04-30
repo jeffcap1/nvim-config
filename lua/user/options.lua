@@ -1,5 +1,7 @@
 vim.g.mapleader = " "
 
+vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
+
 -- tabs
 vim.opt.tabstop = 2 -- Insert 2 spaces for a tab
 vim.opt.softtabstop = 2 -- Insert 2 spaces for a tab
@@ -27,6 +29,7 @@ vim.opt.pumblend = 0 -- pop up menu transparency
 vim.opt.winborder = "rounded"
 
 -- backups and swap files
+vim.o.confirm = true -- confirm to save changes before exiting modified buffer
 vim.opt.backup = false -- creates a backup file
 vim.opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 vim.opt.swapfile = false -- creates a swapfile
@@ -68,7 +71,6 @@ vim.opt.sidescrolloff = 2
 vim.opt.isfname:append("@-@")
 vim.opt.wrap = false -- display lines as one long line
 vim.opt.updatetime = 50 -- faster updates
--- vim.opt.colorcolumn = { "80", "120", "160" }
 vim.opt.ruler = true
 vim.opt.title = true
 vim.opt.nrformats:append("alpha") -- Allow incrementing letters
