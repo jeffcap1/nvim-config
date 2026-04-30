@@ -25,13 +25,13 @@ function M.config()
       wrap = false,
       should_preview_cb = function(bufnr)
         local ret = true
-        local bufname = vim.api.nvim_buf_get_name(bufnr)
-        local fsize = vim.fn.getfsize(bufname)
-        if fsize > 100 * 1024 then
-          -- skip file size greater than 100k
+        local fpath = vim.api.nvim_buf_get_name(bufnr)
+        -- Use vim.uv (libuv) for performance
+        local ok, stats = pcall(vim.uv.fs_stat, fpath)
+
+        if ok and stats and stats.size > 100 * 1024 then
           ret = false
-        elseif bufname:match("^fugitive://") then
-          -- skip fugitive buffer
+        elseif fpath:match("^fugitive://") then
           ret = false
         end
         return ret
