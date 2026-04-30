@@ -59,8 +59,6 @@ spec("user.plugins.extras.leap")
 spec("user.plugins.extras.highlight-colors")
 spec("user.plugins.extras.lab")
 spec("user.plugins.extras.lazydev")
--- spec("user.plugins.extras.mini-ai") -- don't think I was using this
--- spec("user.plugins.extras.modicator") -- breaking snacks grep... do I need?
 spec("user.plugins.extras.navbuddy")
 spec("user.plugins.extras.oil")
 spec("user.plugins.extras.oil-git-status")
@@ -68,7 +66,6 @@ spec("user.plugins.extras.pretty-ts-errors")
 -- spec("user.plugins.extras.tabby")
 spec("user.plugins.extras.todo-comment")
 spec("user.plugins.extras.trouble")
--- spec("user.plugins.extras.wit-search") -- was not using, do I need?
 spec("user.plugins.navic")
 spec("user.plugins.extras.virt-column")
 spec("user.plugins.extras.bullets")
