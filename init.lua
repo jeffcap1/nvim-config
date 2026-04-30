@@ -42,6 +42,7 @@ spec("user.plugins.project")
 
 -- quality of life
 spec("user.plugins.bqf")
+spec("user.plugins.undotree")
 spec("user.plugins.comment")
 spec("user.plugins.nvim-surround")
 spec("user.plugins.autopairs")
