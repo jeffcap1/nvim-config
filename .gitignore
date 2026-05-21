@@ -1,7 +1,7 @@
 .DS_Store
 autoload/
 lazy-lock.json
-local_lsp_servers.lua
-local_dap_servers.lua
-local_only/
+local_*.lua
+local_*/
+local.*.json
 

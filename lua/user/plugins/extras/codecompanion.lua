@@ -1,15 +1,29 @@
 local M = {
   "olimorris/codecompanion.nvim",
   event = { "BufReadPost", "BufNewFile" },
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-    "nvim-treesitter/nvim-treesitter",
-    {
-      "MeanderingProgrammer/render-markdown.nvim",
-      opts = {
-        file_types = { "markdown", "norg", "rmd", "org", "vimwiki", "codecompanion" },
-      },
-      ft = { "markdown", "norg", "rmd", "org", "vimwiki", "codecompanion" },
+}
+
+-- determine which mcp file to use based on if local exists or not
+local local_config = vim.fn.stdpath("config") .. "/mcp/local.servers.json"
+local default_config = vim.fn.stdpath("config") .. "/mcp/servers.json"
+local mcp_config = vim.fn.filereadable(local_config) == 1 and local_config or default_config
+
+M.dependencies = {
+  "nvim-lua/plenary.nvim",
+  "nvim-treesitter/nvim-treesitter",
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    opts = {
+      file_types = { "markdown", "norg", "rmd", "org", "vimwiki", "codecompanion" },
+    },
+    ft = { "markdown", "norg", "rmd", "org", "vimwiki", "codecompanion" },
+  },
+  -- better mcp server support as native support is very limited/basic
+  {
+    "ravitemer/mcphub.nvim",
+    build = "npm install -g mcp-hub@latest",
+    opts = {
+      config = mcp_config,
     },
   },
 }
@@ -52,6 +66,17 @@ M.opts = {
       copilot = function()
         return require("codecompanion.adapters").extend("copilot", {})
       end,
+    },
+  },
+  extensions = {
+    mcphub = {
+      callback = "mcphub.extensions.codecompanion",
+      opts = {
+        make_tools = true,
+        make_vars = false,
+        make_slash_commands = true,
+        show_result_in_chat = true,
+      },
     },
   },
   interactions = {
