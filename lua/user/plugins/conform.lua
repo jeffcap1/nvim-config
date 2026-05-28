@@ -6,6 +6,8 @@ local M = {
 local function get_js_formatter()
   if FILE_EXISTS_IN_PROJECT_ROOT("biome.json") then
     return { "biome" }
+  elseif FILE_EXISTS_IN_PROJECT_ROOT(".oxfmtrc.json") then
+    return { "oxfmt" }
   else
     return { "prettierd", "prettier", stop_after_first = true }
   end

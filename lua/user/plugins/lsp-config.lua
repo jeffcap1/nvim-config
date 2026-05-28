@@ -57,6 +57,8 @@ function M.config()
   -- special setup for biome vs eslint
   if FILE_EXISTS_IN_PROJECT_ROOT("biome.json") then
     table.insert(USERS_LSP_SERVERS, "biome")
+  elseif FILE_EXISTS_IN_PROJECT_ROOT(".oxlintrc.json") then
+    table.insert(USERS_LSP_SERVERS, "oxlint")
   elseif
     FILE_EXISTS_IN_PROJECT_ROOT(".eslintrc")
     or FILE_EXISTS_IN_PROJECT_ROOT(".eslintrc.js")
@@ -78,6 +80,11 @@ function M.config()
       client.server_capabilities.documentFormattingProvider = false
       client.server_capabilities.documentRangeFormattingProvider = false
     end
+
+    -- disable native LSP document color (nvim 0.12+) to prevent assertion
+    -- failures in vim/lsp/document_color.lua; nvim-highlight-colors handles
+    -- color rendering instead
+    client.server_capabilities.colorProvider = false
 
     -- (optional) put your keymaps or other buffer-local stuff here
   end
