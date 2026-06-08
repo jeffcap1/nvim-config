@@ -66,6 +66,18 @@ M.opts = {
       copilot = function()
         return require("codecompanion.adapters").extend("copilot", {})
       end,
+      ollama = function()
+        return require("codecompanion.adapters").extend("ollama", {
+          env = {
+            url = "http://127.0.0.1:11434",
+          },
+          schema = {
+            model = {
+              default = "gemma4:12b",
+            },
+          },
+        })
+      end,
     },
   },
   extensions = {
