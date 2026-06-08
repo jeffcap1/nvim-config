@@ -11,6 +11,6 @@ USERS_LSP_SERVERS = {
   "pyright",
   "ruff",
   "tailwindcss",
-  "ts_ls",
+  "vtsls",
   "yamlls",
 }
