@@ -4,7 +4,7 @@ local M = {
 }
 
 M.opts = {
-  keymaps = { hover = "<leader>th" },
+  keymaps = { hover = false },
 }
 
 return M

@@ -130,7 +130,23 @@ function M.config()
       -- Buffer local mappings.
       -- See `:help vim.lsp.*` for documentation on any of the below functions
       -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-      keymap("n", "gh", lspbuf.hover, _opts({ desc = "LSP hover help" }))
+
+      -- keymap("n", "gh", lspbuf.hover, _opts({ desc = "LSP hover help" }))
+      keymap("n", "gh", function()
+        local ft = vim.bo[ev.buf].filetype
+        local ts_ft = { typescript = true, typescriptreact = true, astro = true }
+
+        if ts_ft[ft] then
+          local ok, ts_hover = pcall(require, "ts_expand_hover")
+          if ok and ts_hover and ts_hover.hover then
+            ts_hover.hover()
+            return
+          end
+        end
+
+        vim.lsp.buf.hover()
+      end, _opts({ desc = "Universal LSP hover help" }))
+
       keymap("n", "gH", lspbuf.signature_help, _opts({ desc = "LSP function signature" }))
       keymap("n", "gd", lspbuf.definition, _opts({ desc = "LSP definition" }))
       keymap("n", "gD", lspbuf.declaration, _opts({ desc = "LSP declaration" }))
