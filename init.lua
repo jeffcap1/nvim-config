@@ -72,6 +72,7 @@ spec("user.plugins.extras.trouble")
 spec("user.plugins.navic")
 spec("user.plugins.extras.virt-column")
 spec("user.plugins.extras.bullets")
+spec("user.plugins.extras.tiny-inline-diagnostic")
 
 pcall(require, "user.plugins.local_only") -- local plugins
 
