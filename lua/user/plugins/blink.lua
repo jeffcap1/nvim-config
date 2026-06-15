@@ -17,8 +17,11 @@ local M = {
 ---@module 'blink.cmp'
 ---@type blink.cmp.Config
 M.opts = {
-  -- Disable cmdline
+  -- Disable cmdline and oil buffers
   cmdline = { enabled = false },
+  enabled = function()
+    return vim.bo.filetype ~= "oil"
+  end,
   appearance = {
     -- sets the fallback highlight groups to nvim-cmp's highlight groups
     -- useful for when your theme doesn't support blink.cmp
