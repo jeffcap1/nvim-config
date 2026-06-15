@@ -11,7 +11,6 @@ return {
     "typescript",
     "typescriptreact",
     "typescript.tsx",
-    "astro",
   },
   single_file_support = true,
   settings = {

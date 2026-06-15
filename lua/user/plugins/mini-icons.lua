@@ -11,9 +11,6 @@ function M.config()
   MiniIcons.setup({
     -- Icon style: 'glyph' or 'ascii'
     style = "glyph",
-    extension = {
-      astro = { glyph = " ", hl = "MiniIconsOrange", },
-    },
     file = {
       [".nvmrc"] = { glyph = " ", hl = "MiniIconsGreen", },
       ["tmux.conf"] = { glyph = " ", hl = "MiniIconsGreen", },

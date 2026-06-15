@@ -1,6 +1,6 @@
 local M = {
   "nemanjamalesija/ts-expand-hover.nvim",
-  ft = { "typescript", "typescriptreact", "astro" },
+  ft = { "typescript", "typescriptreact" },
 }
 
 M.opts = {
