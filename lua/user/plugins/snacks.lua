@@ -133,10 +133,10 @@ M.keys = {
   { "]]",         function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
   { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
   -- picker
-  { "<leader>ff", function() Snacks.picker.files({ hidden = true }) end, desc = "Find Files" },
+  -- { "<leader>ff", function() Snacks.picker.files({ hidden = true }) end, desc = "Find Files" },
   { "<leader>fg", function() Snacks.picker.git_files({ layout = { preset = 'telescope' } }) end, desc = "Git Files" },
   { "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
-  { "<leader>ft", function() Snacks.picker.grep() end, desc = "Text" },
+  -- { "<leader>ft", function() Snacks.picker.grep() end, desc = "Text" },
   { "<leader>fw", function() Snacks.picker.grep_word() end, desc = "String" },
   { "<leader>fR", function() Snacks.picker.recent() end, desc = "Recent" },
   { "<leader>fr", function() Snacks.picker.resume() end, desc = "Resume" },

@@ -30,6 +30,7 @@ spec("user.plugins.venv-selector")
 -- core plugins
 spec("user.plugins.mini-icons")
 spec("user.plugins.snacks")
+spec("user.plugins.fff")
 spec("user.plugins.vim-tmux-navigator")
 spec("user.plugins.treesitter")
 spec("user.plugins.gitsigns")

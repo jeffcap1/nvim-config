@@ -42,6 +42,7 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function(args)
     local ft = vim.bo[args.buf].filetype
     local lang = vim.treesitter.language.get_lang(ft)
+    if not lang then return end
 
     -- auto install new languages not in treesitter yet
     if not vim.treesitter.language.add(lang) then
