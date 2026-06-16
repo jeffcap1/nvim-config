@@ -139,7 +139,7 @@ M.keys = {
   -- { "<leader>ft", function() Snacks.picker.grep() end, desc = "Text" },
   { "<leader>fw", function() Snacks.picker.grep_word() end, desc = "String" },
   { "<leader>fR", function() Snacks.picker.recent() end, desc = "Recent" },
-  { "<leader>fr", function() Snacks.picker.resume() end, desc = "Resume" },
+  -- { "<leader>fr", function() Snacks.picker.resume() end, desc = "Resume" },
   { "<leader>f\"", function() Snacks.picker.registers() end, desc = "Registers" },
   { "<leader>fd", function() Snacks.picker.diagnostics({ focus = "list" }) end, desc = "Diagnostics" },
   { "<leader>fD", function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer Diagnostics" },

@@ -8,7 +8,8 @@ local M = {
 }
 
 M.opts = {
-  prompt = "> ",
+  prompt_vim_mode = true,
+  follow_symlinks = false,
   layout = {
     prompt_position = "top", -- or 'top'
   },
@@ -16,15 +17,24 @@ M.opts = {
 
 -- stylua: ignore
 M.keys = {
-    { "ff", function() require('fff').find_files() end, desc = 'FFFind files' },
-    { "ft", function() require('fff').live_grep() end, desc = 'LiFFFe grep' },
-    { "fz",
-      function() require('fff').live_grep({ grep = { modes = { 'fuzzy', 'plain' } } }) end,
-      desc = 'Live fffuzy grep',
+    { "<leader>ff", function() require('fff').find_files() end, desc = 'FFFind files' },
+    { "<leader>ft", function() require('fff').live_grep() end, desc = 'LiFFFe grep' },
+    { "<leader>fr", function() require('fff').resume() end, desc = 'FFF resume' },
+    { "<leader>fc", function() require('fff').live_grep({ query = vim.fn.expand('<cword>') }) end, desc = "Grep current word" },
+    { "<leader>fF", function()
+        local root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+        if root then
+          require("fff").find_files_in_dir(root)
+        end
+      end,
+      desc = "Find files (git root)"
     },
-    { "fc",
-      function() require('fff').live_grep({ query = vim.fn.expand("<cword>") }) end,
-      desc = 'Search current word',
+    { "<leader>fv", function()
+        local text = table.concat(vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos(".")), "\n")
+        require("fff").live_grep({ query = text })
+      end,
+      mode = "v",
+      desc = "Grep visual selection"
     },
 }
 -- stylua: ignore end
