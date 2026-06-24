@@ -4,7 +4,7 @@ local M = {
 }
 
 local function get_js_formatter()
-  if FILE_EXISTS_IN_PROJECT_ROOT("biome.json") then
+  if FILE_EXISTS_IN_PROJECT_ROOT("biome.json") or FILE_EXISTS_IN_PROJECT_ROOT("biome.jsonc") then
     return { "biome" }
   elseif FILE_EXISTS_IN_PROJECT_ROOT(".oxfmtrc.json") then
     return { "oxfmt" }
@@ -79,6 +79,24 @@ M.config = function()
     end,
   })
 
+  conform.formatters.biome = {
+    args = function(self, ctx)
+      if self:cwd(ctx) then
+        return { "format", "--write", "--stdin-file-path", "$FILENAME" }
+      end
+      return {
+        "format",
+        "--write",
+        "--stdin-file-path",
+        "$FILENAME",
+        "--indent-style",
+        vim.bo[ctx.buf].expandtab and "space" or "tab",
+        "--indent-width",
+        ctx.shiftwidth,
+      }
+    end,
+  }
+
   conform.formatters.sql_formatter = {
     args = {
       "-l",
@@ -86,9 +104,6 @@ M.config = function()
     },
   }
 
-  conform.formatters.biome = {
-    prepend_args = { "check", "--write" },
-  }
 
   vim.keymap.set({ "n", "v" }, "<leader>lff", function()
     conform.format({ timeout_ms = 500, lsp_format = "fallback" })
