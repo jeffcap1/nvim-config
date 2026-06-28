@@ -5,7 +5,7 @@ local M = {
 
 local function get_js_formatter()
   if FILE_EXISTS_IN_PROJECT_ROOT("biome.json") or FILE_EXISTS_IN_PROJECT_ROOT("biome.jsonc") then
-    return { "biome" }
+    return { "biome-organize-imports", "biome" }
   elseif FILE_EXISTS_IN_PROJECT_ROOT(".oxfmtrc.json") then
     return { "oxfmt" }
   else
@@ -103,7 +103,6 @@ M.config = function()
       "postgresql",
     },
   }
-
 
   vim.keymap.set({ "n", "v" }, "<leader>lff", function()
     conform.format({ timeout_ms = 500, lsp_format = "fallback" })
