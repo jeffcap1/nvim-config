@@ -31,6 +31,14 @@ M.dependencies = {
 local copilot_dir = vim.fn.expand("~/.config/github-copilot")
 local copilot_available = vim.fn.isdirectory(copilot_dir) == 1
 
+local function is_gpt5_model(model)
+  if type(model) ~= "string" then
+    return false
+  end
+
+  return vim.startswith(model, "gpt-5")
+end
+
 M.keys = {
   { "<leader>cc", ":CodeCompanionChat<CR>", desc = "Code Companion Chat" },
   { "<leader>cm", ":CodeCompanionChat<CR>", desc = "Code Companion Chat" },
@@ -40,18 +48,8 @@ M.keys = {
 }
 
 M.opts = {
-  strategies = {
-    chat = {
-      adapter = copilot_available and "copilot" or "gemini",
-    },
-    inline = {
-      adapter = copilot_available and "copilot" or "gemini",
-    },
-  },
-  opts = {
-    -- Set debug logging
-    log_level = "DEBUG",
-  },
+  -- Set debug logging
+  log_level = "DEBUG",
   adapters = {
     http = {
       gemini = function()
@@ -64,7 +62,23 @@ M.opts = {
         })
       end,
       copilot = function()
-        return require("codecompanion.adapters").extend("copilot", {})
+        return require("codecompanion.adapters").extend("copilot", {
+          schema = {
+            model = {
+              default = "gpt-5-mini",
+            },
+            top_p = {
+              enabled = function(adapter)
+                local model = adapter.schema.model.default
+                if type(model) == "function" then
+                  model = model(adapter)
+                end
+
+                return not is_gpt5_model(model)
+              end,
+            },
+          },
+        })
       end,
       ollama = function()
         return require("codecompanion.adapters").extend("ollama", {
@@ -92,7 +106,11 @@ M.opts = {
     },
   },
   interactions = {
+    inline = {
+      adapter = copilot_available and "copilot" or "gemini",
+    },
     chat = {
+      adapter = copilot_available and "copilot" or "gemini",
       keymaps = {
         send = {
           modes = { n = "<CR>", i = "<C-CR>" },
