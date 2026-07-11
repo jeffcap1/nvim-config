@@ -13,6 +13,10 @@ M.opts = {
   layout = {
     prompt_position = "top", -- or 'top'
   },
+  keymaps = {
+    grep_jump_to_next_file = { "<C-j>", "<C-A-n>", "<A-Down>" },
+    grep_jump_to_prev_file = { "<C-k>", "<C-A-p>", "<A-Up>" },
+  },
 }
 
 -- stylua: ignore
