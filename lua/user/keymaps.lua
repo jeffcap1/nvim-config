@@ -24,6 +24,13 @@ keymap("x", "p", '"_dP', XTND({ desc = "Paste without yanking" }))
 keymap("n", "]b", "<cmd>bnext<cr>", XTND({ desc = "Next Buffer" }))
 keymap("n", "[b", "<cmd>bprev<cr>", XTND({ desc = "Previous Buffer" }))
 
+-- terminal navigation
+keymap("t", "<C-t>", [[<C-\><C-n>]], XTND({ desc = "Exit Terminal Mode" }))
+keymap("t", "<M-h>", [[<C-\><C-n><C-w>h]], XTND({ desc = "Terminal Left" }))
+keymap("t", "<M-j>", [[<C-\><C-n><C-w>j]], XTND({ desc = "Terminal Down" }))
+keymap("t", "<M-k>", [[<C-\><C-n><C-w>k]], XTND({ desc = "Terminal Up" }))
+keymap("t", "<M-l>", [[<C-\><C-n><C-w>l]], XTND({ desc = "Terminal Right" }))
+
 -- tab navigation
 keymap("n", "]<tab>", "<cmd>tabnext<cr>", XTND({ desc = "Next Tab" }))
 keymap("n", "[<tab>", "<cmd>tabprev<cr>", XTND({ desc = "Previous Tab" }))
