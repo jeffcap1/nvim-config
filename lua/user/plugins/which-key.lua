@@ -48,6 +48,8 @@ M.opts.spec = {
   -- allows copying to system clipboard
   { "<leader>y", '"+y', mode = { "n", "v" }, desc = "Yank to clipboard", icon = "󰅇 " },
   { "<leader>v", "<cmd>vsplit<CR>", desc = "Split", icon = " " },
+  { "<leader>bca", "<cmd>let @+ = expand('%:p')<cr>", desc = "Copy absolute filepath", icon = "󰅇 " },
+  { "<leader>bcr", "<cmd>let @+ = expand('%:.')<cr>", desc = "Copy relative filepath", icon = "󰅇 " },
   {
     "<leader><space>w",
     function()

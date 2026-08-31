@@ -14,12 +14,6 @@ keymap("v", "<c-k>", ":m '<-2<cr>gv=gv", XTND({ desc = "Move line up" }))
 -- fixes pasting so it keeps the current register
 keymap("x", "p", '"_dP', XTND({ desc = "Paste without yanking" }))
 
--- delete won't copy to register
--- keymap({ "n", "v" }, "<leader>d", '"_d', XTND({ desc = "Delete without yanking" }))
-
--- allows copying to system clipboard
--- keymap({ "n", "v" }, "<leader>y", '"+y', XTND({ desc = "Yank to clipboard" }))
-
 -- buffer navigation
 keymap("n", "]b", "<cmd>bnext<cr>", XTND({ desc = "Next Buffer" }))
 keymap("n", "[b", "<cmd>bprev<cr>", XTND({ desc = "Previous Buffer" }))
