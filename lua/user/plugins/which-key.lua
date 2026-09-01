@@ -32,7 +32,6 @@ M.opts.spec = {
     { "<leader>lc", group = "Choose" },
     { "<leader>lf", group = "Format" },
   },
-  { "<leader>p", group = "Project", icon = " " },
   { "<leader>s", "<cmd>split<CR>", desc = "Split", icon = " " },
   {
     "<leader><tab>",
@@ -61,7 +60,6 @@ M.opts.spec = {
   },
   { "<leader>x", group = "Trouble", icon = " " },
   { "<leader><leader>", group = "Settings", icon = " " },
-  -- { "<leader>q", "<cmd>confirm q<CR>", desc = "Quit" },
 }
 
 M.keys = {

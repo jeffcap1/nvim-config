@@ -55,11 +55,11 @@ spec("user.plugins.which-key")
 spec("user.plugins.noice")
 
 -- other useful plugins
-spec("user.plugins.breadcrumbs")
+-- spec("user.plugins.breadcrumbs")
 spec("user.plugins.extras.debugger")
 spec("user.plugins.extras.leap")
 spec("user.plugins.extras.highlight-colors")
-spec("user.plugins.extras.lab")
+-- spec("user.plugins.extras.lab")
 spec("user.plugins.extras.lazydev")
 spec("user.plugins.extras.navbuddy")
 spec("user.plugins.extras.oil")
@@ -75,6 +75,7 @@ spec("user.plugins.extras.bullets")
 spec("user.plugins.extras.tiny-inline-diagnostic")
 spec("user.plugins.extras.ripple")
 spec("user.plugins.extras.codediff")
+spec("user.plugins.extras.github-pr-reviewer")
 
 pcall(require, "user.plugins.local_only") -- local plugins
 
