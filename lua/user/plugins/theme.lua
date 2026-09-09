@@ -82,6 +82,12 @@ function M.config()
     },
   })
   vim.cmd.colorscheme("catppuccin")
+
+  local colors = require("catppuccin.palettes").get_palette()
+  vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { sp = colors.red, undercurl = true })
+  vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { sp = colors.yellow, undercurl = true })
+  vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", { sp = colors.sky, undercurl = true })
+  vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", { sp = colors.teal, undercurl = true })
 end
 
 return M

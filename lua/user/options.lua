@@ -2,6 +2,11 @@ vim.g.mapleader = " "
 
 vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
 
+-- Undercurl
+vim.cmd([[let &t_Cs = "\e[4::3m"]])
+vim.cmd([[let &t_Ce = "\e[4::0m"]])
+vim.cmd([[let &t_8u = "\e[58::2::%lu::%lu::%lum"]])
+
 -- tabs
 vim.opt.tabstop = 2 -- Insert 2 spaces for a tab
 vim.opt.softtabstop = 2 -- Insert 2 spaces for a tab
