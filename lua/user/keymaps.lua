@@ -1,8 +1,5 @@
 local keymap = vim.keymap.set
 
--- Better window navigation
-keymap("n", "<m-tab>", "<c-6>")
-
 -- Stay in indent mode
 keymap("v", "<", "<gv", XTND({ desc = "Indent left" }))
 keymap("v", ">", ">gv", XTND({ desc = "Indent right" }))
@@ -12,7 +9,7 @@ keymap("v", "<c-j>", ":m '>+1<cr>gv=gv", XTND({ desc = "Move line down" }))
 keymap("v", "<c-k>", ":m '<-2<cr>gv=gv", XTND({ desc = "Move line up" }))
 
 -- fixes pasting so it keeps the current register
-keymap("x", "p", '"_dP', XTND({ desc = "Paste without yanking" }))
+keymap("x", "p", [["_c<C-r><C-o>"<Esc>]], XTND({ desc = "Paste without yanking" }))
 
 -- buffer navigation
 keymap("n", "]b", "<cmd>bnext<cr>", XTND({ desc = "Next Buffer" }))
@@ -60,12 +57,6 @@ for key, km in pairs(scroll_center_keymaps) do
     return center_on_scroll(km[1])
   end, { expr = true, desc = km[2] })
 end
-
--- add context menu
-vim.cmd([[:amenu 10.100 mousemenu.Goto\ Definition <cmd>lua vim.lsp.buf.definition()<cr>]])
-vim.cmd([[:amenu 10.110 mousemenu.References <cmd>lua vim.lsp.buf.references()<cr>]])
-keymap("n", "<RightMouse>", "<cmd>:popup mousemenu<cr>", { silent = true })
--- keymap("n", "<Tab>", "<cmd>:popup mousemenu<cr>", { silent = true })
 
 -- working with multi-line
 keymap({ "n", "x" }, "j", "gj", XTND({ desc = "Move down" }))
