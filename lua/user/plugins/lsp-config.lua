@@ -66,47 +66,12 @@ function M.config()
     },
   })
 
-  -- special setup for biome vs eslint
-  local function any_in_root(files)
-    for _, file in ipairs(files) do
-      if FILE_EXISTS_IN_PROJECT_ROOT(file) then
-        return true
-      end
-    end
-    return false
-  end
+  -- JS linters: always enabled; each decides per buffer whether to attach.
+  -- Precedence biome > oxlint > eslint is enforced in user.lsp_settings.{eslint,oxlint}
+  -- (see user.js_project), so a project with biome + a leftover .eslintrc gets biome only.
+  vim.list_extend(USERS_LSP_SERVERS, { "biome", "oxlint", "eslint" })
 
-  local eslint_config_files = {
-    -- flat config
-    "eslint.config.js",
-    "eslint.config.mjs",
-    "eslint.config.cjs",
-    "eslint.config.ts",
-    "eslint.config.mts",
-    "eslint.config.cts",
-    -- legacy config (flat config disabled in user.lsp_settings.eslint)
-    ".eslintrc",
-    ".eslintrc.js",
-    ".eslintrc.mjs",
-    ".eslintrc.cjs",
-    ".eslintrc.ts",
-    ".eslintrc.json",
-    ".eslintrc.jsonc",
-    ".eslintrc.yaml",
-    ".eslintrc.yml",
-  }
-
-  if any_in_root({ "biome.json", "biome.jsonc" }) then
-    table.insert(USERS_LSP_SERVERS, "biome")
-  elseif FILE_EXISTS_IN_PROJECT_ROOT(".oxlintrc.json") then
-    table.insert(USERS_LSP_SERVERS, "oxlint")
-  elseif any_in_root(eslint_config_files) then
-    table.insert(USERS_LSP_SERVERS, "eslint")
-  elseif IS_JS_FILETYPE() then
-    vim.notify("No JS linter loaded", vim.log.levels.INFO)
-  end
-
-  -- define your on_attach once
+  -- shared on_attach, run before the server's own lspconfig on_attach
   local on_attach = function(client, bufnr)
     -- disable formatting for specific servers
     if client.name == "ruff" or client.name == "pyright" then
@@ -122,11 +87,27 @@ function M.config()
     -- (optional) put your keymaps or other buffer-local stuff here
   end
 
+  -- chain ours with lspconfig's per-server on_attach instead of replacing it
+  -- (eslint/oxlint/pyright define buffer commands like :LspEslintFixAll there)
+  local function with_base_on_attach(server)
+    local base = vim.lsp.config[server] and vim.lsp.config[server].on_attach
+    if not base then
+      return on_attach
+    end
+    local base_fns = type(base) == "table" and base or { base }
+    return function(client, bufnr)
+      on_attach(client, bufnr)
+      for _, fn in ipairs(base_fns) do
+        fn(client, bufnr)
+      end
+    end
+  end
+
   -- setup language server
   for _, lsp_server in pairs(USERS_LSP_SERVERS) do
     local opts = {
       capabilities = capabilities,
-      on_attach = on_attach,
+      on_attach = with_base_on_attach(lsp_server),
     }
 
     local require_ok, settings = pcall(require, "user.lsp_settings." .. lsp_server)

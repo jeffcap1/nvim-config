@@ -38,8 +38,16 @@ M.opts = {
     cvs = false,
     ["."] = false,
   },
-  copilot_node_command = vim.fn.expand("$HOME") .. "/.local/share/fnm/node-versions/v24.9.0/installation/bin/node",
 }
+
+-- resolved when copilot loads (InsertEnter), not at startup.
+-- NOTE: only used when `server = { type = "nodejs" }`; copilot.lua defaults to its native
+-- copilot-language-server binary, which needs no node. Kept so switching to nodejs just works.
+-- copilot.lua requires Node.js >= 22; resolver order lives in user/node.lua (fnm -> volta -> PATH)
+function M.config(_, opts)
+  opts.copilot_node_command = require("user.node").find({ min_major = 22 }) or "node"
+  require("copilot").setup(opts)
+end
 
 -- stylua: ignore
 M.keys = {

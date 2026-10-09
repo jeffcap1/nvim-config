@@ -3,10 +3,13 @@ local M = {
   event = { "BufReadPre", "BufNewFile" },
 }
 
-local function get_js_formatter()
-  if FILE_EXISTS_IN_PROJECT_ROOT("biome.json") or FILE_EXISTS_IN_PROJECT_ROOT("biome.jsonc") then
+-- chosen per buffer (nearest config above the file), matching the linter precedence
+-- in user.js_project so formatter and linter always agree
+local function get_js_formatter(bufnr)
+  local js = require("user.js_project")
+  if js.uses(bufnr, "biome") then
     return { "biome-organize-imports", "biome" }
-  elseif FILE_EXISTS_IN_PROJECT_ROOT(".oxfmtrc.json") then
+  elseif js.uses(bufnr, "oxfmt") then
     return { "oxfmt" }
   else
     return { "prettierd", "prettier", stop_after_first = true }
@@ -25,29 +28,29 @@ M.config = function()
       python = { "ruff_organize_imports", "ruff_format" },
       -- You can customize some of the format options for the filetype (:help conform.format)
       -- Conform will run the first available formatter
-      javascript = function()
-        return get_js_formatter()
+      javascript = function(bufnr)
+        return get_js_formatter(bufnr)
       end,
-      typescript = function()
-        return get_js_formatter()
+      typescript = function(bufnr)
+        return get_js_formatter(bufnr)
       end,
-      javascriptreact = function()
-        return get_js_formatter()
+      javascriptreact = function(bufnr)
+        return get_js_formatter(bufnr)
       end,
-      typescriptreact = function()
-        return get_js_formatter()
+      typescriptreact = function(bufnr)
+        return get_js_formatter(bufnr)
       end,
-      astro = function()
-        return get_js_formatter()
+      astro = function(bufnr)
+        return get_js_formatter(bufnr)
       end,
-      vue = function()
-        return get_js_formatter()
+      vue = function(bufnr)
+        return get_js_formatter(bufnr)
       end,
-      svelte = function()
-        return get_js_formatter()
+      svelte = function(bufnr)
+        return get_js_formatter(bufnr)
       end,
-      css = function()
-        return get_js_formatter()
+      css = function(bufnr)
+        return get_js_formatter(bufnr)
       end,
       scss = { "prettierd", "prettier", stop_after_first = true },
       less = { "prettierd", "prettier", stop_after_first = true },
