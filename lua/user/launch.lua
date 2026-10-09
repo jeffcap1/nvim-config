@@ -177,7 +177,7 @@ function GET_PKG_PATH(pkg, path, opts)
   opts.warn = opts.warn == nil and true or opts.warn
   path = path or ""
   local ret = root .. "/packages/" .. pkg .. "/" .. path
-  if opts.warn and not vim.loop.fs_stat(ret) then
+  if opts.warn and not vim.uv.fs_stat(ret) then
     NOTIFY.WARNING(string.format("Mason package path not found for **%s**:\n- `%s`\nYou may need to force update the package.", pkg, path))
   end
   return ret

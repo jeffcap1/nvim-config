@@ -5,8 +5,8 @@ local M = {
 
 -- stylua: ignore start
 M.keys = {
-  { "]h", "<cmd>lua require 'gitsigns'.next_hunk()<cr>", desc = "Next Hunk", silent = true  },
-  { "[h", "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", desc = "Previous Hunk", silent = true  },
+  { "]h", "<cmd>lua require 'gitsigns'.nav_hunk('next')<cr>", desc = "Next Hunk", silent = true  },
+  { "[h", "<cmd>lua require 'gitsigns'.nav_hunk('prev')<cr>", desc = "Previous Hunk", silent = true  },
   { "<leader>gd", "<cmd>Gitsigns diffthis HEAD<cr>", desc = "Git Diff", silent = true },
   { "<leader>gl", "<cmd>lua require 'gitsigns'.blame_line()<cr>", desc = "Blame", silent = true  },
   { "<leader>gL", "<cmd>lua require 'gitsigns'.toggle_current_line_blame()<cr>", desc = "Blame Inline", silent = true  },

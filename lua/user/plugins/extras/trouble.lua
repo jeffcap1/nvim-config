@@ -2,7 +2,7 @@ local M = {
   "folke/trouble.nvim",
   cmd = "Trouble",
   dependencies = {
-    "echasnovski/mini.icons",
+    "nvim-mini/mini.icons",
   },
   opts = {},
 }

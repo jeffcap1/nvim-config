@@ -51,7 +51,6 @@ function M.config()
         [vim.diagnostic.severity.INFO] = "DiagnosticInfo",
         [vim.diagnostic.severity.HINT] = "DiagnosticHint",
       },
-      define = true, -- Ensure default signs are defined with these customizations
     },
     virtual_text = false,
     update_in_insert = false,
@@ -66,9 +65,6 @@ function M.config()
       prefix = "",
     },
   })
-
-  -- rounded borders for LSP
-  require("lspconfig.ui.windows").default_options.border = "rounded"
 
   -- special setup for biome vs eslint
   local function any_in_root(files)
@@ -113,7 +109,7 @@ function M.config()
   -- define your on_attach once
   local on_attach = function(client, bufnr)
     -- disable formatting for specific servers
-    if client.name == "ruff_lsp" or client.name == "pyright" then
+    if client.name == "ruff" or client.name == "pyright" then
       client.server_capabilities.documentFormattingProvider = false
       client.server_capabilities.documentRangeFormattingProvider = false
     end

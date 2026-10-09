@@ -1,5 +1,5 @@
 local M = {
-  "echasnovski/mini.icons",
+  "nvim-mini/mini.icons",
   version = false, -- Set to main branch, use version = '*' for stable version
   event = "VeryLazy",
 }

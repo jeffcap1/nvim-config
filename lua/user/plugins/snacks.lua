@@ -5,7 +5,7 @@ local M = {
   priority = 1000,
   lazy = false,
   dependencies = {
-    "echasnovski/mini.icons",
+    "nvim-mini/mini.icons",
   },
 }
 

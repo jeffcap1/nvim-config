@@ -64,29 +64,6 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- keymaps for incremental selection
-vim.keymap.set({ "x" }, "[n", function()
-  require("vim.treesitter._select").select_prev(vim.v.count1)
-end, { desc = "Select previous treesitter node" })
-
-vim.keymap.set({ "x" }, "]n", function()
-  require("vim.treesitter._select").select_next(vim.v.count1)
-end, { desc = "Select next treesitter node" })
-
-vim.keymap.set({ "x", "o" }, "an", function()
-  if vim.treesitter.get_parser(nil, nil, { error = false }) then
-    require("vim.treesitter._select").select_parent(vim.v.count1)
-  else
-    vim.lsp.buf.selection_range(vim.v.count1)
-  end
-end, { desc = "Select parent treesitter node or outer incremental lsp selections" })
-
-vim.keymap.set({ "x", "o" }, "in", function()
-  if vim.treesitter.get_parser(nil, nil, { error = false }) then
-    require("vim.treesitter._select").select_child(vim.v.count1)
-  else
-    vim.lsp.buf.selection_range(-vim.v.count1)
-  end
-end, { desc = "Select child treesitter node or inner incremental lsp selections" })
+-- incremental selection ([n ]n [N ]N an in) is built into nvim 0.12 defaults
 
 return M

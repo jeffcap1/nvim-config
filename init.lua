@@ -39,7 +39,6 @@ spec("user.plugins.blame")
 spec("user.plugins.ufo")
 spec("user.plugins.harpoon")
 spec("user.plugins.lualine")
-spec("user.plugins.project")
 
 -- quality of life
 spec("user.plugins.bqf")

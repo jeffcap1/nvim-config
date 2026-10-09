@@ -31,12 +31,14 @@ M.dependencies = {
 local copilot_dir = vim.fn.expand("~/.config/github-copilot")
 local copilot_available = vim.fn.isdirectory(copilot_dir) == 1
 
-local function is_gpt5_model(model)
-  if type(model) ~= "string" then
-    return false
+-- Copilot /models advertises reasoning_effort (low|medium|high|xhigh|max) for these.
+-- Only send it for them; other models may reject the param.
+local function supports_reasoning_effort(adapter)
+  local model = adapter.schema.model.default
+  if type(model) == "function" then
+    model = model(adapter)
   end
-
-  return vim.startswith(model, "gpt-5")
+  return type(model) == "string" and vim.startswith(model, "claude-opus-5")
 end
 
 M.keys = {
@@ -52,30 +54,20 @@ M.opts = {
   log_level = "DEBUG",
   adapters = {
     http = {
-      gemini = function()
-        return require("codecompanion.adapters").extend("gemini", {
-          schema = {
-            model = {
-              default = "gemini-2.0-flash-exp",
-            },
-          },
-        })
-      end,
       copilot = function()
         return require("codecompanion.adapters").extend("copilot", {
           schema = {
             model = {
-              default = "gpt-5-mini",
+              default = "claude-opus-5.5",
             },
-            top_p = {
-              enabled = function(adapter)
-                local model = adapter.schema.model.default
-                if type(model) == "function" then
-                  model = model(adapter)
-                end
-
-                return not is_gpt5_model(model)
-              end,
+            reasoning_effort = {
+              order = 2,
+              mapping = "parameters",
+              type = "enum",
+              desc = "Reasoning effort (Copilot-supported models only)",
+              default = "medium",
+              choices = { "low", "medium", "high", "xhigh", "max" },
+              enabled = supports_reasoning_effort,
             },
           },
         })
@@ -107,10 +99,10 @@ M.opts = {
   },
   interactions = {
     inline = {
-      adapter = copilot_available and "copilot" or "gemini",
+      adapter = copilot_available and "copilot" or "ollama",
     },
     chat = {
-      adapter = copilot_available and "copilot" or "gemini",
+      adapter = copilot_available and "copilot" or "ollama",
       keymaps = {
         send = {
           modes = { n = "<CR>", i = "<C-CR>" },

@@ -3,6 +3,9 @@ vim.g.mapleader = " "
 vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
 
 -- Undercurl
+-- TODO: revisit/test removing these. Nvim has no t_XX termcap options (:h t_xx),
+-- so these are likely no-ops; the highlight overrides in theme.lua are what
+-- actually render undercurl. Remove, then confirm undercurl still shows.
 vim.cmd([[let &t_Cs = "\e[4::3m"]])
 vim.cmd([[let &t_Ce = "\e[4::0m"]])
 vim.cmd([[let &t_8u = "\e[58::2::%lu::%lu::%lum"]])
