@@ -1,5 +1,6 @@
 local M = {
   "monkoose/neocodeium",
+  event = "InsertEnter",
 }
 
 M.opts = {

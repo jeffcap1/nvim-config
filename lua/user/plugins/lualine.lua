@@ -1,10 +1,18 @@
 local M = {
   "nvim-lualine/lualine.nvim",
-  dependencies = {
-    "AndreM222/copilot-lualine",
-    "monkoose/neocodeium",
-  },
 }
+
+-- Only show AI status for plugins spec'd on this machine (see plugins/local_only).
+-- `cond` waits until the plugin is actually loaded so lualine never forces a load.
+local function is_spec(name)
+  return require("lazy.core.config").plugins[name] ~= nil
+end
+
+local function is_loaded(module)
+  return function()
+    return package.loaded[module] ~= nil
+  end
+end
 
 -- NeoCodeium Status
 -- @see https://www.reddit.com/r/neovim/comments/1fc34na/comment/lm5wr1j/?rdt=59883
@@ -42,24 +50,31 @@ local function show_codeium_status()
   end
 end
 
-local function show_copilot_status()
-  if vim.g.loaded_copilot then
-    return "copilot"
-  else
-    return ""
+function M.opts()
+  local lualine_y = {}
+
+  -- copilot-lualine component is provided by user.plugins.extras.copilot
+  if is_spec("copilot.lua") and is_spec("copilot-lualine") then
+    table.insert(lualine_y, { "copilot", cond = is_loaded("copilot") })
   end
+
+  if is_spec("neocodeium") then
+    table.insert(lualine_y, { show_codeium_status, cond = is_loaded("neocodeium") })
+  end
+
+  vim.list_extend(lualine_y, { "progress", "selectioncount" })
+
+  return {
+    options = {
+      -- theme = "dracula",
+      theme = "catppuccin-nvim",
+    },
+
+    sections = {
+      lualine_y = lualine_y,
+      lualine_z = { "location" },
+    },
+  }
 end
-
-M.opts = {
-  options = {
-    -- theme = "dracula",
-    theme = "catppuccin-nvim",
-  },
-
-  sections = {
-    lualine_y = { show_copilot_status, show_codeium_status, "progress", "selectioncount" },
-    lualine_z = { "location" },
-  },
-}
 
 return M

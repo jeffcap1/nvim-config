@@ -47,7 +47,6 @@ vim.api.nvim_create_autocmd("FileType", {
     "DressingSelect",
     "tsplayground",
     "startuptime",
-    "tsplayground",
     "neotest-output",
     "checkhealth",
     "neotest-summary",
@@ -55,7 +54,6 @@ vim.api.nvim_create_autocmd("FileType", {
     "dbout",
     "gitsigns-blame",
     "dap-float",
-    "",
   },
   callback = function()
     vim.cmd([[

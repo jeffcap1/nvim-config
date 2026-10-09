@@ -16,7 +16,7 @@ M.keys = {
 }
 -- stylua: ignore end
 
-function M.opts()
+function M.config()
   vim.g.skip_ts_context_commentstring_module = true
 
   ---@diagnostic disable: missing-fields

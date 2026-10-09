@@ -86,7 +86,7 @@ vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "
 
 -- folding
 vim.opt.foldmethod = "indent"
-vim.opt.foldtext = "v:lua.require'lazyvim.util'.ui.foldtext()"
+vim.opt.foldtext = "" -- native highlighted fold line (ufo overrides where active)
 vim.o.foldcolumn = "1" -- '0' is not bad and will disable fold icons
 vim.o.foldlevel = 9999999 -- Using ufo provider need a large value, feel free to decrease the value
 vim.o.foldlevelstart = 9999999

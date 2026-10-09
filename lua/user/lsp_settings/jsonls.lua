@@ -1,8 +1,9 @@
 return {
-  -- lazy-load schemastore when needed
-  on_new_config = function(new_config)
-    new_config.settings.json.schemas = new_config.settings.json.schemas or {}
-    vim.list_extend(new_config.settings.json.schemas, require "schemastore".json.schemas())
+  -- lazy-load schemastore when the server starts
+  -- (vim.lsp.config ignores lspconfig's legacy `on_new_config`; mutate settings in place)
+  before_init = function(_, config)
+    config.settings.json.schemas = config.settings.json.schemas or {}
+    vim.list_extend(config.settings.json.schemas, require("schemastore").json.schemas())
   end,
   settings = {
     json = {

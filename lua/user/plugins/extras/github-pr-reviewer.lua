@@ -70,8 +70,10 @@ M.config = function(_, opts)
 end
 
 M.keys = {
-  { "<leader>p", "<cmd>PRReviewMenu<cr>", desc = "PR Review Menu" },
+  { "<leader>p", "<CMD>PRReviewMenu<CR>", desc = "PR Review Menu" },
   { "<leader>p", ":<C-u>'<,'>PRSuggestChange<CR>", desc = "Suggest change", mode = "v" },
+  { "<leader>c", "<CMD>PRLineComment<CR>", desc = "Comment on current line" },
+  { "<leader>c", "<CMD>PRLineComment<CR>", desc = "Comment for block", mode = "v" },
 }
 
 return M

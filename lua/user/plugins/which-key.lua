@@ -1,14 +1,12 @@
 local M = {
   "folke/which-key.nvim",
   event = "VeryLazy",
-  opts = {
-    delay = 300,
-  },
 }
 
 M.opts = {
   ---@type false | "classic" | "modern" | "helix"
   preset = "helix",
+  delay = 300,
   win = {
     wo = {
       winblend = 0,
@@ -19,8 +17,8 @@ M.opts = {
 M.opts.spec = {
   { "<leader>_", "<cmd>res<CR>", desc = "Zoom horizontal split", icon = " " },
   { "<leader>|", "<cmd>vert res<CR>", desc = "Zoom vertical split", icon = " " },
+  { "<leader>a", group = "CodeCompanion", icon = "󰭹 " },
   { "<leader>b", group = "Buffers" },
-  { "<leader>c", group = "CodeCompanion", icon = "󰭹 " },
   { "<leader>d", group = "Debug" },
   { "<leader>f", group = "Find" },
   { "<leader>g", group = "Git" },

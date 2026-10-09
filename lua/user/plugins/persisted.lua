@@ -21,16 +21,16 @@ M.opts = {
     { "/", exact = true },
     { "/tmp", exact = true },
   },
-
-  -- fix starting session not in git root (monorepo and possibly workspaces)
-  config = function(_, opts)
-    local persisted = require("persisted")
-    persisted.branch = function()
-      local branch = vim.fn.systemlist("git branch --show-current")[1]
-      return vim.v.shell_error == 0 and branch or nil
-    end
-    persisted.setup(opts)
-  end,
 }
+
+-- fix starting session not in git root (monorepo and possibly workspaces)
+function M.config(_, opts)
+  local persisted = require("persisted")
+  persisted.branch = function()
+    local branch = vim.fn.systemlist("git branch --show-current")[1]
+    return vim.v.shell_error == 0 and branch or nil
+  end
+  persisted.setup(opts)
+end
 
 return M

@@ -8,10 +8,11 @@ return {
       },
     },
   },
-  -- lazy-load schemastore when needed
-  on_new_config = function(new_config)
-    new_config.settings.yaml.schemas =
-      vim.tbl_deep_extend("force", new_config.settings.yaml.schemas or {}, require "schemastore".yaml.schemas())
+  -- lazy-load schemastore when the server starts
+  -- (vim.lsp.config ignores lspconfig's legacy `on_new_config`; mutate settings in place)
+  before_init = function(_, config)
+    config.settings.yaml.schemas =
+      vim.tbl_deep_extend("force", config.settings.yaml.schemas or {}, require("schemastore").yaml.schemas())
   end,
   settings = {
     redhat = { telemetry = { enabled = false } },

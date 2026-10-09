@@ -55,19 +55,40 @@ function M.config()
   require("lspconfig.ui.windows").default_options.border = "rounded"
 
   -- special setup for biome vs eslint
-  if FILE_EXISTS_IN_PROJECT_ROOT("biome.json") then
+  local function any_in_root(files)
+    for _, file in ipairs(files) do
+      if FILE_EXISTS_IN_PROJECT_ROOT(file) then
+        return true
+      end
+    end
+    return false
+  end
+
+  local eslint_config_files = {
+    -- flat config
+    "eslint.config.js",
+    "eslint.config.mjs",
+    "eslint.config.cjs",
+    "eslint.config.ts",
+    "eslint.config.mts",
+    "eslint.config.cts",
+    -- legacy config (flat config disabled in user.lsp_settings.eslint)
+    ".eslintrc",
+    ".eslintrc.js",
+    ".eslintrc.mjs",
+    ".eslintrc.cjs",
+    ".eslintrc.ts",
+    ".eslintrc.json",
+    ".eslintrc.jsonc",
+    ".eslintrc.yaml",
+    ".eslintrc.yml",
+  }
+
+  if any_in_root({ "biome.json", "biome.jsonc" }) then
     table.insert(USERS_LSP_SERVERS, "biome")
   elseif FILE_EXISTS_IN_PROJECT_ROOT(".oxlintrc.json") then
     table.insert(USERS_LSP_SERVERS, "oxlint")
-  elseif
-    FILE_EXISTS_IN_PROJECT_ROOT(".eslintrc")
-    or FILE_EXISTS_IN_PROJECT_ROOT(".eslintrc.js")
-    or FILE_EXISTS_IN_PROJECT_ROOT(".eslintrc.mjs")
-    or FILE_EXISTS_IN_PROJECT_ROOT(".eslintrc.cjs")
-    or FILE_EXISTS_IN_PROJECT_ROOT(".eslintrc.ts")
-    or FILE_EXISTS_IN_PROJECT_ROOT(".eslintrc.json")
-    or FILE_EXISTS_IN_PROJECT_ROOT(".eslintrc.jsonc")
-  then
+  elseif any_in_root(eslint_config_files) then
     table.insert(USERS_LSP_SERVERS, "eslint")
   elseif IS_JS_FILETYPE() then
     vim.notify("No JS linter loaded", vim.log.levels.INFO)

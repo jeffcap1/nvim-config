@@ -1,6 +1,6 @@
 local M = {
-  "hasansujon786/nvim-navbuddy",
-  event = { "BufReadPost", "BufNewFile" },
+  "SmiteshP/nvim-navic",
+  lazy = true, -- loaded on require (nvim-navbuddy dependency)
 }
 
 local icons = require("user.icons")

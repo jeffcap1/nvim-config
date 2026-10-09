@@ -40,11 +40,11 @@ local function is_gpt5_model(model)
 end
 
 M.keys = {
-  { "<leader>cc", ":CodeCompanionChat<CR>", desc = "Code Companion Chat" },
-  { "<leader>cm", ":CodeCompanionChat<CR>", desc = "Code Companion Chat" },
-  { "<leader>ci", ":CodeCompanion<CR>", desc = "Code Companion Inline" },
-  { "<leader>ca", ":CodeCompanionActions<CR>", desc = "Code Companion Inline" },
-  { "<leader>cr", ":CodeCompanionCmd<CR>", desc = "Code Companion Run Command" },
+  { "<leader>ac", ":CodeCompanionChat<CR>", desc = "Code Companion Chat" },
+  { "<leader>am", ":CodeCompanionChat<CR>", desc = "Code Companion Chat" },
+  { "<leader>ai", ":CodeCompanion<CR>", desc = "Code Companion Inline" },
+  { "<leader>aa", ":CodeCompanionActions<CR>", desc = "Code Companion Actions" },
+  { "<leader>ar", ":CodeCompanionCmd<CR>", desc = "Code Companion Run Command" },
 }
 
 M.opts = {

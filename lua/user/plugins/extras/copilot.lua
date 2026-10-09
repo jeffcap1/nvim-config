@@ -47,4 +47,8 @@ M.keys = {
 }
 -- stylua: ignore end
 
-return M
+return {
+  M,
+  -- lualine component (only puts lualine/components/copilot.lua on rtp; doesn't load copilot)
+  { "AndreM222/copilot-lualine" },
+}
