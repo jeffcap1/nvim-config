@@ -1,9 +1,8 @@
 local M = {
   "saghen/blink.cmp",
-  version = "v0.*",
+  version = "1.*", -- release tags ship the prebuilt fuzzy-matcher binary
   opts_extend = {
-    "sources.completion.enabled_providers",
-    "lazydev",
+    "sources.default",
   },
   event = "InsertEnter",
   dependencies = {
@@ -57,10 +56,10 @@ M.opts = {
     enabled = true,
   },
 
+  -- luasnip preset wires expand + active + jump to LuaSnip
+  -- (expand alone left <Tab>/<S-Tab> jumping on vim.snippet, which can't see LuaSnip snippets)
   snippets = {
-    expand = function(...)
-      return require("luasnip").lsp_expand(...)
-    end,
+    preset = "luasnip",
   },
 
   keymap = {
@@ -69,10 +68,12 @@ M.opts = {
   },
 
   sources = {
+    default = { "lazydev", "lsp", "path", "snippets", "buffer" },
     providers = {
       lazydev = {
         name = "LazyDev",
         module = "lazydev.integrations.blink",
+        score_offset = 100, -- rank above lua_ls (lazydev only returns items in lua buffers)
         fallbacks = { "lsp" },
       },
     },
