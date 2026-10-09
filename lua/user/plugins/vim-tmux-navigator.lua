@@ -79,7 +79,7 @@ M.config = function()
   for _, mapping in ipairs(mappings) do
     local lhs, direction = mapping[1], mapping[2]
 
-    vim.keymap.set("n", lhs, function()
+    vim.keymap.set({ "n", "t" }, lhs, function()
       navigate(direction)
     end, {
       silent = true,

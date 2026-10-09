@@ -32,9 +32,9 @@ function M.config()
   vim.keymap.set("n", "K", function()
     local winid = require("ufo").peekFoldedLinesUnderCursor()
     if not winid then
-      vim.lsp.buf.hover()
+      require("user.plugins.lsp-config").hover()
     end
-  end)
+  end, { desc = "Peek fold or LSP hover" })
 
   local handler = function(virtText, lnum, endLnum, width, truncate)
     local newVirtText = {}

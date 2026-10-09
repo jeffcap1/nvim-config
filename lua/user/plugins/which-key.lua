@@ -19,6 +19,7 @@ M.opts.spec = {
   { "<leader>|", "<cmd>vert res<CR>", desc = "Zoom vertical split", icon = " " },
   { "<leader>a", group = "CodeCompanion", icon = "󰭹 " },
   { "<leader>b", group = "Buffers" },
+  { "<leader>bc", group = "Copy path", icon = "󰅇 " },
   { "<leader>d", group = "Debug" },
   { "<leader>f", group = "Find" },
   { "<leader>g", group = "Git" },
@@ -30,7 +31,7 @@ M.opts.spec = {
     { "<leader>lc", group = "Choose" },
     { "<leader>lf", group = "Format" },
   },
-  { "<leader>s", "<cmd>split<CR>", desc = "Split", icon = " " },
+  { "<leader>s", "<cmd>split<CR>", desc = "Horizontal split", icon = " " },
   {
     "<leader><tab>",
     group = "Tab",
@@ -44,7 +45,7 @@ M.opts.spec = {
   },
   -- allows copying to system clipboard
   { "<leader>y", '"+y', mode = { "n", "v" }, desc = "Yank to clipboard", icon = "󰅇 " },
-  { "<leader>v", "<cmd>vsplit<CR>", desc = "Split", icon = " " },
+  { "<leader>v", "<cmd>vsplit<CR>", desc = "Vertical split", icon = " " },
   { "<leader>bca", "<cmd>let @+ = expand('%:p')<cr>", desc = "Copy absolute filepath", icon = "󰅇 " },
   { "<leader>bcr", "<cmd>let @+ = expand('%:.')<cr>", desc = "Copy relative filepath", icon = "󰅇 " },
   {
@@ -56,6 +57,8 @@ M.opts.spec = {
     desc = "Toggle word wrap",
     icon = "󰖶 ",
   },
+  { "<leader>m", group = "Markdown" },
+  { "<leader>t", group = "Todo" },
   { "<leader>x", group = "Trouble", icon = " " },
   { "<leader><leader>", group = "Settings", icon = " " },
 }
@@ -68,8 +71,6 @@ M.keys = {
     end,
     desc = "Buffer Local Keymaps (which-key)",
   },
-  { "]b", "<cmd>bnext<cr>", desc = "Next Buffer" },
-  { "[b", "<cmd>bprev<cr>", desc = "Previous Buffer" },
 }
 
 return M

@@ -81,7 +81,7 @@ local dap_ui = {
     keys = {
       { "<leader>du", function() require("dapui").toggle({ }) end, desc = "Dap UI" },
       { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = {"n", "v"} },
-      { "<leader>dw", function() require("dapui").elements.watches.add() end, "Add Watch", },
+      { "<leader>dw", function() require("dapui").elements.watches.add() end, desc = "Add Watch", },
       { "<leader>dh", function() require("dap.ui.widgets").hover() end, desc = "Widgets" },
     },
   -- stylua: ignore end

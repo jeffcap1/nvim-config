@@ -11,6 +11,22 @@ M.toggle_inlay_hints = function()
   end
 end
 
+-- hover with expanded TS types for ts/tsx/astro, plain LSP hover otherwise
+-- (shared by `gh` here and `K` in ufo.lua)
+M.hover = function()
+  local ts_ft = { typescript = true, typescriptreact = true, astro = true }
+
+  if ts_ft[vim.bo.filetype] then
+    local ok, ts_hover = pcall(require, "ts_expand_hover")
+    if ok and ts_hover and ts_hover.hover then
+      ts_hover.hover()
+      return
+    end
+  end
+
+  vim.lsp.buf.hover()
+end
+
 function M.config()
   local icons = require("user.icons")
   local capabilities = require("blink.cmp").get_lsp_capabilities()
@@ -153,20 +169,7 @@ function M.config()
       -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 
       -- keymap("n", "gh", lspbuf.hover, _opts({ desc = "LSP hover help" }))
-      keymap("n", "gh", function()
-        local ft = vim.bo[ev.buf].filetype
-        local ts_ft = { typescript = true, typescriptreact = true, astro = true }
-
-        if ts_ft[ft] then
-          local ok, ts_hover = pcall(require, "ts_expand_hover")
-          if ok and ts_hover and ts_hover.hover then
-            ts_hover.hover()
-            return
-          end
-        end
-
-        vim.lsp.buf.hover()
-      end, _opts({ desc = "Universal LSP hover help" }))
+      keymap("n", "gh", M.hover, _opts({ desc = "Universal LSP hover help" }))
 
       keymap("n", "gH", lspbuf.signature_help, _opts({ desc = "LSP function signature" }))
       keymap("n", "gd", lspbuf.definition, _opts({ desc = "LSP definition" }))

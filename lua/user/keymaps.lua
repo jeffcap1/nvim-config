@@ -15,12 +15,22 @@ keymap("x", "p", [["_c<C-r><C-o>"<Esc>]], XTND({ desc = "Paste without yanking" 
 keymap("n", "]b", "<cmd>bnext<cr>", XTND({ desc = "Next Buffer" }))
 keymap("n", "[b", "<cmd>bprev<cr>", XTND({ desc = "Previous Buffer" }))
 
--- terminal navigation
+-- terminal navigation (<M-hjkl> lives in vim-tmux-navigator.lua for n + t modes)
 keymap("t", "<C-t>", [[<C-\><C-n>]], XTND({ desc = "Exit Terminal Mode" }))
-keymap("t", "<M-h>", [[<C-\><C-n><C-w>h]], XTND({ desc = "Terminal Left" }))
-keymap("t", "<M-j>", [[<C-\><C-n><C-w>j]], XTND({ desc = "Terminal Down" }))
-keymap("t", "<M-k>", [[<C-\><C-n><C-w>k]], XTND({ desc = "Terminal Up" }))
-keymap("t", "<M-l>", [[<C-\><C-n><C-w>l]], XTND({ desc = "Terminal Right" }))
+
+-- drop built-in LSP gr* defaults (grr/gri/grn/gra/grt/grx) so `gr` (references)
+-- fires instantly; each is already covered by gr/gI/<leader>l{r,a,D,l}
+for _, map in ipairs({
+  { "n", "grr" },
+  { "n", "gri" },
+  { "n", "grn" },
+  { "n", "gra" },
+  { "x", "gra" },
+  { "n", "grt" },
+  { "n", "grx" },
+}) do
+  pcall(vim.keymap.del, map[1], map[2])
+end
 
 -- tab navigation
 keymap("n", "]<tab>", "<cmd>tabnext<cr>", XTND({ desc = "Next Tab" }))
