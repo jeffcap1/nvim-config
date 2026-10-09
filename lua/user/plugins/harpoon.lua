@@ -8,50 +8,42 @@ local M = {
 }
 
 M.opts = {
-  menu = {
-    width = vim.api.nvim_win_get_width(0) - 4,
-  },
   settings = {
     save_on_toggle = true,
   },
 }
 
-M.keys = function()
-  local harpoon = require("harpoon")
-
-  -- stylua: ignore
-  local keymaps = {
-    { "<leader>hm", function() harpoon:list():add() end, desc = "Harpoon Mark File", },
-    { "<leader>hh", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, desc = "Harpoon Toggle UI", },
-
-    -- Toggle previous & next buffers stored within Harpoon list
-    { "]f", function() harpoon:list():next() end, desc = "Next Harpoon File" },
-    { "[f", function() harpoon:list():prev() end, desc = "Previous Harpoon File" },
-  }
-
-  -- hop to files 1-4 in the list
-  for i = 1, 5 do
-    table.insert(keymaps, {
-      "<leader>h" .. i,
-      function()
-        harpoon:list():select(i)
-      end,
-      desc = "Harpoon File " .. i,
-    })
-  end
-
-  return keymaps
+local function list()
+  return require("harpoon"):list()
 end
 
-function M.config()
+-- stylua: ignore
+M.keys = {
+  { "<leader>hm", function() list():add() end, desc = "Harpoon Mark File", },
+  { "<leader>hh", function() require("harpoon").ui:toggle_quick_menu(list()) end, desc = "Harpoon Toggle UI", },
+
+  -- Toggle previous & next buffers stored within Harpoon list
+  { "]f", function() list():next() end, desc = "Next Harpoon File" },
+  { "[f", function() list():prev() end, desc = "Previous Harpoon File" },
+}
+-- stylua: ignore end
+
+-- hop to files 1-5 in the list
+for i = 1, 5 do
+  table.insert(M.keys, {
+    "<leader>h" .. i,
+    function()
+      list():select(i)
+    end,
+    desc = "Harpoon File " .. i,
+  })
+end
+
+function M.config(_, opts)
   local harpoon = require("harpoon")
 
   -- REQUIRED
-  harpoon:setup({
-    settings = {
-      save_on_toggle = true,
-    },
-  })
+  harpoon:setup(opts)
 
   harpoon:extend({
     ADD = function()

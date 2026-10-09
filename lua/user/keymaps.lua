@@ -66,5 +66,7 @@ keymap({ "n", "x" }, "k", "gk", XTND({ desc = "Move up" }))
 -- toggle relative numbers (easier for pairing)
 keymap("n", "<leader><leader>r", "<cmd>lua vim.wo.rnu = not vim.wo.rnu<cr>", XTND({ desc = "Toggle rnu" }))
 
--- Source config
-keymap("n", "<leader><leader>c", "<cmd>luafile $MYVIMRC<CR>", { noremap = true, desc = "Reload Config" })
+-- Restart nvim (0.12+): saves session, restarts with same argv, restores session.
+-- lazy.nvim can't re-source the config in place, so this is the "reload config".
+-- If the session double-restores with persisted.nvim, switch to `restart!`.
+keymap("n", "<leader><leader>c", "<cmd>restart<cr>", XTND({ desc = "Restart Neovim" }))

@@ -117,9 +117,8 @@ local dap_mason = {
     -- see mason-nvim-dap README for more information
     handlers = {},
 
-    -- You'll need to check that you have the required things installed
-    -- online, please don't ask me how to install them :)
-    ensure_installed = USERS_DAP_SERVERS,
+    -- adapters are installed by mason-tool-installer (see plugins/mason.lua)
+    ensure_installed = {},
   },
   -- mason-nvim-dap is loaded when nvim-dap loads
   config = function() end,
@@ -127,7 +126,7 @@ local dap_mason = {
 
 -- 4. load dap settings for each supported langauge
 local lang_setup = {}
-for _, file in ipairs(vim.fn.readdir(vim.fn.expand("~/.config/nvim/lua/user/dap_settings"))) do
+for _, file in ipairs(vim.fn.readdir(vim.fn.stdpath("config") .. "/lua/user/dap_settings")) do
   if file:match("%.lua") then
     table.insert(lang_setup, { import = "user.dap_settings." .. file:sub(1, -5) })
   end

@@ -76,21 +76,19 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "markdown" },
   callback = function()
-    vim.opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
+    vim.opt_local.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
   end,
 })
 
--- fix context issue when not completeing a snippet
-vim.api.nvim_create_autocmd("CursorHold", {
-  callback = function()
-    local status_ok, luasnip = pcall(require, "luasnip")
-    if not status_ok then
-      return
-    end
-    if luasnip.expand_or_jumpable() then
-      -- ask maintainer for option to make this silent
-      -- luasnip.unlink_current()
-      vim.cmd([[silent! lua require("luasnip").unlink_current()]])
+-- leave the snippet session when exiting insert/select mode so jumps don't
+-- resurrect a stale snippet later (only if LuaSnip is already loaded)
+vim.api.nvim_create_autocmd("ModeChanged", {
+  group = augroup("luasnip_unlink"),
+  pattern = { "s:n", "i:*" },
+  callback = function(event)
+    local luasnip = package.loaded["luasnip"]
+    if luasnip and luasnip.session.current_nodes[event.buf] and not luasnip.session.jump_active then
+      luasnip.unlink_current()
     end
   end,
 })

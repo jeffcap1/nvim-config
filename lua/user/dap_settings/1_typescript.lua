@@ -8,17 +8,9 @@ local js_filetypes = {
   "astro",
 }
 
+-- js-debug-adapter is installed by mason-tool-installer (see plugins/mason.lua)
 return {
   "mfussenegger/nvim-dap",
-  dependencies = {
-    {
-      "williamboman/mason.nvim",
-      opts = function(_, opts)
-        opts.ensure_installed = opts.ensure_installed or {}
-        table.insert(opts.ensure_installed, "js-debug-adapter")
-      end,
-    },
-  },
   opts = function()
     local dap = require("dap")
     if not dap.adapters["pwa-node"] then
