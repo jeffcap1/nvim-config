@@ -29,12 +29,9 @@ local function get_project_root()
   while #path_to_scan > 1 and path_to_scan ~= "/" do
     for i, marker in ipairs(root_markers_priority) do
       local full_path_to_marker = path_to_scan .. "/" .. marker
-      -- Using shell command becuase nvim.fn functions were returning a false positive
-      local shell_check_output =
-        vim.fn.system("test -e " .. vim.fn.shellescape(full_path_to_marker) .. " && echo 1 || echo 0")
-      local marker_exists_string = shell_check_output:gsub("%s*$", "") -- Remove ONLY trailing whitespace (including newlines)
-
-      if marker_exists_string == "1" then -- Compare the string directly
+      -- fs_stat matches `test -e` (files AND dirs like .git) without spawning a shell.
+      -- (vim.fn.filereadable returns 0 for directories, which is why it misbehaved here)
+      if vim.uv.fs_stat(full_path_to_marker) then
         if i < best_marker_priority_idx then
           best_marker_priority_idx = i
           best_root_path = path_to_scan

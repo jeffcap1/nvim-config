@@ -1,6 +1,7 @@
 local M = {
   "olimorris/codecompanion.nvim",
-  event = { "BufReadPost", "BufNewFile" },
+  -- load on demand (keys below / commands); avoids loading + starting mcphub on every file open
+  cmd = { "CodeCompanion", "CodeCompanionChat", "CodeCompanionActions", "CodeCompanionCmd" },
 }
 
 -- determine which mcp file to use based on if local exists or not
@@ -51,7 +52,7 @@ M.keys = {
 
 M.opts = {
   -- Set debug logging
-  log_level = "DEBUG",
+  log_level = "WARN",
   adapters = {
     http = {
       copilot = function()
