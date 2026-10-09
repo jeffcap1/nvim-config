@@ -9,10 +9,6 @@ require("user.autocmds")
 require("user.lsp_servers")
 pcall(require, "user.local_lsp_servers")
 
--- DAP servers
-require("user.dap_servers")
-pcall(require, "user.local_dap_servers")
-
 -- startup
 spec("user.plugins.theme")
 spec("user.plugins.persisted")

@@ -62,7 +62,7 @@ local scroll_center_keymaps = {
   {"<c-u>", "Half Page Up" },
 }
 
-for key, km in pairs(scroll_center_keymaps) do
+for _, km in pairs(scroll_center_keymaps) do
   keymap("n", km[1], function()
     return center_on_scroll(km[1])
   end, { expr = true, desc = km[2] })

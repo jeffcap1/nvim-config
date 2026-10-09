@@ -18,7 +18,6 @@ M.opts = {
     snacks_terminal = false,
     snacks_explorer = false,
     snacks_input = false,
-    DressingInput = false,
     ["dap-repl"] = false,
     ["."] = false,
   },

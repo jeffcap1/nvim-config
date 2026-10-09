@@ -12,8 +12,8 @@ local M = {
   },
 }
 
+-- history/updateevents/ext_opts are set in after/plugin/luasnip.lua
 M.opts = {
-  history = true,
   delete_check_events = "TextChanged",
 }
 

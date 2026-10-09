@@ -15,7 +15,6 @@ end
 
 M.config = function()
   local conform = require("conform")
-  local util = require("conform.util")
 
   ---@type conform.setupOpts
   conform.setup({

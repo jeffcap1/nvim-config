@@ -33,27 +33,18 @@ vim.api.nvim_create_autocmd("VimResized", {
 -- allow quitting with q in certain contexts
 vim.api.nvim_create_autocmd("FileType", {
   pattern = {
-    "netrw",
-    "Jaq",
-    "qf",
+    -- built-in
+    "checkhealth",
     "git",
     "help",
     "man",
-    "lspinfo",
-    "oil",
-    "spectre_panel",
-    "lir",
-    "typescript-errors",
-    "DressingSelect",
-    "tsplayground",
-    "startuptime",
-    "neotest-output",
-    "checkhealth",
-    "neotest-summary",
-    "neotest-output-panel",
-    "dbout",
-    "gitsigns-blame",
-    "dap-float",
+    "netrw",
+    "qf",
+    -- plugins
+    "dap-float", -- nvim-dap
+    "gitsigns-blame", -- gitsigns
+    "oil", -- oil.nvim
+    "typescript-errors", -- better-ts-errors
   },
   callback = function()
     vim.cmd([[

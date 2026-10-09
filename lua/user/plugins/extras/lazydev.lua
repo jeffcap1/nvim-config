@@ -20,7 +20,6 @@ LAZYDEV.opts = {
     { path = "${3rd}/luv/library", words = { "vim%.uv" } },
     { path = "wezterm-types", mods = { "wezterm" } },
     { path = "snacks.nvim", words = { "Snacks" } },
-    "flash.nvim",
   },
 }
 
