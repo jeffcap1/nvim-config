@@ -1,3 +1,11 @@
+-- TODO: consider replacing nvim-treesitter with arborist-ts/arborist.nvim.
+--   + bundles queries for 330 langs, incl. ones nvim-treesitter dropped (tmux)
+--   + auto-install/highlight/indent built in; replaces the autocmd + list below
+--   - WASM path unused here (nvim built without wasmtime); native builds only
+--   - unverified that it can build tmux (upstream removed src/parser.c);
+--     test with :ArboristInstall tmux
+--   Don't run both. On switch: drop nvim-treesitter dep from render-markdown.lua
+--   and codecompanion.lua, clean ~/.local/share/nvim/site/{parser,queries,parser-info}.
 local M = {
   "nvim-treesitter/nvim-treesitter",
   branch = "main",
@@ -57,7 +65,15 @@ vim.api.nvim_create_autocmd("FileType", {
 
     -- Enable treesitter highlighting and disable regex syntax
     -- (folding is owned by nvim-ufo, see ufo.lua)
-    if vim.treesitter.language.add(lang) then
+    -- Require a highlights query too: a parser without queries (e.g. languages
+    -- dropped upstream, like tmux) would kill regex syntax and render plain text.
+    -- NOTE: if a file suddenly renders black & white, check for a stale parser:
+    --   :lua =vim.treesitter.query.get(vim.bo.filetype, "highlights")
+    -- nil => parser installed but queries gone (lang dropped by nvim-treesitter).
+    -- Fix: rm ~/.local/share/nvim/site/{parser/<lang>.so,queries/<lang>,parser-info/<lang>.revision}
+    -- This guard only covers this autocmd; snacks quickfile still starts TS for
+    -- the first CLI-opened file whenever a parser loads, so the rm is required.
+    if vim.treesitter.language.add(lang) and vim.treesitter.query.get(lang, "highlights") then
       vim.treesitter.start(args.buf, lang)
       vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
     end
