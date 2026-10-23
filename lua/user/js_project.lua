@@ -9,7 +9,7 @@ local M = {}
 M.config_files = {
   biome = { "biome.json", "biome.jsonc" },
   oxlint = { ".oxlintrc.json", ".oxlintrc.jsonc", "oxlint.config.ts" },
-  oxfmt = { ".oxfmtrc.json", ".oxfmtrc.jsonc" },
+  oxfmt = { ".oxfmtrc.json", ".oxfmtrc.jsonc", "oxfmt.config.ts" },
   eslint_flat = {
     "eslint.config.js",
     "eslint.config.mjs",

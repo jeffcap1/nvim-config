@@ -16,6 +16,14 @@ local function get_js_formatter(bufnr)
   end
 end
 
+-- non-JS filetypes oxfmt also handles; biome projects keep prettier here
+local function get_prettier_or_oxfmt(bufnr)
+  if require("user.js_project").uses(bufnr, "oxfmt") then
+    return { "oxfmt" }
+  end
+  return { "prettierd", "prettier", stop_after_first = true }
+end
+
 M.config = function()
   local conform = require("conform")
 
@@ -52,14 +60,14 @@ M.config = function()
       css = function(bufnr)
         return get_js_formatter(bufnr)
       end,
-      scss = { "prettierd", "prettier", stop_after_first = true },
-      less = { "prettierd", "prettier", stop_after_first = true },
-      html = { "prettierd", "prettier", stop_after_first = true },
-      json = { "prettierd", "prettier", stop_after_first = true },
-      jsonc = { "prettierd", "prettier", stop_after_first = true },
-      yaml = { "prettierd", "prettier", stop_after_first = true },
-      markdown = { "prettierd", "prettier", stop_after_first = true },
-      graphql = { "prettierd", "prettier", stop_after_first = true },
+      scss = get_prettier_or_oxfmt,
+      less = get_prettier_or_oxfmt,
+      html = get_prettier_or_oxfmt,
+      json = get_prettier_or_oxfmt,
+      jsonc = get_prettier_or_oxfmt,
+      yaml = get_prettier_or_oxfmt,
+      markdown = get_prettier_or_oxfmt,
+      graphql = get_prettier_or_oxfmt,
       sql = { "sql_formatter" },
       php = { "phpcbf", "phpcsfixer" },
       -- Use the "_" filetype to run formatters on filetypes that don't
